@@ -610,7 +610,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_GLACCOUNTS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
 					}
 				],
 				"outputs": [
@@ -795,7 +798,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_GLACCOUNTCLASSIFICATIONMAPPINGS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
 					}
 				],
 				"outputs": [
