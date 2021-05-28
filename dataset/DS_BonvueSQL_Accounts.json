@@ -1,0 +1,318 @@
+{
+	"name": "DS_BonvueSQL_Accounts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Account",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountBankAccountID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountBankAccountNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountContact",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountContactName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountCountry",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AmountDC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AmountDiscountDC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AmountFC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AmountDiscountFC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BankAccountID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BankAccountNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CashflowTransactionBatchCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Created",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CreatorFullName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DirectDebitMandate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DirectDebitMandateDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DirectDebitMandatePaymentType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DirectDebitMandateReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DirectDebitMandateType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiscountDueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Division",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Document",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentSubject",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EndDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EndPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EndToEndID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EndYear",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EntryNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLAccountCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GLAccountDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InvoiceNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsBatchBooking",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsFullyPaid",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Journal",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JournalDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastPaymentDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Modified",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifierFullName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentCondition",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentConditionDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentDays",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentDaysDiscount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentDiscountPercentage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentInformationID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentMethod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PaymentReference",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RateFC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReceivableSelected",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReceivableSelector",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReceivableSelectorFullName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReceivableBatchNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionAmountDC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionAmountFC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionDueDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionEntryID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionIsReversal",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionReportingPeriod",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionReportingYear",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransactionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "YourRef",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Accounts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
