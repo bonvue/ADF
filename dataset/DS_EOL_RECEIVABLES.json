@@ -5,6 +5,12 @@
 			"referenceName": "LS_REST_EOL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
