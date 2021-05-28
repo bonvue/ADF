@@ -5,10 +5,16 @@
 			"referenceName": "LS_REST_EOL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/2928333/hrm/Costcenters"
+			"relativeUrl": "/api/v1/dataset().division/hrm/Costcenters"
 		},
 		"schema": []
 	},

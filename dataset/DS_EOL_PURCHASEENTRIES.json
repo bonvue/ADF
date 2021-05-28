@@ -5,10 +5,16 @@
 			"referenceName": "LS_REST_EOL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/2928333/purchaseentry/PurchaseEntries?$select=EntryID,AmountDC,AmountFC,BatchNumber,Created,CreatorFullName,Currency,Description,Division,Document,DocumentNumber,DocumentSubject,DueDate,EntryDate,EntryNumber,ExternalLinkDescription,ExternalLinkReference,GAccountAmountFC,InvoiceNumber,Journal,JournalDescription,Modified,ModifierFullName,OrderNumber,PaymentCondition,PaymentConditionDescription,PaymentReference,ProcessNumber,PurchaseEntryLines,Rate,ReportingPeriod,ReportingYear,Reversal,Status,StatusDescription,Supplier,SupplierName,Type,TypeDescription,VATAmountDC,VATAmountFC,YourRef"
+			"relativeUrl": "/api/v1/dataset().division/purchaseentry/PurchaseEntries?$select=EntryID,AmountDC,AmountFC,BatchNumber,Created,CreatorFullName,Currency,Description,Division,Document,DocumentNumber,DocumentSubject,DueDate,EntryDate,EntryNumber,ExternalLinkDescription,ExternalLinkReference,GAccountAmountFC,InvoiceNumber,Journal,JournalDescription,Modified,ModifierFullName,OrderNumber,PaymentCondition,PaymentConditionDescription,PaymentReference,ProcessNumber,PurchaseEntryLines,Rate,ReportingPeriod,ReportingYear,Reversal,Status,StatusDescription,Supplier,SupplierName,Type,TypeDescription,VATAmountDC,VATAmountFC,YourRef"
 		},
 		"schema": []
 	},
