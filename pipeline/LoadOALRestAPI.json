@@ -1007,13 +1007,7 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_AGINGPAYABLESLIST",
-						"type": "DatasetReference",
-						"parameters": {
-							"division": {
-								"value": "@pipeline().parameters.division",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
@@ -3232,12 +3226,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"division": {
-				"type": "string",
-				"defaultValue": "2928333"
-			}
-		},
 		"annotations": [],
 		"lastPublishTime": "2021-05-24T09:46:00Z"
 	},
