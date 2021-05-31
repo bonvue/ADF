@@ -14,7 +14,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/dataset().division/hrm/Costcenters"
+			"relativeUrl": "/api/v1/@{dataset().division}/hrm/Costcenters"
 		},
 		"schema": []
 	},
