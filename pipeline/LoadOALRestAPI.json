@@ -3286,206 +3286,298 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['d']['results'][0]['__metadata']['uri']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['type']"
-								}
-							},
-							{
-								"source": {
 									"path": "$['d']['results'][0]['ID']"
 								},
 								"sink": {
-									"name": "ID",
-									"type": "String"
+									"name": "ID"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Accountant']"
+								},
+								"sink": {
+									"name": "Accountant"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AccountManager']"
+								},
+								"sink": {
+									"name": "AccountManager"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AccountManagerFullName']"
+								},
+								"sink": {
+									"name": "AccountManagerFullName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AccountManagerHID']"
+								},
+								"sink": {
+									"name": "AccountManagerHID"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ActivitySector']"
+								},
+								"sink": {
+									"name": "ActivitySector"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ActivitySubSector']"
+								},
+								"sink": {
+									"name": "ActivitySubSector"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AddressLine1']"
+								},
+								"sink": {
+									"name": "AddressLine1"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AddressLine2']"
+								},
+								"sink": {
+									"name": "AddressLine2"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AddressLine3']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['results'][0]['BankAccounts']['results'][0]"
+								},
+								"sink": {
+									"name": "AddressLine3"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Blocked']"
+								},
+								"sink": {
+									"name": "Blocked"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BRIN']"
+								},
+								"sink": {
+									"name": "BRIN"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BSN']"
+								},
+								"sink": {
+									"name": "BSN"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BusinessType']"
+								},
+								"sink": {
+									"name": "BusinessType"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CanDropShip']"
+								},
+								"sink": {
+									"name": "CanDropShip"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ChamberOfCommerce']"
+								},
+								"sink": {
+									"name": "ChamberOfCommerce"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['City']"
+								},
+								"sink": {
+									"name": "City"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification']"
+								},
+								"sink": {
+									"name": "Classification"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification1']"
+								},
+								"sink": {
+									"name": "Classification1"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification2']"
+								},
+								"sink": {
+									"name": "Classification2"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification3']"
+								},
+								"sink": {
+									"name": "Classification3"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification4']"
+								},
+								"sink": {
+									"name": "Classification4"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification5']"
+								},
+								"sink": {
+									"name": "Classification5"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification6']"
+								},
+								"sink": {
+									"name": "Classification6"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification7']"
+								},
+								"sink": {
+									"name": "Classification7"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Classification8']"
+								},
+								"sink": {
+									"name": "Classification8"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ClassificationDescription']"
+								},
+								"sink": {
+									"name": "ClassificationDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Code']"
+								},
+								"sink": {
+									"name": "Code"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CodeAtSupplier']"
+								},
+								"sink": {
+									"name": "CodeAtSupplier"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CompanySize']"
+								},
+								"sink": {
+									"name": "CompanySize"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ConsolidationScenario']"
+								},
+								"sink": {
+									"name": "ConsolidationScenario"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ControlledDate']"
+								},
+								"sink": {
+									"name": "ControlledDate"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Costcenter']"
+								},
+								"sink": {
+									"name": "Costcenter"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CostcenterDescription']"
+								},
+								"sink": {
+									"name": "CostcenterDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CostPaid']"
+								},
+								"sink": {
+									"name": "CostPaid"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Country']"
+								},
+								"sink": {
+									"name": "Country"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CountryName']"
+								},
+								"sink": {
+									"name": "CountryName"
 								}
 							},
 							{
@@ -3493,13 +3585,15 @@
 									"path": "$['d']['results'][0]['Created']"
 								},
 								"sink": {
-									"name": "Created",
-									"type": "String"
+									"name": "Created"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator"
 								}
 							},
 							{
@@ -3507,18 +3601,23 @@
 									"path": "$['d']['results'][0]['CreatorFullName']"
 								},
 								"sink": {
-									"name": "CreatorFullName",
-									"type": "String"
+									"name": "CreatorFullName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CreditLinePurchase']"
+								},
+								"sink": {
+									"name": "CreditLinePurchase"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CreditLineSales']"
+								},
+								"sink": {
+									"name": "CreditLineSales"
 								}
 							},
 							{
@@ -3526,33 +3625,47 @@
 									"path": "$['d']['results'][0]['Currency']"
 								},
 								"sink": {
-									"name": "Currency",
-									"type": "String"
+									"name": "Currency"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['CustomerSince']"
+								},
+								"sink": {
+									"name": "CustomerSince"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['DatevCreditorCode']"
+								},
+								"sink": {
+									"name": "DatevCreditorCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['DatevDebtorCode']"
+								},
+								"sink": {
+									"name": "DatevDebtorCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['DiscountPurchase']"
+								},
+								"sink": {
+									"name": "DiscountPurchase"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['DiscountSales']"
+								},
+								"sink": {
+									"name": "DiscountSales"
 								}
 							},
 							{
@@ -3560,8 +3673,7 @@
 									"path": "$['d']['results'][0]['Division']"
 								},
 								"sink": {
-									"name": "Division",
-									"type": "String"
+									"name": "Division"
 								}
 							},
 							{
@@ -3569,18 +3681,23 @@
 									"path": "$['d']['results'][0]['Document']"
 								},
 								"sink": {
-									"name": "Document",
-									"type": "String"
+									"name": "Document"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['DunsNumber']"
+								},
+								"sink": {
+									"name": "DunsNumber"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Email']"
+								},
+								"sink": {
+									"name": "Email"
 								}
 							},
 							{
@@ -3588,228 +3705,359 @@
 									"path": "$['d']['results'][0]['EndDate']"
 								},
 								"sink": {
-									"name": "EndDate",
-									"type": "String"
+									"name": "EndDate"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['EstablishedDate']"
+								},
+								"sink": {
+									"name": "EstablishedDate"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Fax']"
+								},
+								"sink": {
+									"name": "Fax"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['GLAccountPurchase']"
+								},
+								"sink": {
+									"name": "GLAccountPurchase"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['GLAccountSales']"
+								},
+								"sink": {
+									"name": "GLAccountSales"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['GLAP']"
+								},
+								"sink": {
+									"name": "GLAP"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['GLAR']"
+								},
+								"sink": {
+									"name": "GLAR"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['GlnNumber']"
+								},
+								"sink": {
+									"name": "GlnNumber"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['HasWithholdingTaxSales']"
+								},
+								"sink": {
+									"name": "HasWithholdingTaxSales"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IgnoreDatevWarningMessage']"
+								},
+								"sink": {
+									"name": "IgnoreDatevWarningMessage"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatArea']"
+								},
+								"sink": {
+									"name": "IntraStatArea"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatDeliveryTerm']"
+								},
+								"sink": {
+									"name": "IntraStatDeliveryTerm"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatSystem']"
+								},
+								"sink": {
+									"name": "IntraStatSystem"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatTransactionA']"
+								},
+								"sink": {
+									"name": "IntraStatTransactionA"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatTransactionB']"
+								},
+								"sink": {
+									"name": "IntraStatTransactionB"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IntraStatTransportMethod']"
+								},
+								"sink": {
+									"name": "IntraStatTransportMethod"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['InvoiceAccount']"
+								},
+								"sink": {
+									"name": "InvoiceAccount"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['InvoiceAccountCode']"
+								},
+								"sink": {
+									"name": "InvoiceAccountCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['InvoiceAccountName']"
+								},
+								"sink": {
+									"name": "InvoiceAccountName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['InvoiceAttachmentType']"
+								},
+								"sink": {
+									"name": "InvoiceAttachmentType"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['InvoicingMethod']"
+								},
+								"sink": {
+									"name": "InvoicingMethod"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsAccountant']"
+								},
+								"sink": {
+									"name": "IsAccountant"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsAgency']"
+								},
+								"sink": {
+									"name": "IsAgency"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsAnonymised']"
+								},
+								"sink": {
+									"name": "IsAnonymised"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsBank']"
+								},
+								"sink": {
+									"name": "IsBank"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsCompetitor']"
+								},
+								"sink": {
+									"name": "IsCompetitor"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsExtraDuty']"
+								},
+								"sink": {
+									"name": "IsExtraDuty"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsMailing']"
+								},
+								"sink": {
+									"name": "IsMailing"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsMember']"
+								},
+								"sink": {
+									"name": "IsMember"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsPilot']"
+								},
+								"sink": {
+									"name": "IsPilot"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsPurchase']"
+								},
+								"sink": {
+									"name": "IsPurchase"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsReseller']"
+								},
+								"sink": {
+									"name": "IsReseller"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsSales']"
+								},
+								"sink": {
+									"name": "IsSales"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['IsSupplier']"
+								},
+								"sink": {
+									"name": "IsSupplier"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Language']"
+								},
+								"sink": {
+									"name": "Language"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LanguageDescription']"
+								},
+								"sink": {
+									"name": "LanguageDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Latitude']"
+								},
+								"sink": {
+									"name": "Latitude"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LeadSource']"
+								},
+								"sink": {
+									"name": "LeadSource"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LeadPurpose']"
+								},
+								"sink": {
+									"name": "LeadPurpose"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LogoFileName']"
+								},
+								"sink": {
+									"name": "LogoFileName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LogoThumbnailUrl']"
+								},
+								"sink": {
+									"name": "LogoThumbnailUrl"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['LogoUrl']"
+								},
+								"sink": {
+									"name": "LogoUrl"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Logo']"
+								},
+								"sink": {
+									"name": "Logo"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Longitude']"
+								},
+								"sink": {
+									"name": "Longitude"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['MainContact']"
+								},
+								"sink": {
+									"name": "MainContact"
 								}
 							},
 							{
@@ -3817,13 +4065,15 @@
 									"path": "$['d']['results'][0]['Modified']"
 								},
 								"sink": {
-									"name": "Modified",
-									"type": "String"
+									"name": "Modified"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier"
 								}
 							},
 							{
@@ -3831,188 +4081,295 @@
 									"path": "$['d']['results'][0]['ModifierFullName']"
 								},
 								"sink": {
-									"name": "ModifierFullName",
-									"type": "String"
+									"name": "ModifierFullName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Name']"
+								},
+								"sink": {
+									"name": "Name"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['OINNumber']"
+								},
+								"sink": {
+									"name": "OINNumber"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Parent']"
+								},
+								"sink": {
+									"name": "Parent"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PaymentConditionPurchase']"
+								},
+								"sink": {
+									"name": "PaymentConditionPurchase"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PaymentConditionPurchaseDescription']"
+								},
+								"sink": {
+									"name": "PaymentConditionPurchaseDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PaymentConditionSales']"
+								},
+								"sink": {
+									"name": "PaymentConditionSales"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PaymentConditionSalesDescription']"
+								},
+								"sink": {
+									"name": "PaymentConditionSalesDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PayAsYouEarn']"
+								},
+								"sink": {
+									"name": "PayAsYouEarn"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Phone']"
+								},
+								"sink": {
+									"name": "Phone"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PhoneExtension']"
+								},
+								"sink": {
+									"name": "PhoneExtension"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Postcode']"
+								},
+								"sink": {
+									"name": "Postcode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PriceList']"
+								},
+								"sink": {
+									"name": "PriceList"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PurchaseCurrency']"
+								},
+								"sink": {
+									"name": "PurchaseCurrency"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PurchaseCurrencyDescription']"
+								},
+								"sink": {
+									"name": "PurchaseCurrencyDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PurchaseLeadDays']"
+								},
+								"sink": {
+									"name": "PurchaseLeadDays"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PurchaseVATCode']"
+								},
+								"sink": {
+									"name": "PurchaseVATCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['PurchaseVATCodeDescription']"
+								},
+								"sink": {
+									"name": "PurchaseVATCodeDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Remarks']"
+								},
+								"sink": {
+									"name": "Remarks"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['RecepientOfCommissions']"
+								},
+								"sink": {
+									"name": "RecepientOfCommissions"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Reseller']"
+								},
+								"sink": {
+									"name": "Reseller"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ResellerCode']"
+								},
+								"sink": {
+									"name": "ResellerCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ResellerName']"
+								},
+								"sink": {
+									"name": "ResellerName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['RSIN']"
+								},
+								"sink": {
+									"name": "RSIN"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesCurrency']"
+								},
+								"sink": {
+									"name": "SalesCurrency"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesCurrencyDescription']"
+								},
+								"sink": {
+									"name": "SalesCurrencyDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesVATCode']"
+								},
+								"sink": {
+									"name": "SalesVATCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesVATCodeDescription']"
+								},
+								"sink": {
+									"name": "SalesVATCodeDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SearchCode']"
+								},
+								"sink": {
+									"name": "SearchCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SecurityLevel']"
+								},
+								"sink": {
+									"name": "SecurityLevel"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SeparateInvPerSubscription']"
+								},
+								"sink": {
+									"name": "SeparateInvPerSubscription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ShippingLeadDays']"
+								},
+								"sink": {
+									"name": "ShippingLeadDays"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ShippingMethod']"
+								},
+								"sink": {
+									"name": "ShippingMethod"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ShowRemarkForSales']"
+								},
+								"sink": {
+									"name": "ShowRemarkForSales"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['StartDate']"
+								},
+								"sink": {
+									"name": "StartDate"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['State']"
+								},
+								"sink": {
+									"name": "State"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['StateName']"
+								},
+								"sink": {
+									"name": "StateName"
 								}
 							},
 							{
@@ -4020,62 +4377,93 @@
 									"path": "$['d']['results'][0]['Status']"
 								},
 								"sink": {
-									"name": "Status",
-									"type": "String"
+									"name": "Status"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['StatusSince']"
+								},
+								"sink": {
+									"name": "StatusSince"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesTaxSchedule']"
+								},
+								"sink": {
+									"name": "SalesTaxSchedule"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesTaxScheduleCode']"
+								},
+								"sink": {
+									"name": "SalesTaxScheduleCode"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['SalesTaxScheduleDescription']"
+								},
+								"sink": {
+									"name": "SalesTaxScheduleDescription"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['TradeName']"
+								},
+								"sink": {
+									"name": "TradeName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Type']"
+								},
+								"sink": {
+									"name": "Type"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['UniqueTaxpayerReference']"
+								},
+								"sink": {
+									"name": "UniqueTaxpayerReference"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['VATLiability']"
+								},
+								"sink": {
+									"name": "VATLiability"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['VATNumber']"
+								},
+								"sink": {
+									"name": "VATNumber"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Website']"
+								},
+								"sink": {
+									"name": "Website",
+									"type": "String"
 								}
 							}
 						],
-						"collectionReference": ""
+						"collectionReference": "",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
