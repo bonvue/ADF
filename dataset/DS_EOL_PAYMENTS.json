@@ -14,7 +14,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@{dataset().division}/cashflow/Payments?$select=ID,Account,AccountBankAccountID,AccountBankAccountNumber,AccountCode,AccountContact,AccountContactName,AccountName,AmountDC,AmountDiscountDC,AmountDiscountFC,AmountFC,BankAccountID,BankAccountNumber,CashflowTransactionBatchCode,Created,CreatorFullName,Currency,Description,DiscountDueDate,Division,Document,DocumentNumber,DocumentSubject,DueDate,EndDate,EndPeriod,EndYear,EntryDate,EntryID,EntryNumber,GLAccount,GLAccountCode,GLAccountDescription,InvoiceDate,InvoiceNumber,IsBatchBooking,Journal,JournalDescription,Modified,ModifierFullName,PaymentBatchNumber,PaymentCondition,PaymentConditionDescription,PaymentDays,PaymentDaysDiscount,PaymentDiscountPercentage,PaymentMethod,PaymentReference,PaymentSelected,PaymentSelector,PaymentSelectorFullName,RateFC,Source,Status,TransactionAmountDC,TransactionAmountFC,TransactionDueDate,TransactionEntryID,TransactionID,TransactionIsReversal,TransactionReportingPeriod,TransactionReportingYear,TransactionStatus,TransactionType,YourRef"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/cashflow/Payments?$select=ID,Account,AccountBankAccountID,AccountBankAccountNumber,AccountCode,AccountContact,AccountContactName,AccountName,AmountDC,AmountDiscountDC,AmountDiscountFC,AmountFC,BankAccountID,BankAccountNumber,CashflowTransactionBatchCode,Created,CreatorFullName,Currency,Description,DiscountDueDate,Division,Document,DocumentNumber,DocumentSubject,DueDate,EndDate,EndPeriod,EndYear,EntryDate,EntryID,EntryNumber,GLAccount,GLAccountCode,GLAccountDescription,InvoiceDate,InvoiceNumber,IsBatchBooking,Journal,JournalDescription,Modified,ModifierFullName,PaymentBatchNumber,PaymentCondition,PaymentConditionDescription,PaymentDays,PaymentDaysDiscount,PaymentDiscountPercentage,PaymentMethod,PaymentReference,PaymentSelected,PaymentSelector,PaymentSelectorFullName,RateFC,Source,Status,TransactionAmountDC,TransactionAmountFC,TransactionDueDate,TransactionEntryID,TransactionID,TransactionIsReversal,TransactionReportingPeriod,TransactionReportingYear,TransactionStatus,TransactionType,YourRef",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},

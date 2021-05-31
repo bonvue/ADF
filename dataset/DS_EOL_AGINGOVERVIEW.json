@@ -1,5 +1,5 @@
 {
-	"name": "DS_EOL_COSTCENTERS",
+	"name": "DS_EOL_AGINGOVERVIEW",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_REST_EOL",
@@ -15,7 +15,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "/api/v1/@{dataset().division}/hrm/Costcenters?$select=ID,Active,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
+				"value": "/api/v1/@{dataset().division}/read/financial/AgingOverview?$select=AgeGroup,AgeGroupDescription,AmountPayable,AmountReceivable,CurrencyCode",
 				"type": "Expression"
 			}
 		},

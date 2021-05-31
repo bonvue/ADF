@@ -14,7 +14,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@{dataset().division}/purchaseentry/PurchaseEntries?$select=EntryID,AmountDC,AmountFC,BatchNumber,Created,CreatorFullName,Currency,Description,Division,Document,DocumentNumber,DocumentSubject,DueDate,EntryDate,EntryNumber,ExternalLinkDescription,ExternalLinkReference,GAccountAmountFC,InvoiceNumber,Journal,JournalDescription,Modified,ModifierFullName,OrderNumber,PaymentCondition,PaymentConditionDescription,PaymentReference,ProcessNumber,PurchaseEntryLines,Rate,ReportingPeriod,ReportingYear,Reversal,Status,StatusDescription,Supplier,SupplierName,Type,TypeDescription,VATAmountDC,VATAmountFC,YourRef"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/purchaseentry/PurchaseEntries?$select=EntryID,AmountDC,AmountFC,BatchNumber,Created,CreatorFullName,Currency,Description,Division,Document,DocumentNumber,DocumentSubject,DueDate,EntryDate,EntryNumber,ExternalLinkDescription,ExternalLinkReference,GAccountAmountFC,InvoiceNumber,Journal,JournalDescription,Modified,ModifierFullName,OrderNumber,PaymentCondition,PaymentConditionDescription,PaymentReference,ProcessNumber,PurchaseEntryLines,Rate,ReportingPeriod,ReportingYear,Reversal,Status,StatusDescription,Supplier,SupplierName,Type,TypeDescription,VATAmountDC,VATAmountFC,YourRef",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},

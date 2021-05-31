@@ -14,7 +14,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@{dataset().division}/financial/GLAccountClassificationMappings?$select=ID,Classification,ClassificationCode,ClassificationDescription,Division,GLAccount,GLAccountCode,GLAccountDescription,GLSchemeCode,GLSchemeDescription,GLSchemeID"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/financial/GLAccountClassificationMappings?$select=ID,Classification,ClassificationCode,ClassificationDescription,Division,GLAccount,GLAccountCode,GLAccountDescription,GLSchemeCode,GLSchemeDescription,GLSchemeID",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},

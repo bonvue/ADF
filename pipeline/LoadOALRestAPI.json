@@ -3245,7 +3245,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy Receivables",
 						"dependencyConditions": [
 							"Succeeded"
 						]

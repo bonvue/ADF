@@ -14,7 +14,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@{dataset().division}/bulk/Financial/GLClassifications?$select=ID,Abstract,Balance,Code,Created,CreatorFullName,Description,Division,IsTupleSubElement,Modified,Modifier,ModifierFullName,Name,PeriodType,SubstitutionGroup,TaxonomyNamespaceDescription"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/bulk/Financial/GLClassifications?$select=ID,Abstract,Balance,Code,Created,CreatorFullName,Description,Division,IsTupleSubElement,Modified,Modifier,ModifierFullName,Name,PeriodType,SubstitutionGroup,TaxonomyNamespaceDescription",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},

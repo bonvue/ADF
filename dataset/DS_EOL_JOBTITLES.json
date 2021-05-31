@@ -14,7 +14,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@{dataset().division}/hrm/JobTitles?$select=ID,Code,Created,CreatorFullName,Description,Division,JobCode,JobGroup,JobGroupCode,JobGroupDescription,JobLevelFrom,JobLevelTo,Modified,ModifierFullName,Notes"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/hrm/JobTitles?$select=ID,Code,Created,CreatorFullName,Description,Division,JobCode,JobGroup,JobGroupCode,JobGroupDescription,JobLevelFrom,JobLevelTo,Modified,ModifierFullName,Notes",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},
