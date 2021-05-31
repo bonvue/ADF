@@ -14,7 +14,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/dataset().division/bulk/Financial/GLAccounts?&$select=ID,AssimilatedVATBox,BalanceSide,BalanceType,BelcotaxType,Code,Compress,Costcenter,CostcenterDescription,Costunit,CostunitDescription,Created,Creator,CreatorFullName,DeductibilityPercentages,Description,Division,ExcludeVATListing,ExpenseNonDeductiblePercentage,IsBlocked,Matching,Modified,Modifier,PrivateGLAccount,PrivatePercentage,ReportingCode,RevalueCurrency,SearchCode,Type,TypeDescription,UseCostcenter,UseCostunit,VATCode,VATDescription,VATGLAccountType,VATNonDeductibleGLAccount,VATNonDeductiblePercentage,VATSystem,YearEndCostGLAccount,YearEndReflectionGLAccount&$expand=DeductibilityPercentages"
+			"relativeUrl": "/api/v1/@{dataset().division}/bulk/Financial/GLAccounts?&$select=ID,AssimilatedVATBox,BalanceSide,BalanceType,BelcotaxType,Code,Compress,Costcenter,CostcenterDescription,Costunit,CostunitDescription,Created,Creator,CreatorFullName,DeductibilityPercentages,Description,Division,ExcludeVATListing,ExpenseNonDeductiblePercentage,IsBlocked,Matching,Modified,Modifier,PrivateGLAccount,PrivatePercentage,ReportingCode,RevalueCurrency,SearchCode,Type,TypeDescription,UseCostcenter,UseCostunit,VATCode,VATDescription,VATGLAccountType,VATNonDeductibleGLAccount,VATNonDeductiblePercentage,VATSystem,YearEndCostGLAccount,YearEndReflectionGLAccount&$expand=DeductibilityPercentages"
 		},
 		"schema": []
 	},
