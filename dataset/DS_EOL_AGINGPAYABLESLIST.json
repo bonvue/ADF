@@ -15,7 +15,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "/api/v1/2928333/read/financial/AgingPayablesList?$select=AccountId,AccountCode,AccountName,AgeGroup1,AgeGroup1Amount,AgeGroup1Description,AgeGroup2,AgeGroup2Amount,AgeGroup2Description,AgeGroup3,AgeGroup3Amount,AgeGroup3Description,AgeGroup4,AgeGroup4Amount,AgeGroup4Description,CurrencyCode,TotalAmount",
+				"value": "/api/v1/@{dataset().division}/read/financial/AgingPayablesList?$select=AccountId,AccountCode,AccountName,AgeGroup1,AgeGroup1Amount,AgeGroup1Description,AgeGroup2,AgeGroup2Amount,AgeGroup2Description,AgeGroup3,AgeGroup3Amount,AgeGroup3Description,AgeGroup4,AgeGroup4Amount,AgeGroup4Description,CurrencyCode,TotalAmount",
 				"type": "Expression"
 			}
 		},
