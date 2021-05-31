@@ -1050,7 +1050,6 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE bankentries",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -1060,7 +1059,17 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['ClosingBalanceFC']"
+									"path": "$['d']['results'][0]['__metadata']['uri']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['__metadata']['type']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ClosingBalanceFC']"
 								},
 								"sink": {
 									"name": "ClosingBalanceFC",
@@ -1069,7 +1078,7 @@
 							},
 							{
 								"source": {
-									"path": "['Created']"
+									"path": "$['d']['results'][0]['Created']"
 								},
 								"sink": {
 									"name": "Created",
@@ -1078,7 +1087,7 @@
 							},
 							{
 								"source": {
-									"path": "['Currency']"
+									"path": "$['d']['results'][0]['Currency']"
 								},
 								"sink": {
 									"name": "Currency",
@@ -1087,7 +1096,7 @@
 							},
 							{
 								"source": {
-									"path": "['Division']"
+									"path": "$['d']['results'][0]['Division']"
 								},
 								"sink": {
 									"name": "Division",
@@ -1096,7 +1105,7 @@
 							},
 							{
 								"source": {
-									"path": "['EntryID']"
+									"path": "$['d']['results'][0]['EntryID']"
 								},
 								"sink": {
 									"name": "EntryID",
@@ -1105,7 +1114,7 @@
 							},
 							{
 								"source": {
-									"path": "['EntryNumber']"
+									"path": "$['d']['results'][0]['EntryNumber']"
 								},
 								"sink": {
 									"name": "EntryNumber",
@@ -1114,7 +1123,7 @@
 							},
 							{
 								"source": {
-									"path": "['FinancialPeriod']"
+									"path": "$['d']['results'][0]['FinancialPeriod']"
 								},
 								"sink": {
 									"name": "FinancialPeriod",
@@ -1123,7 +1132,7 @@
 							},
 							{
 								"source": {
-									"path": "['FinancialYear']"
+									"path": "$['d']['results'][0]['FinancialYear']"
 								},
 								"sink": {
 									"name": "FinancialYear",
@@ -1132,7 +1141,7 @@
 							},
 							{
 								"source": {
-									"path": "['JournalCode']"
+									"path": "$['d']['results'][0]['JournalCode']"
 								},
 								"sink": {
 									"name": "JournalCode",
@@ -1141,7 +1150,7 @@
 							},
 							{
 								"source": {
-									"path": "['JournalDescription']"
+									"path": "$['d']['results'][0]['JournalDescription']"
 								},
 								"sink": {
 									"name": "JournalDescription",
@@ -1150,7 +1159,7 @@
 							},
 							{
 								"source": {
-									"path": "['Modified']"
+									"path": "$['d']['results'][0]['Modified']"
 								},
 								"sink": {
 									"name": "Modified",
@@ -1159,7 +1168,7 @@
 							},
 							{
 								"source": {
-									"path": "['OpeningBalanceFC']"
+									"path": "$['d']['results'][0]['OpeningBalanceFC']"
 								},
 								"sink": {
 									"name": "OpeningBalanceFC",
@@ -1168,15 +1177,40 @@
 							},
 							{
 								"source": {
-									"path": "['StatusDescription']"
+									"path": "$['d']['results'][0]['Status']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['StatusDescription']"
 								},
 								"sink": {
 									"name": "StatusDescription",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocument']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocumentNumber']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocumentSubject']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['__next']"
+								}
 							}
 						],
-						"collectionReference": "$['d']['results']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
