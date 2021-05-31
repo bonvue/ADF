@@ -1,0 +1,17 @@
+{
+	"name": "DS_BonvueSQL_AgingPayableList_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Accounts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
