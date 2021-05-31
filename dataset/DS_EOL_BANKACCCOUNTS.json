@@ -1,0 +1,25 @@
+{
+	"name": "DS_EOL_BANKACCCOUNTS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}//crm/BankAccounts?$select=ID,Account,AccountName,Bank,BankAccount,BankAccountHolderName,BankDescription,BankName,BICCode,Created,Creator,CreatorFullName,Description,Division,Format,IBAN,Main,Modified,Modifier,ModifierFullName,PaymentServiceAccount,Type,TypeDescription",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

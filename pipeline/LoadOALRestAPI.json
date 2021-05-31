@@ -69,7 +69,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE CostCenters",
+						"preCopyScript": "TRUNCATE TABLE CostCenters",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -243,7 +243,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE GLACCOUNTS",
+						"preCopyScript": "TRUNCATE TABLE GLACCOUNTS",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -660,7 +660,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE GLAccountClassificationMappings",
+						"preCopyScript": "TRUNCATE TABLE GLAccountClassificationMappings",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -848,7 +848,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete agingpayablelist",
+						"preCopyScript": "TRUNCATE TABLE agingpayablelist",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -1066,7 +1066,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete bankentries",
+						"preCopyScript": "TRUNCATE TABLE bankentries",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -1249,7 +1249,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE GLCLASSIFICATIONS",
+						"preCopyScript": "TRUNCATE TABLE GLCLASSIFICATIONS",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -1408,7 +1408,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_GLCLASSIFICATIONS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
 					}
 				],
 				"outputs": [
@@ -1455,7 +1458,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE PAYMENTS",
+						"preCopyScript": "TRUNCATE TABLE PAYMENTS",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -2063,7 +2066,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_PAYMENTS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
 					}
 				],
 				"outputs": [
@@ -2110,7 +2116,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE PURCHASEENTRIES",
+						"preCopyScript": "TRUNCATE TABLE PURCHASEENTRIES",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -2493,7 +2499,10 @@
 				"inputs": [
 					{
 						"referenceName": "DS_EOL_PURCHASEENTRIES",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
 					}
 				],
 				"outputs": [
@@ -2540,7 +2549,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "DELETE RECEIVABLES",
+						"preCopyScript": "TRUNCATE TABLE RECEIVABLES",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -3280,7 +3289,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete Accounts",
+						"preCopyScript": "TRUNCATE TABLE Accounts",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -4669,7 +4678,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete agingOverview",
+						"preCopyScript": "TRUNCATE TABLE agingOverview",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -4677,22 +4686,6 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['uri']"
-								},
-								"sink": {
-									"name": "uri"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['type']"
-								},
-								"sink": {
-									"name": "type"
-								}
-							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['AgeGroup']"
@@ -4763,6 +4756,79 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
+						"activity": "Copy AgingOverview",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE AssetGroups",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]"
+								},
+								"sink": {
+									"name": "items"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_ASSETSGROUPS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_AssetGroups",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy BankAccounts",
+				"type": "Copy",
+				"dependsOn": [
+					{
 						"activity": "GetEOLBearerToken",
 						"dependencyConditions": [
 							"Succeeded"
@@ -4795,7 +4861,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "IF EXISTS (delete AssetGroups)",
+						"preCopyScript": "TRUNCATE TABLE BankAccounts",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -4805,10 +4871,209 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['d']['results'][0]"
+									"path": "$['d']['results'][0]['Account']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "Account",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountName']"
+								},
+								"sink": {
+									"name": "AccountName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Bank']"
+								},
+								"sink": {
+									"name": "Bank",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankAccount']"
+								},
+								"sink": {
+									"name": "BankAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankAccountHolderName']"
+								},
+								"sink": {
+									"name": "BankAccountHolderName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankDescription']"
+								},
+								"sink": {
+									"name": "BankDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankName']"
+								},
+								"sink": {
+									"name": "BankName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BICCode']"
+								},
+								"sink": {
+									"name": "BICCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Format']"
+								},
+								"sink": {
+									"name": "Format",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IBAN']"
+								},
+								"sink": {
+									"name": "IBAN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Main']"
+								},
+								"sink": {
+									"name": "Main",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentServiceAccount']"
+								},
+								"sink": {
+									"name": "PaymentServiceAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TypeDescription']"
+								},
+								"sink": {
+									"name": "TypeDescription",
+									"type": "String"
 								}
 							}
 						],
@@ -4817,7 +5082,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_EOL_ASSETSGROUPS",
+						"referenceName": "DS_EOL_BANKACCCOUNTS",
 						"type": "DatasetReference",
 						"parameters": {
 							"division": "2928333"
@@ -4826,7 +5091,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_BonvueSQL_AssetGroups",
+						"referenceName": "DS_BonvueSQL_BankAccounts",
 						"type": "DatasetReference"
 					}
 				]
