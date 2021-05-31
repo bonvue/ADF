@@ -3289,7 +3289,8 @@
 									"path": "$['d']['results'][0]['ID']"
 								},
 								"sink": {
-									"name": "ID"
+									"name": "ID",
+									"type": "String"
 								}
 							},
 							{
@@ -3297,7 +3298,8 @@
 									"path": "$['d']['results'][0]['Accountant']"
 								},
 								"sink": {
-									"name": "Accountant"
+									"name": "Accountant",
+									"type": "String"
 								}
 							},
 							{
@@ -3305,7 +3307,8 @@
 									"path": "$['d']['results'][0]['AccountManager']"
 								},
 								"sink": {
-									"name": "AccountManager"
+									"name": "AccountManager",
+									"type": "String"
 								}
 							},
 							{
@@ -3313,7 +3316,8 @@
 									"path": "$['d']['results'][0]['AccountManagerFullName']"
 								},
 								"sink": {
-									"name": "AccountManagerFullName"
+									"name": "AccountManagerFullName",
+									"type": "String"
 								}
 							},
 							{
@@ -3321,7 +3325,8 @@
 									"path": "$['d']['results'][0]['AccountManagerHID']"
 								},
 								"sink": {
-									"name": "AccountManagerHID"
+									"name": "AccountManagerHID",
+									"type": "String"
 								}
 							},
 							{
@@ -3329,7 +3334,8 @@
 									"path": "$['d']['results'][0]['ActivitySector']"
 								},
 								"sink": {
-									"name": "ActivitySector"
+									"name": "ActivitySector",
+									"type": "String"
 								}
 							},
 							{
@@ -3337,7 +3343,8 @@
 									"path": "$['d']['results'][0]['ActivitySubSector']"
 								},
 								"sink": {
-									"name": "ActivitySubSector"
+									"name": "ActivitySubSector",
+									"type": "String"
 								}
 							},
 							{
@@ -3345,7 +3352,8 @@
 									"path": "$['d']['results'][0]['AddressLine1']"
 								},
 								"sink": {
-									"name": "AddressLine1"
+									"name": "AddressLine1",
+									"type": "String"
 								}
 							},
 							{
@@ -3353,7 +3361,8 @@
 									"path": "$['d']['results'][0]['AddressLine2']"
 								},
 								"sink": {
-									"name": "AddressLine2"
+									"name": "AddressLine2",
+									"type": "String"
 								}
 							},
 							{
@@ -3361,7 +3370,8 @@
 									"path": "$['d']['results'][0]['AddressLine3']"
 								},
 								"sink": {
-									"name": "AddressLine3"
+									"name": "AddressLine3",
+									"type": "String"
 								}
 							},
 							{
@@ -3369,7 +3379,8 @@
 									"path": "$['d']['results'][0]['Blocked']"
 								},
 								"sink": {
-									"name": "Blocked"
+									"name": "Blocked",
+									"type": "String"
 								}
 							},
 							{
@@ -3377,7 +3388,8 @@
 									"path": "$['d']['results'][0]['BRIN']"
 								},
 								"sink": {
-									"name": "BRIN"
+									"name": "BRIN",
+									"type": "String"
 								}
 							},
 							{
@@ -3385,7 +3397,8 @@
 									"path": "$['d']['results'][0]['BSN']"
 								},
 								"sink": {
-									"name": "BSN"
+									"name": "BSN",
+									"type": "String"
 								}
 							},
 							{
@@ -3393,7 +3406,8 @@
 									"path": "$['d']['results'][0]['BusinessType']"
 								},
 								"sink": {
-									"name": "BusinessType"
+									"name": "BusinessType",
+									"type": "String"
 								}
 							},
 							{
@@ -3401,7 +3415,8 @@
 									"path": "$['d']['results'][0]['CanDropShip']"
 								},
 								"sink": {
-									"name": "CanDropShip"
+									"name": "CanDropShip",
+									"type": "String"
 								}
 							},
 							{
@@ -3409,7 +3424,8 @@
 									"path": "$['d']['results'][0]['ChamberOfCommerce']"
 								},
 								"sink": {
-									"name": "ChamberOfCommerce"
+									"name": "ChamberOfCommerce",
+									"type": "String"
 								}
 							},
 							{
@@ -3417,7 +3433,8 @@
 									"path": "$['d']['results'][0]['City']"
 								},
 								"sink": {
-									"name": "City"
+									"name": "City",
+									"type": "String"
 								}
 							},
 							{
@@ -3425,7 +3442,8 @@
 									"path": "$['d']['results'][0]['Classification']"
 								},
 								"sink": {
-									"name": "Classification"
+									"name": "Classification",
+									"type": "String"
 								}
 							},
 							{
@@ -3433,7 +3451,8 @@
 									"path": "$['d']['results'][0]['Classification1']"
 								},
 								"sink": {
-									"name": "Classification1"
+									"name": "Classification1",
+									"type": "String"
 								}
 							},
 							{
@@ -3441,7 +3460,8 @@
 									"path": "$['d']['results'][0]['Classification2']"
 								},
 								"sink": {
-									"name": "Classification2"
+									"name": "Classification2",
+									"type": "String"
 								}
 							},
 							{
@@ -3449,7 +3469,8 @@
 									"path": "$['d']['results'][0]['Classification3']"
 								},
 								"sink": {
-									"name": "Classification3"
+									"name": "Classification3",
+									"type": "String"
 								}
 							},
 							{
@@ -3457,7 +3478,8 @@
 									"path": "$['d']['results'][0]['Classification4']"
 								},
 								"sink": {
-									"name": "Classification4"
+									"name": "Classification4",
+									"type": "String"
 								}
 							},
 							{
@@ -3465,7 +3487,8 @@
 									"path": "$['d']['results'][0]['Classification5']"
 								},
 								"sink": {
-									"name": "Classification5"
+									"name": "Classification5",
+									"type": "String"
 								}
 							},
 							{
@@ -3473,7 +3496,8 @@
 									"path": "$['d']['results'][0]['Classification6']"
 								},
 								"sink": {
-									"name": "Classification6"
+									"name": "Classification6",
+									"type": "String"
 								}
 							},
 							{
@@ -3481,7 +3505,8 @@
 									"path": "$['d']['results'][0]['Classification7']"
 								},
 								"sink": {
-									"name": "Classification7"
+									"name": "Classification7",
+									"type": "String"
 								}
 							},
 							{
@@ -3489,7 +3514,8 @@
 									"path": "$['d']['results'][0]['Classification8']"
 								},
 								"sink": {
-									"name": "Classification8"
+									"name": "Classification8",
+									"type": "String"
 								}
 							},
 							{
@@ -3497,7 +3523,8 @@
 									"path": "$['d']['results'][0]['ClassificationDescription']"
 								},
 								"sink": {
-									"name": "ClassificationDescription"
+									"name": "ClassificationDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -3505,7 +3532,8 @@
 									"path": "$['d']['results'][0]['Code']"
 								},
 								"sink": {
-									"name": "Code"
+									"name": "Code",
+									"type": "String"
 								}
 							},
 							{
@@ -3513,7 +3541,8 @@
 									"path": "$['d']['results'][0]['CodeAtSupplier']"
 								},
 								"sink": {
-									"name": "CodeAtSupplier"
+									"name": "CodeAtSupplier",
+									"type": "String"
 								}
 							},
 							{
@@ -3521,7 +3550,8 @@
 									"path": "$['d']['results'][0]['CompanySize']"
 								},
 								"sink": {
-									"name": "CompanySize"
+									"name": "CompanySize",
+									"type": "String"
 								}
 							},
 							{
@@ -3529,7 +3559,8 @@
 									"path": "$['d']['results'][0]['ConsolidationScenario']"
 								},
 								"sink": {
-									"name": "ConsolidationScenario"
+									"name": "ConsolidationScenario",
+									"type": "String"
 								}
 							},
 							{
@@ -3537,7 +3568,8 @@
 									"path": "$['d']['results'][0]['ControlledDate']"
 								},
 								"sink": {
-									"name": "ControlledDate"
+									"name": "ControlledDate",
+									"type": "String"
 								}
 							},
 							{
@@ -3545,7 +3577,8 @@
 									"path": "$['d']['results'][0]['Costcenter']"
 								},
 								"sink": {
-									"name": "Costcenter"
+									"name": "Costcenter",
+									"type": "String"
 								}
 							},
 							{
@@ -3553,7 +3586,8 @@
 									"path": "$['d']['results'][0]['CostcenterDescription']"
 								},
 								"sink": {
-									"name": "CostcenterDescription"
+									"name": "CostcenterDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -3561,7 +3595,8 @@
 									"path": "$['d']['results'][0]['CostPaid']"
 								},
 								"sink": {
-									"name": "CostPaid"
+									"name": "CostPaid",
+									"type": "String"
 								}
 							},
 							{
@@ -3569,7 +3604,8 @@
 									"path": "$['d']['results'][0]['Country']"
 								},
 								"sink": {
-									"name": "Country"
+									"name": "Country",
+									"type": "String"
 								}
 							},
 							{
@@ -3577,7 +3613,8 @@
 									"path": "$['d']['results'][0]['CountryName']"
 								},
 								"sink": {
-									"name": "CountryName"
+									"name": "CountryName",
+									"type": "String"
 								}
 							},
 							{
@@ -3585,7 +3622,8 @@
 									"path": "$['d']['results'][0]['Created']"
 								},
 								"sink": {
-									"name": "Created"
+									"name": "Created",
+									"type": "String"
 								}
 							},
 							{
@@ -3593,7 +3631,8 @@
 									"path": "$['d']['results'][0]['Creator']"
 								},
 								"sink": {
-									"name": "Creator"
+									"name": "Creator",
+									"type": "String"
 								}
 							},
 							{
@@ -3601,7 +3640,8 @@
 									"path": "$['d']['results'][0]['CreatorFullName']"
 								},
 								"sink": {
-									"name": "CreatorFullName"
+									"name": "CreatorFullName",
+									"type": "String"
 								}
 							},
 							{
@@ -3609,7 +3649,8 @@
 									"path": "$['d']['results'][0]['CreditLinePurchase']"
 								},
 								"sink": {
-									"name": "CreditLinePurchase"
+									"name": "CreditLinePurchase",
+									"type": "String"
 								}
 							},
 							{
@@ -3617,7 +3658,8 @@
 									"path": "$['d']['results'][0]['CreditLineSales']"
 								},
 								"sink": {
-									"name": "CreditLineSales"
+									"name": "CreditLineSales",
+									"type": "String"
 								}
 							},
 							{
@@ -3625,7 +3667,8 @@
 									"path": "$['d']['results'][0]['Currency']"
 								},
 								"sink": {
-									"name": "Currency"
+									"name": "Currency",
+									"type": "String"
 								}
 							},
 							{
@@ -3633,7 +3676,8 @@
 									"path": "$['d']['results'][0]['CustomerSince']"
 								},
 								"sink": {
-									"name": "CustomerSince"
+									"name": "CustomerSince",
+									"type": "String"
 								}
 							},
 							{
@@ -3641,7 +3685,8 @@
 									"path": "$['d']['results'][0]['DatevCreditorCode']"
 								},
 								"sink": {
-									"name": "DatevCreditorCode"
+									"name": "DatevCreditorCode",
+									"type": "String"
 								}
 							},
 							{
@@ -3649,7 +3694,8 @@
 									"path": "$['d']['results'][0]['DatevDebtorCode']"
 								},
 								"sink": {
-									"name": "DatevDebtorCode"
+									"name": "DatevDebtorCode",
+									"type": "String"
 								}
 							},
 							{
@@ -3657,7 +3703,8 @@
 									"path": "$['d']['results'][0]['DiscountPurchase']"
 								},
 								"sink": {
-									"name": "DiscountPurchase"
+									"name": "DiscountPurchase",
+									"type": "String"
 								}
 							},
 							{
@@ -3665,7 +3712,8 @@
 									"path": "$['d']['results'][0]['DiscountSales']"
 								},
 								"sink": {
-									"name": "DiscountSales"
+									"name": "DiscountSales",
+									"type": "String"
 								}
 							},
 							{
@@ -3673,7 +3721,8 @@
 									"path": "$['d']['results'][0]['Division']"
 								},
 								"sink": {
-									"name": "Division"
+									"name": "Division",
+									"type": "String"
 								}
 							},
 							{
@@ -3681,7 +3730,8 @@
 									"path": "$['d']['results'][0]['Document']"
 								},
 								"sink": {
-									"name": "Document"
+									"name": "Document",
+									"type": "String"
 								}
 							},
 							{
@@ -3689,7 +3739,8 @@
 									"path": "$['d']['results'][0]['DunsNumber']"
 								},
 								"sink": {
-									"name": "DunsNumber"
+									"name": "DunsNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -3697,7 +3748,8 @@
 									"path": "$['d']['results'][0]['Email']"
 								},
 								"sink": {
-									"name": "Email"
+									"name": "Email",
+									"type": "String"
 								}
 							},
 							{
@@ -3705,7 +3757,8 @@
 									"path": "$['d']['results'][0]['EndDate']"
 								},
 								"sink": {
-									"name": "EndDate"
+									"name": "EndDate",
+									"type": "String"
 								}
 							},
 							{
@@ -3713,7 +3766,8 @@
 									"path": "$['d']['results'][0]['EstablishedDate']"
 								},
 								"sink": {
-									"name": "EstablishedDate"
+									"name": "EstablishedDate",
+									"type": "String"
 								}
 							},
 							{
@@ -3721,7 +3775,8 @@
 									"path": "$['d']['results'][0]['Fax']"
 								},
 								"sink": {
-									"name": "Fax"
+									"name": "Fax",
+									"type": "String"
 								}
 							},
 							{
@@ -3729,7 +3784,8 @@
 									"path": "$['d']['results'][0]['GLAccountPurchase']"
 								},
 								"sink": {
-									"name": "GLAccountPurchase"
+									"name": "GLAccountPurchase",
+									"type": "String"
 								}
 							},
 							{
@@ -3737,7 +3793,8 @@
 									"path": "$['d']['results'][0]['GLAccountSales']"
 								},
 								"sink": {
-									"name": "GLAccountSales"
+									"name": "GLAccountSales",
+									"type": "String"
 								}
 							},
 							{
@@ -3745,7 +3802,8 @@
 									"path": "$['d']['results'][0]['GLAP']"
 								},
 								"sink": {
-									"name": "GLAP"
+									"name": "GLAP",
+									"type": "String"
 								}
 							},
 							{
@@ -3753,7 +3811,8 @@
 									"path": "$['d']['results'][0]['GLAR']"
 								},
 								"sink": {
-									"name": "GLAR"
+									"name": "GLAR",
+									"type": "String"
 								}
 							},
 							{
@@ -3761,7 +3820,8 @@
 									"path": "$['d']['results'][0]['GlnNumber']"
 								},
 								"sink": {
-									"name": "GlnNumber"
+									"name": "GlnNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -3769,7 +3829,8 @@
 									"path": "$['d']['results'][0]['HasWithholdingTaxSales']"
 								},
 								"sink": {
-									"name": "HasWithholdingTaxSales"
+									"name": "HasWithholdingTaxSales",
+									"type": "String"
 								}
 							},
 							{
@@ -3777,7 +3838,8 @@
 									"path": "$['d']['results'][0]['IgnoreDatevWarningMessage']"
 								},
 								"sink": {
-									"name": "IgnoreDatevWarningMessage"
+									"name": "IgnoreDatevWarningMessage",
+									"type": "String"
 								}
 							},
 							{
@@ -3785,7 +3847,8 @@
 									"path": "$['d']['results'][0]['IntraStatArea']"
 								},
 								"sink": {
-									"name": "IntraStatArea"
+									"name": "IntraStatArea",
+									"type": "String"
 								}
 							},
 							{
@@ -3793,7 +3856,8 @@
 									"path": "$['d']['results'][0]['IntraStatDeliveryTerm']"
 								},
 								"sink": {
-									"name": "IntraStatDeliveryTerm"
+									"name": "IntraStatDeliveryTerm",
+									"type": "String"
 								}
 							},
 							{
@@ -3801,7 +3865,8 @@
 									"path": "$['d']['results'][0]['IntraStatSystem']"
 								},
 								"sink": {
-									"name": "IntraStatSystem"
+									"name": "IntraStatSystem",
+									"type": "String"
 								}
 							},
 							{
@@ -3809,7 +3874,8 @@
 									"path": "$['d']['results'][0]['IntraStatTransactionA']"
 								},
 								"sink": {
-									"name": "IntraStatTransactionA"
+									"name": "IntraStatTransactionA",
+									"type": "String"
 								}
 							},
 							{
@@ -3817,7 +3883,8 @@
 									"path": "$['d']['results'][0]['IntraStatTransactionB']"
 								},
 								"sink": {
-									"name": "IntraStatTransactionB"
+									"name": "IntraStatTransactionB",
+									"type": "String"
 								}
 							},
 							{
@@ -3825,7 +3892,8 @@
 									"path": "$['d']['results'][0]['IntraStatTransportMethod']"
 								},
 								"sink": {
-									"name": "IntraStatTransportMethod"
+									"name": "IntraStatTransportMethod",
+									"type": "String"
 								}
 							},
 							{
@@ -3833,7 +3901,8 @@
 									"path": "$['d']['results'][0]['InvoiceAccount']"
 								},
 								"sink": {
-									"name": "InvoiceAccount"
+									"name": "InvoiceAccount",
+									"type": "String"
 								}
 							},
 							{
@@ -3841,7 +3910,8 @@
 									"path": "$['d']['results'][0]['InvoiceAccountCode']"
 								},
 								"sink": {
-									"name": "InvoiceAccountCode"
+									"name": "InvoiceAccountCode",
+									"type": "String"
 								}
 							},
 							{
@@ -3849,7 +3919,8 @@
 									"path": "$['d']['results'][0]['InvoiceAccountName']"
 								},
 								"sink": {
-									"name": "InvoiceAccountName"
+									"name": "InvoiceAccountName",
+									"type": "String"
 								}
 							},
 							{
@@ -3857,7 +3928,8 @@
 									"path": "$['d']['results'][0]['InvoiceAttachmentType']"
 								},
 								"sink": {
-									"name": "InvoiceAttachmentType"
+									"name": "InvoiceAttachmentType",
+									"type": "String"
 								}
 							},
 							{
@@ -3865,7 +3937,8 @@
 									"path": "$['d']['results'][0]['InvoicingMethod']"
 								},
 								"sink": {
-									"name": "InvoicingMethod"
+									"name": "InvoicingMethod",
+									"type": "String"
 								}
 							},
 							{
@@ -3873,7 +3946,8 @@
 									"path": "$['d']['results'][0]['IsAccountant']"
 								},
 								"sink": {
-									"name": "IsAccountant"
+									"name": "IsAccountant",
+									"type": "String"
 								}
 							},
 							{
@@ -3881,7 +3955,8 @@
 									"path": "$['d']['results'][0]['IsAgency']"
 								},
 								"sink": {
-									"name": "IsAgency"
+									"name": "IsAgency",
+									"type": "String"
 								}
 							},
 							{
@@ -3889,7 +3964,8 @@
 									"path": "$['d']['results'][0]['IsAnonymised']"
 								},
 								"sink": {
-									"name": "IsAnonymised"
+									"name": "IsAnonymised",
+									"type": "String"
 								}
 							},
 							{
@@ -3897,7 +3973,8 @@
 									"path": "$['d']['results'][0]['IsBank']"
 								},
 								"sink": {
-									"name": "IsBank"
+									"name": "IsBank",
+									"type": "String"
 								}
 							},
 							{
@@ -3905,7 +3982,8 @@
 									"path": "$['d']['results'][0]['IsCompetitor']"
 								},
 								"sink": {
-									"name": "IsCompetitor"
+									"name": "IsCompetitor",
+									"type": "String"
 								}
 							},
 							{
@@ -3913,7 +3991,8 @@
 									"path": "$['d']['results'][0]['IsExtraDuty']"
 								},
 								"sink": {
-									"name": "IsExtraDuty"
+									"name": "IsExtraDuty",
+									"type": "String"
 								}
 							},
 							{
@@ -3921,7 +4000,8 @@
 									"path": "$['d']['results'][0]['IsMailing']"
 								},
 								"sink": {
-									"name": "IsMailing"
+									"name": "IsMailing",
+									"type": "String"
 								}
 							},
 							{
@@ -3929,7 +4009,8 @@
 									"path": "$['d']['results'][0]['IsMember']"
 								},
 								"sink": {
-									"name": "IsMember"
+									"name": "IsMember",
+									"type": "String"
 								}
 							},
 							{
@@ -3937,7 +4018,8 @@
 									"path": "$['d']['results'][0]['IsPilot']"
 								},
 								"sink": {
-									"name": "IsPilot"
+									"name": "IsPilot",
+									"type": "String"
 								}
 							},
 							{
@@ -3945,7 +4027,8 @@
 									"path": "$['d']['results'][0]['IsPurchase']"
 								},
 								"sink": {
-									"name": "IsPurchase"
+									"name": "IsPurchase",
+									"type": "String"
 								}
 							},
 							{
@@ -3953,7 +4036,8 @@
 									"path": "$['d']['results'][0]['IsReseller']"
 								},
 								"sink": {
-									"name": "IsReseller"
+									"name": "IsReseller",
+									"type": "String"
 								}
 							},
 							{
@@ -3961,7 +4045,8 @@
 									"path": "$['d']['results'][0]['IsSales']"
 								},
 								"sink": {
-									"name": "IsSales"
+									"name": "IsSales",
+									"type": "String"
 								}
 							},
 							{
@@ -3969,7 +4054,8 @@
 									"path": "$['d']['results'][0]['IsSupplier']"
 								},
 								"sink": {
-									"name": "IsSupplier"
+									"name": "IsSupplier",
+									"type": "String"
 								}
 							},
 							{
@@ -3977,7 +4063,8 @@
 									"path": "$['d']['results'][0]['Language']"
 								},
 								"sink": {
-									"name": "Language"
+									"name": "Language",
+									"type": "String"
 								}
 							},
 							{
@@ -3985,7 +4072,8 @@
 									"path": "$['d']['results'][0]['LanguageDescription']"
 								},
 								"sink": {
-									"name": "LanguageDescription"
+									"name": "LanguageDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -3993,7 +4081,8 @@
 									"path": "$['d']['results'][0]['Latitude']"
 								},
 								"sink": {
-									"name": "Latitude"
+									"name": "Latitude",
+									"type": "String"
 								}
 							},
 							{
@@ -4001,7 +4090,8 @@
 									"path": "$['d']['results'][0]['LeadSource']"
 								},
 								"sink": {
-									"name": "LeadSource"
+									"name": "LeadSource",
+									"type": "String"
 								}
 							},
 							{
@@ -4009,7 +4099,8 @@
 									"path": "$['d']['results'][0]['LeadPurpose']"
 								},
 								"sink": {
-									"name": "LeadPurpose"
+									"name": "LeadPurpose",
+									"type": "String"
 								}
 							},
 							{
@@ -4017,7 +4108,8 @@
 									"path": "$['d']['results'][0]['LogoFileName']"
 								},
 								"sink": {
-									"name": "LogoFileName"
+									"name": "LogoFileName",
+									"type": "String"
 								}
 							},
 							{
@@ -4025,7 +4117,8 @@
 									"path": "$['d']['results'][0]['LogoThumbnailUrl']"
 								},
 								"sink": {
-									"name": "LogoThumbnailUrl"
+									"name": "LogoThumbnailUrl",
+									"type": "String"
 								}
 							},
 							{
@@ -4033,7 +4126,8 @@
 									"path": "$['d']['results'][0]['LogoUrl']"
 								},
 								"sink": {
-									"name": "LogoUrl"
+									"name": "LogoUrl",
+									"type": "String"
 								}
 							},
 							{
@@ -4041,7 +4135,8 @@
 									"path": "$['d']['results'][0]['Logo']"
 								},
 								"sink": {
-									"name": "Logo"
+									"name": "Logo",
+									"type": "String"
 								}
 							},
 							{
@@ -4049,7 +4144,8 @@
 									"path": "$['d']['results'][0]['Longitude']"
 								},
 								"sink": {
-									"name": "Longitude"
+									"name": "Longitude",
+									"type": "String"
 								}
 							},
 							{
@@ -4057,7 +4153,8 @@
 									"path": "$['d']['results'][0]['MainContact']"
 								},
 								"sink": {
-									"name": "MainContact"
+									"name": "MainContact",
+									"type": "String"
 								}
 							},
 							{
@@ -4065,7 +4162,8 @@
 									"path": "$['d']['results'][0]['Modified']"
 								},
 								"sink": {
-									"name": "Modified"
+									"name": "Modified",
+									"type": "String"
 								}
 							},
 							{
@@ -4073,7 +4171,8 @@
 									"path": "$['d']['results'][0]['Modifier']"
 								},
 								"sink": {
-									"name": "Modifier"
+									"name": "Modifier",
+									"type": "String"
 								}
 							},
 							{
@@ -4081,7 +4180,8 @@
 									"path": "$['d']['results'][0]['ModifierFullName']"
 								},
 								"sink": {
-									"name": "ModifierFullName"
+									"name": "ModifierFullName",
+									"type": "String"
 								}
 							},
 							{
@@ -4089,7 +4189,8 @@
 									"path": "$['d']['results'][0]['Name']"
 								},
 								"sink": {
-									"name": "Name"
+									"name": "Name",
+									"type": "String"
 								}
 							},
 							{
@@ -4097,7 +4198,8 @@
 									"path": "$['d']['results'][0]['OINNumber']"
 								},
 								"sink": {
-									"name": "OINNumber"
+									"name": "OINNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -4105,7 +4207,8 @@
 									"path": "$['d']['results'][0]['Parent']"
 								},
 								"sink": {
-									"name": "Parent"
+									"name": "Parent",
+									"type": "String"
 								}
 							},
 							{
@@ -4113,7 +4216,8 @@
 									"path": "$['d']['results'][0]['PaymentConditionPurchase']"
 								},
 								"sink": {
-									"name": "PaymentConditionPurchase"
+									"name": "PaymentConditionPurchase",
+									"type": "String"
 								}
 							},
 							{
@@ -4121,7 +4225,8 @@
 									"path": "$['d']['results'][0]['PaymentConditionPurchaseDescription']"
 								},
 								"sink": {
-									"name": "PaymentConditionPurchaseDescription"
+									"name": "PaymentConditionPurchaseDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4129,7 +4234,8 @@
 									"path": "$['d']['results'][0]['PaymentConditionSales']"
 								},
 								"sink": {
-									"name": "PaymentConditionSales"
+									"name": "PaymentConditionSales",
+									"type": "String"
 								}
 							},
 							{
@@ -4137,7 +4243,8 @@
 									"path": "$['d']['results'][0]['PaymentConditionSalesDescription']"
 								},
 								"sink": {
-									"name": "PaymentConditionSalesDescription"
+									"name": "PaymentConditionSalesDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4145,7 +4252,8 @@
 									"path": "$['d']['results'][0]['PayAsYouEarn']"
 								},
 								"sink": {
-									"name": "PayAsYouEarn"
+									"name": "PayAsYouEarn",
+									"type": "String"
 								}
 							},
 							{
@@ -4153,7 +4261,8 @@
 									"path": "$['d']['results'][0]['Phone']"
 								},
 								"sink": {
-									"name": "Phone"
+									"name": "Phone",
+									"type": "String"
 								}
 							},
 							{
@@ -4161,7 +4270,8 @@
 									"path": "$['d']['results'][0]['PhoneExtension']"
 								},
 								"sink": {
-									"name": "PhoneExtension"
+									"name": "PhoneExtension",
+									"type": "String"
 								}
 							},
 							{
@@ -4169,7 +4279,8 @@
 									"path": "$['d']['results'][0]['Postcode']"
 								},
 								"sink": {
-									"name": "Postcode"
+									"name": "Postcode",
+									"type": "String"
 								}
 							},
 							{
@@ -4177,7 +4288,8 @@
 									"path": "$['d']['results'][0]['PriceList']"
 								},
 								"sink": {
-									"name": "PriceList"
+									"name": "PriceList",
+									"type": "String"
 								}
 							},
 							{
@@ -4185,7 +4297,8 @@
 									"path": "$['d']['results'][0]['PurchaseCurrency']"
 								},
 								"sink": {
-									"name": "PurchaseCurrency"
+									"name": "PurchaseCurrency",
+									"type": "String"
 								}
 							},
 							{
@@ -4193,7 +4306,8 @@
 									"path": "$['d']['results'][0]['PurchaseCurrencyDescription']"
 								},
 								"sink": {
-									"name": "PurchaseCurrencyDescription"
+									"name": "PurchaseCurrencyDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4201,7 +4315,8 @@
 									"path": "$['d']['results'][0]['PurchaseLeadDays']"
 								},
 								"sink": {
-									"name": "PurchaseLeadDays"
+									"name": "PurchaseLeadDays",
+									"type": "String"
 								}
 							},
 							{
@@ -4209,7 +4324,8 @@
 									"path": "$['d']['results'][0]['PurchaseVATCode']"
 								},
 								"sink": {
-									"name": "PurchaseVATCode"
+									"name": "PurchaseVATCode",
+									"type": "String"
 								}
 							},
 							{
@@ -4217,7 +4333,8 @@
 									"path": "$['d']['results'][0]['PurchaseVATCodeDescription']"
 								},
 								"sink": {
-									"name": "PurchaseVATCodeDescription"
+									"name": "PurchaseVATCodeDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4225,7 +4342,8 @@
 									"path": "$['d']['results'][0]['Remarks']"
 								},
 								"sink": {
-									"name": "Remarks"
+									"name": "Remarks",
+									"type": "String"
 								}
 							},
 							{
@@ -4233,7 +4351,8 @@
 									"path": "$['d']['results'][0]['RecepientOfCommissions']"
 								},
 								"sink": {
-									"name": "RecepientOfCommissions"
+									"name": "RecepientOfCommissions",
+									"type": "String"
 								}
 							},
 							{
@@ -4241,7 +4360,8 @@
 									"path": "$['d']['results'][0]['Reseller']"
 								},
 								"sink": {
-									"name": "Reseller"
+									"name": "Reseller",
+									"type": "String"
 								}
 							},
 							{
@@ -4249,7 +4369,8 @@
 									"path": "$['d']['results'][0]['ResellerCode']"
 								},
 								"sink": {
-									"name": "ResellerCode"
+									"name": "ResellerCode",
+									"type": "String"
 								}
 							},
 							{
@@ -4257,7 +4378,8 @@
 									"path": "$['d']['results'][0]['ResellerName']"
 								},
 								"sink": {
-									"name": "ResellerName"
+									"name": "ResellerName",
+									"type": "String"
 								}
 							},
 							{
@@ -4265,7 +4387,8 @@
 									"path": "$['d']['results'][0]['RSIN']"
 								},
 								"sink": {
-									"name": "RSIN"
+									"name": "RSIN",
+									"type": "String"
 								}
 							},
 							{
@@ -4273,7 +4396,8 @@
 									"path": "$['d']['results'][0]['SalesCurrency']"
 								},
 								"sink": {
-									"name": "SalesCurrency"
+									"name": "SalesCurrency",
+									"type": "String"
 								}
 							},
 							{
@@ -4281,7 +4405,8 @@
 									"path": "$['d']['results'][0]['SalesCurrencyDescription']"
 								},
 								"sink": {
-									"name": "SalesCurrencyDescription"
+									"name": "SalesCurrencyDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4289,7 +4414,8 @@
 									"path": "$['d']['results'][0]['SalesVATCode']"
 								},
 								"sink": {
-									"name": "SalesVATCode"
+									"name": "SalesVATCode",
+									"type": "String"
 								}
 							},
 							{
@@ -4297,7 +4423,8 @@
 									"path": "$['d']['results'][0]['SalesVATCodeDescription']"
 								},
 								"sink": {
-									"name": "SalesVATCodeDescription"
+									"name": "SalesVATCodeDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4305,7 +4432,8 @@
 									"path": "$['d']['results'][0]['SearchCode']"
 								},
 								"sink": {
-									"name": "SearchCode"
+									"name": "SearchCode",
+									"type": "String"
 								}
 							},
 							{
@@ -4313,7 +4441,8 @@
 									"path": "$['d']['results'][0]['SecurityLevel']"
 								},
 								"sink": {
-									"name": "SecurityLevel"
+									"name": "SecurityLevel",
+									"type": "String"
 								}
 							},
 							{
@@ -4321,7 +4450,8 @@
 									"path": "$['d']['results'][0]['SeparateInvPerSubscription']"
 								},
 								"sink": {
-									"name": "SeparateInvPerSubscription"
+									"name": "SeparateInvPerSubscription",
+									"type": "String"
 								}
 							},
 							{
@@ -4329,7 +4459,8 @@
 									"path": "$['d']['results'][0]['ShippingLeadDays']"
 								},
 								"sink": {
-									"name": "ShippingLeadDays"
+									"name": "ShippingLeadDays",
+									"type": "String"
 								}
 							},
 							{
@@ -4337,7 +4468,8 @@
 									"path": "$['d']['results'][0]['ShippingMethod']"
 								},
 								"sink": {
-									"name": "ShippingMethod"
+									"name": "ShippingMethod",
+									"type": "String"
 								}
 							},
 							{
@@ -4345,7 +4477,8 @@
 									"path": "$['d']['results'][0]['ShowRemarkForSales']"
 								},
 								"sink": {
-									"name": "ShowRemarkForSales"
+									"name": "ShowRemarkForSales",
+									"type": "String"
 								}
 							},
 							{
@@ -4353,7 +4486,8 @@
 									"path": "$['d']['results'][0]['StartDate']"
 								},
 								"sink": {
-									"name": "StartDate"
+									"name": "StartDate",
+									"type": "String"
 								}
 							},
 							{
@@ -4361,7 +4495,8 @@
 									"path": "$['d']['results'][0]['State']"
 								},
 								"sink": {
-									"name": "State"
+									"name": "State",
+									"type": "String"
 								}
 							},
 							{
@@ -4369,7 +4504,8 @@
 									"path": "$['d']['results'][0]['StateName']"
 								},
 								"sink": {
-									"name": "StateName"
+									"name": "StateName",
+									"type": "String"
 								}
 							},
 							{
@@ -4377,7 +4513,8 @@
 									"path": "$['d']['results'][0]['Status']"
 								},
 								"sink": {
-									"name": "Status"
+									"name": "Status",
+									"type": "String"
 								}
 							},
 							{
@@ -4385,7 +4522,8 @@
 									"path": "$['d']['results'][0]['StatusSince']"
 								},
 								"sink": {
-									"name": "StatusSince"
+									"name": "StatusSince",
+									"type": "String"
 								}
 							},
 							{
@@ -4393,7 +4531,8 @@
 									"path": "$['d']['results'][0]['SalesTaxSchedule']"
 								},
 								"sink": {
-									"name": "SalesTaxSchedule"
+									"name": "SalesTaxSchedule",
+									"type": "String"
 								}
 							},
 							{
@@ -4401,7 +4540,8 @@
 									"path": "$['d']['results'][0]['SalesTaxScheduleCode']"
 								},
 								"sink": {
-									"name": "SalesTaxScheduleCode"
+									"name": "SalesTaxScheduleCode",
+									"type": "String"
 								}
 							},
 							{
@@ -4409,7 +4549,8 @@
 									"path": "$['d']['results'][0]['SalesTaxScheduleDescription']"
 								},
 								"sink": {
-									"name": "SalesTaxScheduleDescription"
+									"name": "SalesTaxScheduleDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -4417,7 +4558,8 @@
 									"path": "$['d']['results'][0]['TradeName']"
 								},
 								"sink": {
-									"name": "TradeName"
+									"name": "TradeName",
+									"type": "String"
 								}
 							},
 							{
@@ -4425,7 +4567,8 @@
 									"path": "$['d']['results'][0]['Type']"
 								},
 								"sink": {
-									"name": "Type"
+									"name": "Type",
+									"type": "String"
 								}
 							},
 							{
@@ -4433,7 +4576,8 @@
 									"path": "$['d']['results'][0]['UniqueTaxpayerReference']"
 								},
 								"sink": {
-									"name": "UniqueTaxpayerReference"
+									"name": "UniqueTaxpayerReference",
+									"type": "String"
 								}
 							},
 							{
@@ -4441,7 +4585,8 @@
 									"path": "$['d']['results'][0]['VATLiability']"
 								},
 								"sink": {
-									"name": "VATLiability"
+									"name": "VATLiability",
+									"type": "String"
 								}
 							},
 							{
@@ -4449,7 +4594,8 @@
 									"path": "$['d']['results'][0]['VATNumber']"
 								},
 								"sink": {
-									"name": "VATNumber"
+									"name": "VATNumber",
+									"type": "String"
 								}
 							},
 							{
