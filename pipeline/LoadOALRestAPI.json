@@ -5113,6 +5113,447 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Copy BankEntryLines",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['__metadata']['uri']"
+								},
+								"sink": {
+									"name": "uri"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['__metadata']['type']"
+								},
+								"sink": {
+									"name": "type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Account']"
+								},
+								"sink": {
+									"name": "Account"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountCode']"
+								},
+								"sink": {
+									"name": "AccountCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountName']"
+								},
+								"sink": {
+									"name": "AccountName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountDC']"
+								},
+								"sink": {
+									"name": "AmountDC"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountFC']"
+								},
+								"sink": {
+									"name": "AmountFC"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountVATFC']"
+								},
+								"sink": {
+									"name": "AmountVATFC"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Asset']"
+								},
+								"sink": {
+									"name": "Asset"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AssetCode']"
+								},
+								"sink": {
+									"name": "AssetCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AssetDescription']"
+								},
+								"sink": {
+									"name": "AssetDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostCenter']"
+								},
+								"sink": {
+									"name": "CostCenter"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostCenterDescription']"
+								},
+								"sink": {
+									"name": "CostCenterDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostUnit']"
+								},
+								"sink": {
+									"name": "CostUnit"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostUnitDescription']"
+								},
+								"sink": {
+									"name": "CostUnitDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Description']"
+								},
+								"sink": {
+									"name": "Description"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Document']"
+								},
+								"sink": {
+									"name": "Document"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentNumber']"
+								},
+								"sink": {
+									"name": "DocumentNumber"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentSubject']"
+								},
+								"sink": {
+									"name": "DocumentSubject"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryID']"
+								},
+								"sink": {
+									"name": "EntryID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryNumber']"
+								},
+								"sink": {
+									"name": "EntryNumber"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ExchangeRate']"
+								},
+								"sink": {
+									"name": "ExchangeRate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccount']"
+								},
+								"sink": {
+									"name": "GLAccount"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountCode']"
+								},
+								"sink": {
+									"name": "GLAccountCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountDescription']"
+								},
+								"sink": {
+									"name": "GLAccountDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LineNumber']"
+								},
+								"sink": {
+									"name": "LineNumber"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Notes']"
+								},
+								"sink": {
+									"name": "Notes"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OffsetID']"
+								},
+								"sink": {
+									"name": "OffsetID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OurRef']"
+								},
+								"sink": {
+									"name": "OurRef"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Project']"
+								},
+								"sink": {
+									"name": "Project"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ProjectCode']"
+								},
+								"sink": {
+									"name": "ProjectCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ProjectDescription']"
+								},
+								"sink": {
+									"name": "ProjectDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Quantity']"
+								},
+								"sink": {
+									"name": "Quantity"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATCode']"
+								},
+								"sink": {
+									"name": "VATCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATCodeDescription']"
+								},
+								"sink": {
+									"name": "VATCodeDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATPercentage']"
+								},
+								"sink": {
+									"name": "VATPercentage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATType']"
+								},
+								"sink": {
+									"name": "VATType"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Date']"
+								},
+								"sink": {
+									"name": "Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['__next']"
+								},
+								"sink": {
+									"name": "__next"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_BANKENTRYLINES",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_BankEntryLines",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],
