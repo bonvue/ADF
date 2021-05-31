@@ -4637,7 +4637,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy Accounts",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -4669,7 +4669,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "IF EXISTS delete agingOverview",
+						"preCopyScript": "delete agingOverview",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
