@@ -1,0 +1,25 @@
+{
+	"name": "DS_EOL_ASSETSGROUPS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/assets/AssetGroups?$select=ID,Code,Created,Creator,CreatorFullName,DepreciationMethod,DepreciationMethodCode,DepreciationMethodDescription,Description,Division,GLAccountAssets,GLAccountAssetsCode,GLAccountAssetsDescription,GLAccountDepreciationBS,GLAccountDepreciationBSCode,GLAccountDepreciationBSDescription,GLAccountDepreciationPL,GLAccountDepreciationPLCode,GLAccountDepreciationPLDescription,GLAccountRevaluationBS,GLAccountRevaluationBSCode,GLAccountRevaluationBSDescription,Modified,Modifier,ModifierFullName,Notes",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
