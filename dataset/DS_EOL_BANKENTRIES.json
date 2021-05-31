@@ -15,7 +15,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "/api/v1/@{dataset().division}/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription",
+				"value": "/api/v1/{dataset().division}/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription",
 				"type": "Expression"
 			}
 		},
