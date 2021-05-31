@@ -14,7 +14,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/@dataset().division/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription"
+			"relativeUrl": "/api/v1/@(dataset().division)/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription"
 		},
 		"schema": []
 	},
