@@ -670,22 +670,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['__metadata']['uri']"
-								},
-								"sink": {
-									"name": "uri"
-								}
-							},
-							{
-								"source": {
-									"path": "['__metadata']['type']"
-								},
-								"sink": {
-									"name": "type"
-								}
-							},
-							{
-								"source": {
 									"path": "['Classification']"
 								},
 								"sink": {
@@ -4829,7 +4813,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy AssetGroups",
 						"dependencyConditions": [
 							"Succeeded"
 						]
