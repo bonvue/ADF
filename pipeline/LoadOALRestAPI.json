@@ -6659,11 +6659,6 @@
 									"name": "VATType",
 									"type": "String"
 								}
-							},
-							{
-								"source": {
-									"path": "$['d']['__next']"
-								}
 							}
 						],
 						"collectionReference": ""
