@@ -1170,6 +1170,7 @@
 									"path": "$['d']['results'][0]['Status']"
 								},
 								"sink": {
+									"name": "Status",
 									"type": "String"
 								}
 							},
@@ -1187,6 +1188,7 @@
 									"path": "$['d']['results'][0]['BankStatementDocument']"
 								},
 								"sink": {
+									"name": "BankStatementDocument",
 									"type": "String"
 								}
 							},
@@ -1195,6 +1197,7 @@
 									"path": "$['d']['results'][0]['BankStatementDocumentNumber']"
 								},
 								"sink": {
+									"name": "BankStatementDocumentNumber",
 									"type": "String"
 								}
 							},
@@ -1203,6 +1206,7 @@
 									"path": "$['d']['results'][0]['BankStatementDocumentSubject']"
 								},
 								"sink": {
+									"name": "BankStatementDocumentSubject",
 									"type": "String"
 								}
 							}
@@ -5155,24 +5159,6 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['uri']"
-								},
-								"sink": {
-									"name": "uri",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['type']"
-								},
-								"sink": {
-									"name": "type",
-									"type": "String"
-								}
-							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Account']"
