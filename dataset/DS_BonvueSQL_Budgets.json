@@ -1,0 +1,17 @@
+{
+	"name": "DS_BonvueSQL_Budgets",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Budgets"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
