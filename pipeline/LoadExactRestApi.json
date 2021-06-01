@@ -4768,7 +4768,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy BankEntries",
+						"activity": "Copy Budgets",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5113,7 +5113,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy AssetGroups",
+						"activity": "Copy BankEntries",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5575,7 +5575,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy BankEntryLines",
+						"activity": "Copy PayablesList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5650,7 +5650,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy Budgets",
+						"activity": "Copy BankEntryLines",
 						"dependencyConditions": [
 							"Succeeded"
 						]
