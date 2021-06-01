@@ -1,0 +1,25 @@
+{
+	"name": "DS_EOL_GENERALJOURNALENTRYLINES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/generaljournalentry/GeneralJournalEntryLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATDC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Date,Description,Division,Document,DocumentNumber,DocumentSubject,EntryID,EntryNumber,GLAccount,GLAccountCode,GLAccountDescription,LineNumber,Modified,Modifier,ModifierFullName,Notes,OffsetID,OurRef,Project,ProjectCode,ProjectDescription,Quantity,VATBaseAmountDC,VATBaseAmountFC,VATCode,VATCodeDescription,VATPercentage,VATType",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
