@@ -7800,6 +7800,169 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Copy CostUnits",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Code']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EndDate']"
+								},
+								"sink": {
+									"name": "EndDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_COSTUNITS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_CostUnits",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],
