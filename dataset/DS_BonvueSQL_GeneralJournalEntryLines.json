@@ -1,0 +1,17 @@
+{
+	"name": "DS_BonvueSQL_GeneralJournalEntryLines",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GeneralJournalEntryLines"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
