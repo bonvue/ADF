@@ -28,7 +28,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy AgingPayableList",
+						"activity": "Copy CostUnits",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -7806,7 +7806,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy AgingPayableList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -7838,6 +7838,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE CostUnits",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},

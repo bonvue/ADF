@@ -15,7 +15,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "/api/v1/{dataset().division}/hrm/Costcenters?$select=ID,Active,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
+				"value": "/api/v1/@{dataset().division}/hrm/Costcenters?$select=ID,Active,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
 				"type": "Expression"
 			}
 		},
