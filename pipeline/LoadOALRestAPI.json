@@ -1018,7 +1018,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy BankAccounts",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1050,6 +1050,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE BANKENTRIES",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -4772,10 +4773,11 @@
 			},
 			{
 				"name": "Copy AssetGroups",
+				"description": "",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy BankAccounts",
+						"activity": "Copy BankEntries",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5120,7 +5122,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy AssetGroups",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5152,6 +5154,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE BANKENTRYLINES",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -5581,7 +5584,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy BankAccounts",
+						"activity": "Copy BankEntryLines",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5613,6 +5616,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE BUDGETS",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -5655,7 +5659,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy Budgets",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5687,6 +5691,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE CurrentYear_AfterEntry",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -5782,7 +5787,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy CurrentYear_AfterEntry",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5814,6 +5819,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE DIVISION",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -6086,10 +6092,11 @@
 			},
 			{
 				"name": "Copy DocumentAttachments",
+				"description": "",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy Divsion",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6121,6 +6128,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE DocumentAttachments",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -6207,7 +6215,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy DocumentAttachments",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6239,6 +6247,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE RECEIVABLESLIST",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -6415,7 +6424,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy ReceivablesList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6446,7 +6455,9 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE GeneralJournalEntryLines",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -6891,7 +6902,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy  CostCenters",
+						"activity": "Copy GeneralJournalEntryLines",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6923,6 +6934,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE TRANSACTIONLINES",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -7576,7 +7588,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy TransactionLines",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -7608,6 +7620,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE PAYABLESLIST",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
