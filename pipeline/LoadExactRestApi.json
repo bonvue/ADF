@@ -211,7 +211,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetEOLBearerToken",
+						"activity": "Copy Division",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -5774,11 +5774,11 @@
 				]
 			},
 			{
-				"name": "Copy Divsion",
+				"name": "Copy Division",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy CurrentYear_AfterEntry",
+						"activity": "GetEOLBearerToken",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6067,7 +6067,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_EOL_DIVSION",
+						"referenceName": "DS_EOL_DIVISION",
 						"type": "DatasetReference",
 						"parameters": {
 							"division": "2928333"
@@ -6076,7 +6076,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_BonvueSQL_Divsion",
+						"referenceName": "DS_BonvueSQL_Division",
 						"type": "DatasetReference"
 					}
 				]
@@ -6087,7 +6087,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy Divsion",
+						"activity": "Copy CurrentYear_AfterEntry",
 						"dependencyConditions": [
 							"Succeeded"
 						]

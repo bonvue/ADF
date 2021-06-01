@@ -1,5 +1,5 @@
 {
-	"name": "DS_EOL_DIVSION",
+	"name": "DS_EOL_DIVISION",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_REST_EOL",
