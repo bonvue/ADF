@@ -28,7 +28,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy BankEntries",
+						"activity": "Copy AgingPayableList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1018,7 +1018,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy AgingPayableList",
+						"activity": "GetEOLBearerToken",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1057,16 +1057,6 @@
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['uri']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['results'][0]['__metadata']['type']"
-								}
-							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['ClosingBalanceFC']"
@@ -1178,6 +1168,9 @@
 							{
 								"source": {
 									"path": "$['d']['results'][0]['Status']"
+								},
+								"sink": {
+									"type": "String"
 								}
 							},
 							{
@@ -1192,21 +1185,25 @@
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BankStatementDocument']"
+								},
+								"sink": {
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BankStatementDocumentNumber']"
+								},
+								"sink": {
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"path": "$['d']['results'][0]['BankStatementDocumentSubject']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['__next']"
+								},
+								"sink": {
+									"type": "String"
 								}
 							}
 						],
@@ -5163,7 +5160,8 @@
 									"path": "$['d']['results'][0]['__metadata']['uri']"
 								},
 								"sink": {
-									"name": "uri"
+									"name": "uri",
+									"type": "String"
 								}
 							},
 							{
@@ -5171,7 +5169,8 @@
 									"path": "$['d']['results'][0]['__metadata']['type']"
 								},
 								"sink": {
-									"name": "type"
+									"name": "type",
+									"type": "String"
 								}
 							},
 							{
@@ -5179,7 +5178,8 @@
 									"path": "$['d']['results'][0]['Account']"
 								},
 								"sink": {
-									"name": "Account"
+									"name": "Account",
+									"type": "String"
 								}
 							},
 							{
@@ -5187,7 +5187,8 @@
 									"path": "$['d']['results'][0]['AccountCode']"
 								},
 								"sink": {
-									"name": "AccountCode"
+									"name": "AccountCode",
+									"type": "String"
 								}
 							},
 							{
@@ -5195,7 +5196,8 @@
 									"path": "$['d']['results'][0]['AccountName']"
 								},
 								"sink": {
-									"name": "AccountName"
+									"name": "AccountName",
+									"type": "String"
 								}
 							},
 							{
@@ -5203,7 +5205,8 @@
 									"path": "$['d']['results'][0]['AmountDC']"
 								},
 								"sink": {
-									"name": "AmountDC"
+									"name": "AmountDC",
+									"type": "String"
 								}
 							},
 							{
@@ -5211,7 +5214,8 @@
 									"path": "$['d']['results'][0]['AmountFC']"
 								},
 								"sink": {
-									"name": "AmountFC"
+									"name": "AmountFC",
+									"type": "String"
 								}
 							},
 							{
@@ -5219,7 +5223,8 @@
 									"path": "$['d']['results'][0]['AmountVATFC']"
 								},
 								"sink": {
-									"name": "AmountVATFC"
+									"name": "AmountVATFC",
+									"type": "String"
 								}
 							},
 							{
@@ -5227,7 +5232,8 @@
 									"path": "$['d']['results'][0]['Asset']"
 								},
 								"sink": {
-									"name": "Asset"
+									"name": "Asset",
+									"type": "String"
 								}
 							},
 							{
@@ -5235,7 +5241,8 @@
 									"path": "$['d']['results'][0]['AssetCode']"
 								},
 								"sink": {
-									"name": "AssetCode"
+									"name": "AssetCode",
+									"type": "String"
 								}
 							},
 							{
@@ -5243,7 +5250,8 @@
 									"path": "$['d']['results'][0]['AssetDescription']"
 								},
 								"sink": {
-									"name": "AssetDescription"
+									"name": "AssetDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5251,7 +5259,8 @@
 									"path": "$['d']['results'][0]['CostCenter']"
 								},
 								"sink": {
-									"name": "CostCenter"
+									"name": "CostCenter",
+									"type": "String"
 								}
 							},
 							{
@@ -5259,7 +5268,8 @@
 									"path": "$['d']['results'][0]['CostCenterDescription']"
 								},
 								"sink": {
-									"name": "CostCenterDescription"
+									"name": "CostCenterDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5267,7 +5277,8 @@
 									"path": "$['d']['results'][0]['CostUnit']"
 								},
 								"sink": {
-									"name": "CostUnit"
+									"name": "CostUnit",
+									"type": "String"
 								}
 							},
 							{
@@ -5275,7 +5286,8 @@
 									"path": "$['d']['results'][0]['CostUnitDescription']"
 								},
 								"sink": {
-									"name": "CostUnitDescription"
+									"name": "CostUnitDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5283,7 +5295,8 @@
 									"path": "$['d']['results'][0]['Created']"
 								},
 								"sink": {
-									"name": "Created"
+									"name": "Created",
+									"type": "String"
 								}
 							},
 							{
@@ -5291,7 +5304,8 @@
 									"path": "$['d']['results'][0]['Creator']"
 								},
 								"sink": {
-									"name": "Creator"
+									"name": "Creator",
+									"type": "String"
 								}
 							},
 							{
@@ -5299,7 +5313,8 @@
 									"path": "$['d']['results'][0]['CreatorFullName']"
 								},
 								"sink": {
-									"name": "CreatorFullName"
+									"name": "CreatorFullName",
+									"type": "String"
 								}
 							},
 							{
@@ -5307,7 +5322,8 @@
 									"path": "$['d']['results'][0]['Description']"
 								},
 								"sink": {
-									"name": "Description"
+									"name": "Description",
+									"type": "String"
 								}
 							},
 							{
@@ -5315,7 +5331,8 @@
 									"path": "$['d']['results'][0]['Division']"
 								},
 								"sink": {
-									"name": "Division"
+									"name": "Division",
+									"type": "String"
 								}
 							},
 							{
@@ -5323,7 +5340,8 @@
 									"path": "$['d']['results'][0]['Document']"
 								},
 								"sink": {
-									"name": "Document"
+									"name": "Document",
+									"type": "String"
 								}
 							},
 							{
@@ -5331,7 +5349,8 @@
 									"path": "$['d']['results'][0]['DocumentNumber']"
 								},
 								"sink": {
-									"name": "DocumentNumber"
+									"name": "DocumentNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -5339,7 +5358,8 @@
 									"path": "$['d']['results'][0]['DocumentSubject']"
 								},
 								"sink": {
-									"name": "DocumentSubject"
+									"name": "DocumentSubject",
+									"type": "String"
 								}
 							},
 							{
@@ -5347,7 +5367,8 @@
 									"path": "$['d']['results'][0]['EntryID']"
 								},
 								"sink": {
-									"name": "EntryID"
+									"name": "EntryID",
+									"type": "String"
 								}
 							},
 							{
@@ -5355,7 +5376,8 @@
 									"path": "$['d']['results'][0]['EntryNumber']"
 								},
 								"sink": {
-									"name": "EntryNumber"
+									"name": "EntryNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -5363,7 +5385,8 @@
 									"path": "$['d']['results'][0]['ExchangeRate']"
 								},
 								"sink": {
-									"name": "ExchangeRate"
+									"name": "ExchangeRate",
+									"type": "String"
 								}
 							},
 							{
@@ -5371,7 +5394,8 @@
 									"path": "$['d']['results'][0]['GLAccount']"
 								},
 								"sink": {
-									"name": "GLAccount"
+									"name": "GLAccount",
+									"type": "String"
 								}
 							},
 							{
@@ -5379,7 +5403,8 @@
 									"path": "$['d']['results'][0]['GLAccountCode']"
 								},
 								"sink": {
-									"name": "GLAccountCode"
+									"name": "GLAccountCode",
+									"type": "String"
 								}
 							},
 							{
@@ -5387,7 +5412,8 @@
 									"path": "$['d']['results'][0]['GLAccountDescription']"
 								},
 								"sink": {
-									"name": "GLAccountDescription"
+									"name": "GLAccountDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5395,7 +5421,8 @@
 									"path": "$['d']['results'][0]['ID']"
 								},
 								"sink": {
-									"name": "ID"
+									"name": "ID",
+									"type": "String"
 								}
 							},
 							{
@@ -5403,7 +5430,8 @@
 									"path": "$['d']['results'][0]['LineNumber']"
 								},
 								"sink": {
-									"name": "LineNumber"
+									"name": "LineNumber",
+									"type": "String"
 								}
 							},
 							{
@@ -5411,7 +5439,8 @@
 									"path": "$['d']['results'][0]['Modified']"
 								},
 								"sink": {
-									"name": "Modified"
+									"name": "Modified",
+									"type": "String"
 								}
 							},
 							{
@@ -5419,7 +5448,8 @@
 									"path": "$['d']['results'][0]['Modifier']"
 								},
 								"sink": {
-									"name": "Modifier"
+									"name": "Modifier",
+									"type": "String"
 								}
 							},
 							{
@@ -5427,7 +5457,8 @@
 									"path": "$['d']['results'][0]['ModifierFullName']"
 								},
 								"sink": {
-									"name": "ModifierFullName"
+									"name": "ModifierFullName",
+									"type": "String"
 								}
 							},
 							{
@@ -5435,7 +5466,8 @@
 									"path": "$['d']['results'][0]['Notes']"
 								},
 								"sink": {
-									"name": "Notes"
+									"name": "Notes",
+									"type": "String"
 								}
 							},
 							{
@@ -5443,7 +5475,8 @@
 									"path": "$['d']['results'][0]['OffsetID']"
 								},
 								"sink": {
-									"name": "OffsetID"
+									"name": "OffsetID",
+									"type": "String"
 								}
 							},
 							{
@@ -5451,7 +5484,8 @@
 									"path": "$['d']['results'][0]['OurRef']"
 								},
 								"sink": {
-									"name": "OurRef"
+									"name": "OurRef",
+									"type": "String"
 								}
 							},
 							{
@@ -5459,7 +5493,8 @@
 									"path": "$['d']['results'][0]['Project']"
 								},
 								"sink": {
-									"name": "Project"
+									"name": "Project",
+									"type": "String"
 								}
 							},
 							{
@@ -5467,7 +5502,8 @@
 									"path": "$['d']['results'][0]['ProjectCode']"
 								},
 								"sink": {
-									"name": "ProjectCode"
+									"name": "ProjectCode",
+									"type": "String"
 								}
 							},
 							{
@@ -5475,7 +5511,8 @@
 									"path": "$['d']['results'][0]['ProjectDescription']"
 								},
 								"sink": {
-									"name": "ProjectDescription"
+									"name": "ProjectDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5483,7 +5520,8 @@
 									"path": "$['d']['results'][0]['Quantity']"
 								},
 								"sink": {
-									"name": "Quantity"
+									"name": "Quantity",
+									"type": "String"
 								}
 							},
 							{
@@ -5491,7 +5529,8 @@
 									"path": "$['d']['results'][0]['VATCode']"
 								},
 								"sink": {
-									"name": "VATCode"
+									"name": "VATCode",
+									"type": "String"
 								}
 							},
 							{
@@ -5499,7 +5538,8 @@
 									"path": "$['d']['results'][0]['VATCodeDescription']"
 								},
 								"sink": {
-									"name": "VATCodeDescription"
+									"name": "VATCodeDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -5507,7 +5547,8 @@
 									"path": "$['d']['results'][0]['VATPercentage']"
 								},
 								"sink": {
-									"name": "VATPercentage"
+									"name": "VATPercentage",
+									"type": "String"
 								}
 							},
 							{
@@ -5515,7 +5556,8 @@
 									"path": "$['d']['results'][0]['VATType']"
 								},
 								"sink": {
-									"name": "VATType"
+									"name": "VATType",
+									"type": "String"
 								}
 							},
 							{
@@ -5523,15 +5565,8 @@
 									"path": "$['d']['results'][0]['Date']"
 								},
 								"sink": {
-									"name": "Date"
-								}
-							},
-							{
-								"source": {
-									"path": "$['d']['__next']"
-								},
-								"sink": {
-									"name": "__next"
+									"name": "Date",
+									"type": "String"
 								}
 							}
 						],
