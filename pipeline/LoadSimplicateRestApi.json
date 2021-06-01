@@ -1,6 +1,16 @@
 {
 	"name": "LoadSimplicateRestApi",
 	"properties": {
+		"parameters": {
+			"Authentication-Key": {
+				"type": "string",
+				"defaultValue": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx"
+			},
+			"Authentication-Secret": {
+				"type": "string",
+				"defaultValue": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+			}
+		},
 		"annotations": []
 	}
 }
