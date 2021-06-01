@@ -1,0 +1,17 @@
+{
+	"name": "DS_BonvueSQL_PayablesList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PayablesList"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
