@@ -1,0 +1,25 @@
+{
+	"name": "DS_EOL_CURRENTYEARAFTERENTRY",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/openingbalance/CurrentYear/AfterEntry?$select=Division,GLAccount,ReportingYear,Amount,BalanceSide,GLAccountCode,GLAccountDescription",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
