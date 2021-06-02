@@ -11,6 +11,9 @@
 				"defaultValue": "2928333"
 			}
 		},
+		"folder": {
+			"name": "Exact REST API"
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
