@@ -6415,7 +6415,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy ReceivablesList",
+						"activity": "Copy AssetGroups",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -6893,7 +6893,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy GeneralJournalEntryLines",
+						"activity": "Copy ReceivablesList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
