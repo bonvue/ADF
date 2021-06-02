@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "bonvuedatawarehousefactory"
+		},
+		"BonvueExactFunctions_functionKey": {
+			"value": ""
+		},
+		"LS_BonvueSQL_connectionString": {
+			"value": ""
+		},
+		"BonvueExactFunctions_properties_typeProperties_functionAppUrl": {
+			"value": "https://bonvueazurefunctionsexact.azurewebsites.net"
+		},
+		"LS_REST_EOL_properties_typeProperties_url": {
+			"value": "https://start.exactonline.nl"
+		},
+		"LS_REST_Simplicate_properties_typeProperties_url": {
+			"value": "https://bonvue.simplicate.nl/api/v2"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

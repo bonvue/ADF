@@ -1,0 +1,514 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bonvuedatawarehousefactory"
+		},
+		"BonvueExactFunctions_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'BonvueExactFunctions'"
+		},
+		"LS_BonvueSQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BonvueSQL'"
+		},
+		"BonvueExactFunctions_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://bonvueazurefunctionsexact.azurewebsites.net"
+		},
+		"LS_REST_EOL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://start.exactonline.nl"
+		},
+		"LS_REST_Simplicate_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://bonvue.simplicate.nl/api/v2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/BonvueExactFunctions')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureFunction",
+				"typeProperties": {
+					"functionAppUrl": "[parameters('BonvueExactFunctions_properties_typeProperties_functionAppUrl')]",
+					"functionKey": {
+						"type": "SecureString",
+						"value": "[parameters('BonvueExactFunctions_functionKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_BonvueSQL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_BonvueSQL_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_REST_EOL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('LS_REST_EOL_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_REST_Simplicate')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('LS_REST_Simplicate_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous",
+					"authHeaders": {
+						"Authentication-Key": {
+							"type": "SecureString",
+							"value": "**********"
+						},
+						"Authentication-Secret": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LoadSimplicateRestApi')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"Authentication-Key": {
+						"type": "string",
+						"defaultValue": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx"
+					},
+					"Authentication-Secret": {
+						"type": "string",
+						"defaultValue": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+					}
+				},
+				"folder": {
+					"name": "Simplicate"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BonvueExactFunctions')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Accounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Accounts"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_AgingOverview')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "AgingOverview"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_AgingPayableList')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "AgingPayableList"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_AssetGroups')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "AssetGroups"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_BankAccounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankAccounts"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_BankEntries')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankEntries"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_BankEntryLines')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankEntryLines"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Budgets')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Budgets"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_CostCenters')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CostCenters"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_CostUnits')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CostUnits"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_CurrentYear_AfterEntry')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CurrentYear_AfterEntry"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Division')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Division"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_DocumentAttachments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DocumentAttachments"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_GLAccountClassificationMappings')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GLAccountClassificationMappings"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_GLAccounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GLAccounts"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_BonvueSQL')]"
+			]
+		}
+	]
+}

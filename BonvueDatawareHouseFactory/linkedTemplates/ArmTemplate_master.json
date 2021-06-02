@@ -1,0 +1,117 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bonvuedatawarehousefactory"
+		},
+		"BonvueExactFunctions_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'BonvueExactFunctions'"
+		},
+		"LS_BonvueSQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BonvueSQL'"
+		},
+		"BonvueExactFunctions_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://bonvueazurefunctionsexact.azurewebsites.net"
+		},
+		"LS_REST_EOL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://start.exactonline.nl"
+		},
+		"LS_REST_Simplicate_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://bonvue.simplicate.nl/api/v2"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "BonvueDatawareHouseFactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"BonvueExactFunctions_functionKey": {
+						"value": "[parameters('BonvueExactFunctions_functionKey')]"
+					},
+					"LS_BonvueSQL_connectionString": {
+						"value": "[parameters('LS_BonvueSQL_connectionString')]"
+					},
+					"BonvueExactFunctions_properties_typeProperties_functionAppUrl": {
+						"value": "[parameters('BonvueExactFunctions_properties_typeProperties_functionAppUrl')]"
+					},
+					"LS_REST_EOL_properties_typeProperties_url": {
+						"value": "[parameters('LS_REST_EOL_properties_typeProperties_url')]"
+					},
+					"LS_REST_Simplicate_properties_typeProperties_url": {
+						"value": "[parameters('LS_REST_Simplicate_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "BonvueDatawareHouseFactory_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'BonvueDatawareHouseFactory_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "BonvueDatawareHouseFactory_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'BonvueDatawareHouseFactory_ArmTemplate_1')]"
+			]
+		}
+	]
+}

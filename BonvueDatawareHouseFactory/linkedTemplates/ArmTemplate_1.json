@@ -1,0 +1,544 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bonvuedatawarehousefactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_GLClassifications')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GLClassifications"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_GeneralJournalEntryLines')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GeneralJournalEntryLines"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_JobTitles')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "JobTitles"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_PayablesList')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "PayablesList"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Payments')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Payments"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_PurchaseEntries')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "PurchaseEntries"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Receivables')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Receivables"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_ReceivablesList')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ReceivablesList"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_TransactionLines')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_BonvueSQL",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Exact DW"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "TransactionLines"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_ACCOUNTS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/bulk/CRM/Accounts?$select=ID,Accountant,AccountManager,AccountManagerFullName,AccountManagerHID,ActivitySector,ActivitySubSector,AddressLine1,AddressLine2,AddressLine3,BankAccounts,Blocked,BRIN,BSN,BusinessType,CanDropShip,ChamberOfCommerce,City,Classification,Classification1,Classification2,Classification3,Classification4,Classification5,Classification6,Classification7,Classification8,ClassificationDescription,Code,CodeAtSupplier,CompanySize,ConsolidationScenario,ControlledDate,Costcenter,CostcenterDescription,CostPaid,Country,CountryName,Created,Creator,CreatorFullName,CreditLinePurchase,CreditLineSales,Currency,CustomerSince,DatevCreditorCode,DatevDebtorCode,DiscountPurchase,DiscountSales,Division,Document,DunsNumber,Email,EndDate,EstablishedDate,Fax,GLAccountPurchase,GLAccountSales,GLAP,GLAR,GlnNumber,HasWithholdingTaxSales,IgnoreDatevWarningMessage,IntraStatArea,IntraStatDeliveryTerm,IntraStatSystem,IntraStatTransactionA,IntraStatTransactionB,IntraStatTransportMethod,InvoiceAccount,InvoiceAccountCode,InvoiceAccountName,InvoiceAttachmentType,InvoicingMethod,IsAccountant,IsAgency,IsAnonymised,IsBank,IsCompetitor,IsExtraDuty,IsMailing,IsMember,IsPilot,IsPurchase,IsReseller,IsSales,IsSupplier,Language,LanguageDescription,Latitude,LeadPurpose,LeadSource,Logo,LogoFileName,LogoThumbnailUrl,LogoUrl,Longitude,MainContact,Modified,Modifier,ModifierFullName,Name,OINNumber,Parent,PayAsYouEarn,PaymentConditionPurchase,PaymentConditionPurchaseDescription,PaymentConditionSales,PaymentConditionSalesDescription,Phone,PhoneExtension,Postcode,PriceList,PurchaseCurrency,PurchaseCurrencyDescription,PurchaseLeadDays,PurchaseVATCode,PurchaseVATCodeDescription,RecepientOfCommissions,Remarks,Reseller,ResellerCode,ResellerName,RSIN,SalesCurrency,SalesCurrencyDescription,SalesTaxSchedule,SalesTaxScheduleCode,SalesTaxScheduleDescription,SalesVATCode,SalesVATCodeDescription,SearchCode,SecurityLevel,SeparateInvPerSubscription,ShippingLeadDays,ShippingMethod,ShowRemarkForSales,StartDate,State,StateName,Status,StatusSince,TradeName,Type,UniqueTaxpayerReference,VATLiability,VATNumber,Website&$expand=BankAccounts",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_AGINGOVERVIEW')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/read/financial/AgingOverview?$select=AgeGroup,AgeGroupDescription,AmountPayable,AmountReceivable,CurrencyCode",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_AGINGPAYABLESLIST')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/read/financial/AgingPayablesList?$select=AccountId,AccountCode,AccountName,AgeGroup1,AgeGroup1Amount,AgeGroup1Description,AgeGroup2,AgeGroup2Amount,AgeGroup2Description,AgeGroup3,AgeGroup3Amount,AgeGroup3Description,AgeGroup4,AgeGroup4Amount,AgeGroup4Description,CurrencyCode,TotalAmount",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_ASSETSGROUPS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/assets/AssetGroups?$select=ID,Code,Created,Creator,CreatorFullName,DepreciationMethod,DepreciationMethodCode,DepreciationMethodDescription,Description,Division,GLAccountAssets,GLAccountAssetsCode,GLAccountAssetsDescription,GLAccountDepreciationBS,GLAccountDepreciationBSCode,GLAccountDepreciationBSDescription,GLAccountDepreciationPL,GLAccountDepreciationPLCode,GLAccountDepreciationPLDescription,GLAccountRevaluationBS,GLAccountRevaluationBSCode,GLAccountRevaluationBSDescription,Modified,Modifier,ModifierFullName,Notes",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_BANKACCCOUNTS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}//crm/BankAccounts?$select=ID,Account,AccountName,Bank,BankAccount,BankAccountHolderName,BankDescription,BankName,BICCode,Created,Creator,CreatorFullName,Description,Division,Format,IBAN,Main,Modified,Modifier,ModifierFullName,PaymentServiceAccount,Type,TypeDescription",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_BANKENTRIES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/financialtransaction/BankEntries?$select=EntryID,BankStatementDocument,BankStatementDocumentNumber,BankStatementDocumentSubject,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,Status,StatusDescription",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_BANKENTRYLINES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/financialtransaction/BankEntryLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Date,Description,Division,Document,DocumentNumber,DocumentSubject,EntryID,EntryNumber,ExchangeRate,GLAccount,GLAccountCode,GLAccountDescription,LineNumber,Modified,Modifier,ModifierFullName,Notes,OffsetID,OurRef,Project,ProjectCode,ProjectDescription,Quantity,VATCode,VATCodeDescription,VATPercentage,VATType",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_BUDGETS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/budget/Budgets?$select=ID,AmountDC,BudgetScenario,BudgetScenarioCode,BudgetScenarioDescription,Costcenter,CostcenterDescription,Costunit,CostunitDescription,Created,Creator,CreatorFullName,Division,GLAccount,GLAccountCode,GLAccountDescription,HID,Item,ItemCode,ItemDescription,Modified,Modifier,ModifierFullName,ReportingPeriod,ReportingYear",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_COSTCENTERS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/hrm/Costcenters?$select=ID,Active,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_COSTUNITS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/hrm/Costunits?$select=ID,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_CURRENTYEARAFTERENTRY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/openingbalance/CurrentYear/AfterEntry?$select=Division,GLAccount,ReportingYear,Amount,BalanceSide,GLAccountCode,GLAccountDescription",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		}
+	]
+}
