@@ -51,7 +51,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"functionName": "GetBearerToken",
+							"functionName": "GetNewBearerToken",
 							"method": "GET",
 							"headers": {}
 						},
@@ -165,7 +165,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"functionName": "GetBearerToken",
+							"functionName": "GetNewBearerToken",
 							"method": "GET",
 							"headers": {}
 						},
