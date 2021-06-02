@@ -5,6 +5,9 @@
 			"referenceName": "LS_BonvueSQL",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Exact DW"
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
