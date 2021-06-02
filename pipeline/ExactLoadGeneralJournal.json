@@ -249,15 +249,6 @@
 							},
 							{
 								"source": {
-									"path": "$['d']['results'][0]['Document']"
-								},
-								"sink": {
-									"name": "Document",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['d']['results'][0]['DocumentNumber']"
 								},
 								"sink": {
