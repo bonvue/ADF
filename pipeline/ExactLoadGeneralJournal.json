@@ -69,10 +69,10 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['d']['results'][0]['ID']"
+									"path": "$['d']['results'][0]['AssetCode']"
 								},
 								"sink": {
-									"name": "ID",
+									"name": "AssetCode",
 									"type": "String"
 								}
 							}
