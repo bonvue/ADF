@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"functionName": "GetBearerToken",
+					"functionName": "GetNewBearerToken",
 					"method": "GET"
 				},
 				"linkedServiceName": {
