@@ -1,0 +1,241 @@
+{
+	"name": "ExactLoadGLClassifications",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy GLClassifications",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE GLCLASSIFICATIONS",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Abstract']"
+								},
+								"sink": {
+									"name": "Abstract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Balance']"
+								},
+								"sink": {
+									"name": "Balance",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Code']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['IsTupleSubElement']"
+								},
+								"sink": {
+									"name": "IsTupleSubElement",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Name']"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PeriodType']"
+								},
+								"sink": {
+									"name": "PeriodType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SubstitutionGroup']"
+								},
+								"sink": {
+									"name": "SubstitutionGroup",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TaxonomyNamespaceDescription']"
+								},
+								"sink": {
+									"name": "TaxonomyNamespaceDescription",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['d']['results']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_GLCLASSIFICATIONS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_GLClassifications",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}
