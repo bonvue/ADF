@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "ExactLoadPayments",
 	"properties": {
 		"activities": [
 			{
@@ -683,7 +683,7 @@
 			}
 		],
 		"folder": {
-			"name": "Exact"
+			"name": "Exact/Exact Database"
 		},
 		"annotations": []
 	}
