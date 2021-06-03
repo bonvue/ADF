@@ -154,6 +154,126 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "ExactLoadCurrentYear_AfterEntry",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadCostUnits",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadCurrentYearAfterEntry",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadDivision",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadCurrentYear_AfterEntry",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadDivison",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadDocumentAttachments",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadDivision",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadDocumentAttachments",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadGeneralJournalEntryLines",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadDocumentAttachments",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadGeneralJournalEntryLines",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadGLAccountClassificationMappings",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadGeneralJournalEntryLines",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadGLAccountClassificationMappings",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadGLAccounts",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadGLAccountClassificationMappings",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadGLAccounts",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
