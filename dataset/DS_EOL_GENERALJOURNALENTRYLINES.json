@@ -1,5 +1,5 @@
 {
-	"name": "DS_EOL_ACCOUNTS_copy1",
+	"name": "DS_EOL_GENERALJOURNALENTRYLINES",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_REST_EOL",
