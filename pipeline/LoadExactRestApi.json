@@ -274,6 +274,146 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "ExactLoadGLClassifications",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadGLAccounts",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadGLClassifications",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadPayablesList",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadGLClassifications",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadPayablesList",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadPayments",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadPayablesList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadPayments",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadPurchasEntreis",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadPayments",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadPurchaseEntries",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadReceivables",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadPurchasEntreis",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadReceivables",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadReceivablesList",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadReceivables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadReceivablesList",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "ExactLoadTransactionLines",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExactLoadReceivablesList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ExactLoadReceivablesList",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"folder": {
