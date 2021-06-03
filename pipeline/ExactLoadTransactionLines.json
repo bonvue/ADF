@@ -1,0 +1,718 @@
+{
+	"name": "ExactLoadTransactionLines",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy TransactionLines",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE TRANSACTIONLINES",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ShopOrder']"
+								},
+								"sink": {
+									"name": "ShopOrder",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Account']"
+								},
+								"sink": {
+									"name": "Account",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountCode']"
+								},
+								"sink": {
+									"name": "AccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountName']"
+								},
+								"sink": {
+									"name": "AccountName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountDC']"
+								},
+								"sink": {
+									"name": "AmountDC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountFC']"
+								},
+								"sink": {
+									"name": "AmountFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountVATFC']"
+								},
+								"sink": {
+									"name": "AmountVATFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountVATBaseFC']"
+								},
+								"sink": {
+									"name": "AmountVATBaseFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Asset']"
+								},
+								"sink": {
+									"name": "Asset",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AssetCode']"
+								},
+								"sink": {
+									"name": "AssetCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AssetDescription']"
+								},
+								"sink": {
+									"name": "AssetDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostCenter']"
+								},
+								"sink": {
+									"name": "CostCenter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostCenterDescription']"
+								},
+								"sink": {
+									"name": "CostCenterDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostUnit']"
+								},
+								"sink": {
+									"name": "CostUnit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostUnitDescription']"
+								},
+								"sink": {
+									"name": "CostUnitDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Date']"
+								},
+								"sink": {
+									"name": "Date",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Document']"
+								},
+								"sink": {
+									"name": "Document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentNumber']"
+								},
+								"sink": {
+									"name": "DocumentNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentSubject']"
+								},
+								"sink": {
+									"name": "DocumentSubject",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DueDate']"
+								},
+								"sink": {
+									"name": "DueDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryID']"
+								},
+								"sink": {
+									"name": "EntryID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryNumber']"
+								},
+								"sink": {
+									"name": "EntryNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ExchangeRate']"
+								},
+								"sink": {
+									"name": "ExchangeRate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ExtraDutyAmountFC']"
+								},
+								"sink": {
+									"name": "ExtraDutyAmountFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ExtraDutyPercentage']"
+								},
+								"sink": {
+									"name": "ExtraDutyPercentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['FinancialPeriod']"
+								},
+								"sink": {
+									"name": "FinancialPeriod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['FinancialYear']"
+								},
+								"sink": {
+									"name": "FinancialYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccount']"
+								},
+								"sink": {
+									"name": "GLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountCode']"
+								},
+								"sink": {
+									"name": "GLAccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountDescription']"
+								},
+								"sink": {
+									"name": "GLAccountDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceNumber']"
+								},
+								"sink": {
+									"name": "InvoiceNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Item']"
+								},
+								"sink": {
+									"name": "Item",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ItemCode']"
+								},
+								"sink": {
+									"name": "ItemCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ItemDescription']"
+								},
+								"sink": {
+									"name": "ItemDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['JournalCode']"
+								},
+								"sink": {
+									"name": "JournalCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['JournalDescription']"
+								},
+								"sink": {
+									"name": "JournalDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LineNumber']"
+								},
+								"sink": {
+									"name": "LineNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LineType']"
+								},
+								"sink": {
+									"name": "LineType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Notes']"
+								},
+								"sink": {
+									"name": "Notes",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OffsetID']"
+								},
+								"sink": {
+									"name": "OffsetID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OrderNumber']"
+								},
+								"sink": {
+									"name": "OrderNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentDiscountAmount']"
+								},
+								"sink": {
+									"name": "PaymentDiscountAmount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentReference']"
+								},
+								"sink": {
+									"name": "PaymentReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Project']"
+								},
+								"sink": {
+									"name": "Project",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ProjectCode']"
+								},
+								"sink": {
+									"name": "ProjectCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ProjectDescription']"
+								},
+								"sink": {
+									"name": "ProjectDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Quantity']"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SerialNumber']"
+								},
+								"sink": {
+									"name": "SerialNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Status']"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Subscription']"
+								},
+								"sink": {
+									"name": "Subscription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SubscriptionDescription']"
+								},
+								"sink": {
+									"name": "SubscriptionDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TrackingNumber']"
+								},
+								"sink": {
+									"name": "TrackingNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TrackingNumberDescription']"
+								},
+								"sink": {
+									"name": "TrackingNumberDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATCode']"
+								},
+								"sink": {
+									"name": "VATCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATCodeDescription']"
+								},
+								"sink": {
+									"name": "VATCodeDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATPercentage']"
+								},
+								"sink": {
+									"name": "VATPercentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATType']"
+								},
+								"sink": {
+									"name": "VATType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['YourRef']"
+								},
+								"sink": {
+									"name": "YourRef",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_TRANSACTIONLINES",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_TransactionLines",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}
