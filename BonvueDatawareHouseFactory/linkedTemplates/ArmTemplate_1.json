@@ -241,6 +241,36 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_EOL_GENERALJOURNALENTRYLINES')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_REST_EOL",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"division": {
+						"type": "string",
+						"defaultValue": "2928333"
+					}
+				},
+				"folder": {
+					"name": "Exact REST API"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v1/@{dataset().division}/generaljournalentry/GeneralJournalEntryLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATDC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Date,Description,Division,Document,DocumentNumber,DocumentSubject,EntryID,EntryNumber,GLAccount,GLAccountCode,GLAccountDescription,LineNumber,Modified,Modifier,ModifierFullName,Notes,OffsetID,OurRef,Project,ProjectCode,ProjectDescription,Quantity,VATBaseAmountDC,VATBaseAmountFC,VATCode,VATCodeDescription,VATPercentage,VATType",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_EOL_AGINGOVERVIEW')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -503,36 +533,6 @@
 				"typeProperties": {
 					"relativeUrl": {
 						"value": "/api/v1/@{dataset().division}/hrm/Costunits?$select=ID,Code,Created,Creator,CreatorFullName,Description,Division,EndDate,Modified,Modifier,ModifierFullName",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_CURRENTYEARAFTERENTRY')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/openingbalance/CurrentYear/AfterEntry?$select=Division,GLAccount,ReportingYear,Amount,BalanceSide,GLAccountCode,GLAccountDescription",
 						"type": "Expression"
 					}
 				},
