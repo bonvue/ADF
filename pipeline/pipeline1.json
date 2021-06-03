@@ -1,0 +1,690 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy Payments",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE PAYMENTS",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Account']"
+								},
+								"sink": {
+									"name": "Account",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountBankAccountID']"
+								},
+								"sink": {
+									"name": "AccountBankAccountID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountBankAccountNumber']"
+								},
+								"sink": {
+									"name": "AccountBankAccountNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountCode']"
+								},
+								"sink": {
+									"name": "AccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountContact']"
+								},
+								"sink": {
+									"name": "AccountContact",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountContactName']"
+								},
+								"sink": {
+									"name": "AccountContactName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountName']"
+								},
+								"sink": {
+									"name": "AccountName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountDC']"
+								},
+								"sink": {
+									"name": "AmountDC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountDiscountDC']"
+								},
+								"sink": {
+									"name": "AmountDiscountDC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountFC']"
+								},
+								"sink": {
+									"name": "AmountFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AmountDiscountFC']"
+								},
+								"sink": {
+									"name": "AmountDiscountFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankAccountID']"
+								},
+								"sink": {
+									"name": "BankAccountID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankAccountNumber']"
+								},
+								"sink": {
+									"name": "BankAccountNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CashflowTransactionBatchCode']"
+								},
+								"sink": {
+									"name": "CashflowTransactionBatchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DiscountDueDate']"
+								},
+								"sink": {
+									"name": "DiscountDueDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Document']"
+								},
+								"sink": {
+									"name": "Document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentNumber']"
+								},
+								"sink": {
+									"name": "DocumentNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DocumentSubject']"
+								},
+								"sink": {
+									"name": "DocumentSubject",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DueDate']"
+								},
+								"sink": {
+									"name": "DueDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EndDate']"
+								},
+								"sink": {
+									"name": "EndDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EndPeriod']"
+								},
+								"sink": {
+									"name": "EndPeriod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EndYear']"
+								},
+								"sink": {
+									"name": "EndYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryDate']"
+								},
+								"sink": {
+									"name": "EntryDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryID']"
+								},
+								"sink": {
+									"name": "EntryID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryNumber']"
+								},
+								"sink": {
+									"name": "EntryNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccount']"
+								},
+								"sink": {
+									"name": "GLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountCode']"
+								},
+								"sink": {
+									"name": "GLAccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountDescription']"
+								},
+								"sink": {
+									"name": "GLAccountDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceDate']"
+								},
+								"sink": {
+									"name": "InvoiceDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceNumber']"
+								},
+								"sink": {
+									"name": "InvoiceNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsBatchBooking']"
+								},
+								"sink": {
+									"name": "IsBatchBooking",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Journal']"
+								},
+								"sink": {
+									"name": "Journal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['JournalDescription']"
+								},
+								"sink": {
+									"name": "JournalDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentSelected']"
+								},
+								"sink": {
+									"name": "PaymentSelected",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentSelector']"
+								},
+								"sink": {
+									"name": "PaymentSelector",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentSelectorFullName']"
+								},
+								"sink": {
+									"name": "PaymentSelectorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentBatchNumber']"
+								},
+								"sink": {
+									"name": "PaymentBatchNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentCondition']"
+								},
+								"sink": {
+									"name": "PaymentCondition",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentConditionDescription']"
+								},
+								"sink": {
+									"name": "PaymentConditionDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentDays']"
+								},
+								"sink": {
+									"name": "PaymentDays",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentDaysDiscount']"
+								},
+								"sink": {
+									"name": "PaymentDaysDiscount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentDiscountPercentage']"
+								},
+								"sink": {
+									"name": "PaymentDiscountPercentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentMethod']"
+								},
+								"sink": {
+									"name": "PaymentMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentReference']"
+								},
+								"sink": {
+									"name": "PaymentReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['RateFC']"
+								},
+								"sink": {
+									"name": "RateFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Source']"
+								},
+								"sink": {
+									"name": "Source",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Status']"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionAmountDC']"
+								},
+								"sink": {
+									"name": "TransactionAmountDC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionAmountFC']"
+								},
+								"sink": {
+									"name": "TransactionAmountFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionDueDate']"
+								},
+								"sink": {
+									"name": "TransactionDueDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionEntryID']"
+								},
+								"sink": {
+									"name": "TransactionEntryID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionID']"
+								},
+								"sink": {
+									"name": "TransactionID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionIsReversal']"
+								},
+								"sink": {
+									"name": "TransactionIsReversal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionReportingPeriod']"
+								},
+								"sink": {
+									"name": "TransactionReportingPeriod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionReportingYear']"
+								},
+								"sink": {
+									"name": "TransactionReportingYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionStatus']"
+								},
+								"sink": {
+									"name": "TransactionStatus",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TransactionType']"
+								},
+								"sink": {
+									"name": "TransactionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['YourRef']"
+								},
+								"sink": {
+									"name": "YourRef",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_PAYMENTS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_Payments",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact"
+		},
+		"annotations": []
+	}
+}
