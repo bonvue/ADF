@@ -1,0 +1,15 @@
+{
+	"name": "Simplicate_ContactPerson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_Simplicate",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/crm/contactperson"
+		},
+		"schema": []
+	}
+}
