@@ -1,6 +1,177 @@
 {
-	"name": "pipeline1",
+	"name": "repro_RESTAPI_pagination",
 	"properties": {
+		"activities": [
+			{
+				"name": "Get The total page",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "maxpage",
+					"value": {
+						"value": "@string(activity('Web1').output.total_pages)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Loop all the pages",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Get The total page",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(variables('counter') , variables('maxpage') )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Add to the tempcounter",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "tempcounter",
+								"value": {
+									"value": "@string(add(int(variables('counter')),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Swap the counter",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Add to the tempcounter",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "counter",
+								"value": {
+									"value": "@variables('tempcounter')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Copy Data2",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Swap the counter",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET"
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Until2",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						},
+						{
+							"name": "Set offset",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": []
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
+			}
+		],
+		"variables": {
+			"maxpage": {
+				"type": "String",
+				"defaultValue": "1"
+			},
+			"counter": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"tempcounter": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
 		"annotations": []
 	}
 }
