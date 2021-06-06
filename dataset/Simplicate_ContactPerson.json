@@ -5,10 +5,24 @@
 			"referenceName": "LS_REST_Simplicate",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"limit": {
+				"type": "string"
+			},
+			"count": {
+				"type": "string"
+			},
+			"offset": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/crm/contactperson"
+			"relativeUrl": {
+				"value": "/crm/contactperson?@{count}",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
