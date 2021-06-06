@@ -1,23 +1,13 @@
 {
 	"name": "LS_REST_Simplicate",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "bonvue.simplicate.nl",
+			"url": "https://bonvue.simplicate.nl/api/v2",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "Anonymous",
-			"authHeaders": {
-				"Authentication-Key": {
-					"type": "SecureString",
-					"value": "**********"
-				},
-				"Authentication-Secret": {
-					"type": "SecureString",
-					"value": "**********"
-				}
-			}
+			"authenticationType": "Anonymous"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
