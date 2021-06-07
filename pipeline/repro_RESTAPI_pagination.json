@@ -55,6 +55,10 @@
 			"offset": {
 				"type": "String",
 				"defaultValue": "0"
+			},
+			"offsettemp": {
+				"type": "String",
+				"defaultValue": "0"
 			}
 		},
 		"annotations": []
