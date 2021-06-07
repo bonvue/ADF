@@ -26,14 +26,27 @@
 							}
 						},
 						{
-							"name": "Set offset",
+							"name": "Set offsetTemp",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "offsettemp",
 								"value": {
-									"value": "@int(variables('limit'))",
+									"value": "@string(add(int(variables('limit')),int(variables('limit'))))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set offsetTemp2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "offsettemp",
+								"value": {
+									"value": "@string(add(int(variables('limit')),int(variables('limit'))))",
 									"type": "Expression"
 								}
 							}
