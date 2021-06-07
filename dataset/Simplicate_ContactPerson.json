@@ -20,7 +20,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "/crm/contactperson?@{count}",
+				"value": "@/crm/contactperson?limit=10&offset=10&metadata=count,limit",
 				"type": "Expression"
 			}
 		},
