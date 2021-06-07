@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "int(variables('limit')) ",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data2",
@@ -28,7 +32,14 @@
 						{
 							"name": "Set offsetTemp",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Copy data2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "offsettemp",
@@ -39,14 +50,21 @@
 							}
 						},
 						{
-							"name": "Set offsetTemp2",
+							"name": "Set offset",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Set offsetTemp",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "offsettemp",
+								"variableName": "offset",
 								"value": {
-									"value": "@string(add(int(variables('limit')),int(variables('limit'))))",
+									"value": "@variables('offsettemp')",
 									"type": "Expression"
 								}
 							}
