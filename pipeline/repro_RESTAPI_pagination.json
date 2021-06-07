@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "int(variables('limit')) ",
+						"value": "@greaterOrEquals(add(int(variables('limit')),int(variables('offset'))),int(variables('count')))",
 						"type": "Expression"
 					},
 					"activities": [
