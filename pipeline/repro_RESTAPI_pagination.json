@@ -31,9 +31,9 @@
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "offset",
+								"variableName": "offsettemp",
 								"value": {
-									"value": "@add(variables('offset'))variables('offset')",
+									"value": "@int(variables('limit'))",
 									"type": "Expression"
 								}
 							}
