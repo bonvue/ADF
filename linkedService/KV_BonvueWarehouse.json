@@ -1,0 +1,10 @@
+{
+	"name": "KV_BonvueWarehouse",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://KV-BonvueDataWarehouse.vault.azure.net/"
+		}
+	}
+}
