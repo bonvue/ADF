@@ -11,18 +11,10 @@
 				"Authentication-Key": {
 					"type": "AzureKeyVaultSecret",
 					"store": {
-						"referenceName": "KV_BonvueWarehouse",
+						"referenceName": "AzureKeyTest",
 						"type": "LinkedServiceReference"
 					},
 					"secretName": "Authentication-Key"
-				},
-				"Authentication-Secret": {
-					"type": "AzureKeyVaultSecret",
-					"store": {
-						"referenceName": "KV_BonvueWarehouse",
-						"type": "LinkedServiceReference"
-					},
-					"secretName": "Authentication-Secret"
 				}
 			}
 		}
