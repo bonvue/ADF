@@ -16,7 +16,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://bonvue.simplicate.nl/api/v2/crm/organization",
-					"method": "GET"
+					"method": "GET",
+					"linkedServices": [
+						{
+							"referenceName": "LS_REST_Simplicate",
+							"type": "LinkedServiceReference"
+						}
+					]
 				}
 			}
 		],
