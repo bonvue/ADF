@@ -5,7 +5,7 @@
 		"type": "RestService",
 		"typeProperties": {
 			"url": "https://bonvue.simplicate.nl/api/v2",
-			"enableServerCertificateValidation": true,
+			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
 				"Authentication-Key": {
