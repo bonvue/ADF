@@ -89,18 +89,28 @@
 					"source": {
 						"type": "RestSource",
 						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:00.010",
+						"requestInterval": "00.00:00:01.000",
 						"requestMethod": "GET",
 						"additionalHeaders": {
 							"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
 							"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
 						}
 					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "Simplicate_Hours",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BonvueSQL_Hours",
 						"type": "DatasetReference"
 					}
 				]
