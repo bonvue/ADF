@@ -9,6 +9,10 @@
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
+				"Authentication-Key": {
+					"type": "SecureString",
+					"value": "**********"
+				},
 				"Authentication-Secret": {
 					"type": "SecureString",
 					"value": "**********"
