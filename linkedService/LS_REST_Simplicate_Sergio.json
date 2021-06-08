@@ -1,0 +1,23 @@
+{
+	"name": "LS_REST_Simplicate_Sergio",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://bonvue.simplicate.nl/api/v2/crm/organization",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"Authentication-Key": {
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"Authentication-Secret": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		}
+	}
+}
