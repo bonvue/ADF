@@ -74,48 +74,6 @@
 				}
 			},
 			{
-				"name": "Copy data3",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "RestSource",
-						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:01.000",
-						"requestMethod": "GET",
-						"additionalHeaders": {
-							"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
-							"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"tableOption": "autoCreate"
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "Simplicate_Hours",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "BonvueSQL_Hours",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "Web1",
 				"type": "WebActivity",
 				"dependsOn": [],
@@ -135,6 +93,33 @@
 						"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
 					},
 					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
 				}
 			}
 		],
