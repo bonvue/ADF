@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GetEOLBearerToken",
-				"type": "AzureFunctionActivity",
+				"name": "Web1",
+				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,12 +15,14 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"functionName": "GetBearerToken",
-					"method": "GET"
-				},
-				"linkedServiceName": {
-					"referenceName": "BonvueExactFunctions",
-					"type": "LinkedServiceReference"
+					"url": "https://bonvue.simplicate.nl/api/v2/crm/organization",
+					"method": "GET",
+					"linkedServices": [
+						{
+							"referenceName": "LS_REST_Simplicate",
+							"type": "LinkedServiceReference"
+						}
+					]
 				}
 			}
 		],
