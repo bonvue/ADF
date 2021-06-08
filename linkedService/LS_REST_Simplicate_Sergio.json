@@ -8,13 +8,13 @@
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
-				"Authentication-Key": {
+				"Authentication-Secret": {
 					"type": "AzureKeyVaultSecret",
 					"store": {
-						"referenceName": "AzureKeyTest",
+						"referenceName": "LS_KeyVaultBonvue",
 						"type": "LinkedServiceReference"
 					},
-					"secretName": "Authentication-Key"
+					"secretName": "Authentication-Secret"
 				}
 			}
 		}
