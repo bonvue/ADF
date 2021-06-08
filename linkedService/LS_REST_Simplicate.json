@@ -15,6 +15,17 @@
 						"type": "LinkedServiceReference"
 					},
 					"secretName": "Authentication-Key"
+				},
+				"Authentication-Secret": {
+					"type": "AzureKeyVaultSecret",
+					"store": {
+						"referenceName": "LS_KeyVaultBonvue",
+						"type": "LinkedServiceReference"
+					},
+					"secretName": {
+						"value": "Authentication-Secret",
+						"type": "Expression"
+					}
 				}
 			}
 		}
