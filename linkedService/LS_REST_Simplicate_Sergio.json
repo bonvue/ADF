@@ -1,5 +1,6 @@
 {
 	"name": "LS_REST_Simplicate_Sergio",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",
@@ -9,15 +10,14 @@
 			"authenticationType": "Anonymous",
 			"authHeaders": {
 				"Authentication-Secret": {
-					"type": "AzureKeyVaultSecret",
-					"store": {
-						"referenceName": "LS_KeyVaultBonvue",
-						"type": "LinkedServiceReference"
-					},
-					"secretName": "Authentication-Secret"
+					"type": "SecureString",
+					"value": "**********"
+				},
+				"Authentication-Key": {
+					"type": "SecureString",
+					"value": "**********"
 				}
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
