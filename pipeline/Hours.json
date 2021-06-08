@@ -100,7 +100,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Simplicate_ContactPerson",
+						"referenceName": "Simplicate_Hours",
 						"type": "DatasetReference"
 					}
 				]
