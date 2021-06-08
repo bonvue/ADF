@@ -8,13 +8,21 @@
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
-				"test": {
+				"Authentication-Key": {
 					"type": "AzureKeyVaultSecret",
 					"store": {
 						"referenceName": "KV_BonvueWarehouse",
 						"type": "LinkedServiceReference"
 					},
-					"secretName": "test"
+					"secretName": "Authentication-Key"
+				},
+				"Authentication-Secret": {
+					"type": "AzureKeyVaultSecret",
+					"store": {
+						"referenceName": "KV_BonvueWarehouse",
+						"type": "LinkedServiceReference"
+					},
+					"secretName": "Authentication-Secret"
 				}
 			}
 		}
