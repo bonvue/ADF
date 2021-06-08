@@ -8,7 +8,7 @@
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
-				"Authentication-Key": {
+				"Authentication-K": {
 					"type": "AzureKeyVaultSecret",
 					"store": {
 						"referenceName": "KV_BonvueWarehouse",
@@ -16,7 +16,7 @@
 					},
 					"secretName": "Authentication-Key"
 				},
-				"Authentication-Secret": {
+				"Authentication-S": {
 					"type": "AzureKeyVaultSecret",
 					"store": {
 						"referenceName": "KV_BonvueWarehouse",
