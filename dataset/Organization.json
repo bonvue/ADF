@@ -1,0 +1,18 @@
+{
+	"name": "Organization",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_Simplicate",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Simplicate REST API"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/crm/organization"
+		},
+		"schema": []
+	}
+}
