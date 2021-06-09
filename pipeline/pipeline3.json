@@ -39,7 +39,7 @@
 				"typeProperties": {
 					"variableName": "count",
 					"value": {
-						"value": "@activity('GetMetaData').output.count",
+						"value": "@activity('GetMetaData').output.metadata.count",
 						"type": "Expression"
 					}
 				}
