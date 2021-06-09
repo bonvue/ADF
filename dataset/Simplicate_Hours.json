@@ -6,14 +6,19 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"count": {
-				"type": "string"
+			"limit": {
+				"type": "string",
+				"defaultValue": "100"
+			},
+			"offset": {
+				"type": "string",
+				"defaultValue": "0"
 			}
 		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "hours/hours?metadata=count,limit"
+			"relativeUrl": "hours/hours?limit=10&offset0metadata=count,limit"
 		},
 		"schema": []
 	}
