@@ -280,7 +280,17 @@
 							"inputs": [
 								{
 									"referenceName": "Simplicate_Hours",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"limit": {
+											"value": "@variables('limit')",
+											"type": "Expression"
+										},
+										"offset": {
+											"value": "@variables('offset')",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -305,7 +315,7 @@
 							"typeProperties": {
 								"variableName": "offsettemp",
 								"value": {
-									"value": "@string(add(int(variables('limit')),int(variables('limit'))))",
+									"value": "@string(add(int(variables('offset')),int(variables('limit'))))",
 									"type": "Expression"
 								}
 							}

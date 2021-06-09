@@ -18,7 +18,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "hours/hours?limit=10&offset0metadata=count,limit"
+			"relativeUrl": {
+				"value": "hours/hours?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
