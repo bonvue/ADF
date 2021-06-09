@@ -26,8 +26,262 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
-							}
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['id']"
+											},
+											"sink": {
+												"name": "data'][0]['id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['employee']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['employee_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['approvalstatus']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['approvalstatus_id"
+											}
+										},
+										{
+											"source": {
+												"path": "['approvalstatus']['label']"
+											},
+											"sink": {
+												"name": "data'][0]['approvalstatus_label"
+											}
+										},
+										{
+											"source": {
+												"path": "['created_at']"
+											},
+											"sink": {
+												"name": "created_at"
+											}
+										},
+										{
+											"source": {
+												"path": "['updated_at']"
+											},
+											"sink": {
+												"name": "updated_at"
+											}
+										},
+										{
+											"source": {
+												"path": "['locked']"
+											},
+											"sink": {
+												"name": "locked"
+											}
+										},
+										{
+											"source": {
+												"path": "['status']"
+											},
+											"sink": {
+												"name": "status"
+											}
+										},
+										{
+											"source": {
+												"path": "['corrections']['amount']"
+											},
+											"sink": {
+												"name": "amount"
+											}
+										},
+										{
+											"source": {
+												"path": "['corrections']['value']"
+											},
+											"sink": {
+												"name": "value"
+											}
+										},
+										{
+											"source": {
+												"path": "['corrections']['last_correction_date']"
+											},
+											"sink": {
+												"name": "last_correction_date"
+											}
+										},
+										{
+											"source": {
+												"path": "['is_productive']"
+											},
+											"sink": {
+												"name": "is_productive"
+											}
+										},
+										{
+											"source": {
+												"path": "['hours']"
+											},
+											"sink": {
+												"name": "hours"
+											}
+										},
+										{
+											"source": {
+												"path": "['start_date']"
+											},
+											"sink": {
+												"name": "start_date"
+											}
+										},
+										{
+											"source": {
+												"path": "['is_time_defined']"
+											},
+											"sink": {
+												"name": "is_time_defined"
+											}
+										},
+										{
+											"source": {
+												"path": "['is_recurring']"
+											},
+											"sink": {
+												"name": "is_recurring"
+											}
+										},
+										{
+											"source": {
+												"path": "['is_external']"
+											},
+											"sink": {
+												"name": "is_external"
+											}
+										},
+										{
+											"source": {
+												"path": "['billable']"
+											},
+											"sink": {
+												"name": "billable"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['id']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['id"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['name']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['name"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['label']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['label"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['render_type']"
+											},
+											"sink": {
+												"name": "render_type"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['position']"
+											},
+											"sink": {
+												"name": "position"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['value_type']"
+											},
+											"sink": {
+												"name": "value_type"
+											}
+										},
+										{
+											"source": {
+												"path": "['custom_fields'][0]['options']"
+											},
+											"sink": {
+												"name": "items"
+											}
+										},
+										{
+											"source": {
+												"path": "['source']"
+											},
+											"sink": {
+												"name": "source"
+											}
+										},
+										{
+											"source": {
+												"path": "$['errors']"
+											},
+											"sink": {
+												"name": "errors"
+											}
+										},
+										{
+											"source": {
+												"path": "$['debug']"
+											},
+											"sink": {
+												"name": "debug"
+											}
+										}
+									],
+									"collectionReference": "$['data']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Simplicate_Hours",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "BonvueSQL_Hours",
+									"type": "DatasetReference"
+								}
+							]
 						},
 						{
 							"name": "Set offsetTemp",
