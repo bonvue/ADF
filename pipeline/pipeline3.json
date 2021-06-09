@@ -1,0 +1,55 @@
+{
+	"name": "pipeline3",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetMetaData",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://bonvue.simplicate.nl/api/v2/hours/hours?metadata=count,limit",
+					"method": "GET",
+					"headers": {
+						"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
+						"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+					},
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Set  Count",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetMetaData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "count",
+					"value": {
+						"value": "@activity('GetMetaData').output.count",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"count": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
