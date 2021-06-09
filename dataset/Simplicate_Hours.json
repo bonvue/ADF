@@ -5,6 +5,11 @@
 			"referenceName": "LS_REST_Simplicate",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"count": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
