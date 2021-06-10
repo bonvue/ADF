@@ -88,7 +88,8 @@
 												"path": "['locked']"
 											},
 											"sink": {
-												"name": "locked"
+												"name": "locked",
+												"type": "String"
 											}
 										},
 										{
@@ -96,7 +97,8 @@
 												"path": "['status']"
 											},
 											"sink": {
-												"name": "status"
+												"name": "status",
+												"type": "String"
 											}
 										},
 										{
@@ -104,7 +106,8 @@
 												"path": "['is_productive']"
 											},
 											"sink": {
-												"name": "is_productive"
+												"name": "is_productive",
+												"type": "String"
 											}
 										},
 										{
@@ -112,7 +115,8 @@
 												"path": "['hours']"
 											},
 											"sink": {
-												"name": "hours"
+												"name": "hours",
+												"type": "String"
 											}
 										},
 										{
@@ -120,7 +124,8 @@
 												"path": "['start_date']"
 											},
 											"sink": {
-												"name": "start_date"
+												"name": "start_date",
+												"type": "String"
 											}
 										},
 										{
@@ -128,7 +133,8 @@
 												"path": "['is_external']"
 											},
 											"sink": {
-												"name": "is_external"
+												"name": "is_external",
+												"type": "String"
 											}
 										},
 										{
@@ -136,7 +142,8 @@
 												"path": "['billable']"
 											},
 											"sink": {
-												"name": "billable"
+												"name": "billable",
+												"type": "String"
 											}
 										},
 										{
@@ -153,7 +160,8 @@
 												"path": "$['errors']"
 											},
 											"sink": {
-												"name": "errors"
+												"name": "errors",
+												"type": "String"
 											}
 										},
 										{
@@ -161,7 +169,8 @@
 												"path": "$['debug']"
 											},
 											"sink": {
-												"name": "debug"
+												"name": "debug",
+												"type": "String"
 											}
 										}
 									],
