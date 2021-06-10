@@ -58,15 +58,6 @@
 										},
 										{
 											"source": {
-												"path": "['employee']['id']"
-											},
-											"sink": {
-												"name": "data'][0]['employee_id",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "['locked']"
 											},
 											"sink": {
