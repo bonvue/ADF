@@ -115,30 +115,6 @@
 										},
 										{
 											"source": {
-												"path": "['corrections']['amount']"
-											},
-											"sink": {
-												"name": "amount"
-											}
-										},
-										{
-											"source": {
-												"path": "['corrections']['value']"
-											},
-											"sink": {
-												"name": "value"
-											}
-										},
-										{
-											"source": {
-												"path": "['corrections']['last_correction_date']"
-											},
-											"sink": {
-												"name": "last_correction_date"
-											}
-										},
-										{
-											"source": {
 												"path": "['is_productive']"
 											},
 											"sink": {
@@ -191,54 +167,6 @@
 											},
 											"sink": {
 												"name": "billable"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['id']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['id"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['name']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['name"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['label']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['label"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['render_type']"
-											},
-											"sink": {
-												"name": "render_type"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['position']"
-											},
-											"sink": {
-												"name": "position"
-											}
-										},
-										{
-											"source": {
-												"path": "['custom_fields'][0]['value_type']"
-											},
-											"sink": {
-												"name": "value_type"
 											}
 										},
 										{
@@ -381,7 +309,7 @@
 				"typeProperties": {
 					"variableName": "count",
 					"value": {
-						"value": "@activity('GetMetaData').output.count",
+						"value": "@string(activity('GetMetaData').output.metadata.count)",
 						"type": "Expression"
 					}
 				}
