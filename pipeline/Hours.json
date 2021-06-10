@@ -49,15 +49,6 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "['id']"
-											},
-											"sink": {
-												"name": "data'][0]['id",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "['locked']"
 											},
 											"sink": {
