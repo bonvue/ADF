@@ -70,7 +70,8 @@
 												"path": "['approvalstatus']['id']"
 											},
 											"sink": {
-												"name": "data'][0]['approvalstatus_id"
+												"name": "data'][0]['approvalstatus_id",
+												"type": "String"
 											}
 										},
 										{
@@ -78,23 +79,8 @@
 												"path": "['approvalstatus']['label']"
 											},
 											"sink": {
-												"name": "data'][0]['approvalstatus_label"
-											}
-										},
-										{
-											"source": {
-												"path": "['created_at']"
-											},
-											"sink": {
-												"name": "created_at"
-											}
-										},
-										{
-											"source": {
-												"path": "['updated_at']"
-											},
-											"sink": {
-												"name": "updated_at"
+												"name": "data'][0]['approvalstatus_label",
+												"type": "String"
 											}
 										},
 										{
@@ -139,22 +125,6 @@
 										},
 										{
 											"source": {
-												"path": "['is_time_defined']"
-											},
-											"sink": {
-												"name": "is_time_defined"
-											}
-										},
-										{
-											"source": {
-												"path": "['is_recurring']"
-											},
-											"sink": {
-												"name": "is_recurring"
-											}
-										},
-										{
-											"source": {
 												"path": "['is_external']"
 											},
 											"sink": {
@@ -171,18 +141,11 @@
 										},
 										{
 											"source": {
-												"path": "['custom_fields'][0]['options']"
-											},
-											"sink": {
-												"name": "items"
-											}
-										},
-										{
-											"source": {
 												"path": "['source']"
 											},
 											"sink": {
-												"name": "source"
+												"name": "source",
+												"type": "String"
 											}
 										},
 										{
