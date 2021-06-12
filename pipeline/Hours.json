@@ -49,6 +49,132 @@
 									"mappings": [
 										{
 											"source": {
+												"path": "['id']"
+											},
+											"sink": {
+												"name": "Id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['employee']['id']"
+											},
+											"sink": {
+												"name": "EmployeeId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['employee']['name']"
+											},
+											"sink": {
+												"name": "EmployeeName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['project']['id']"
+											},
+											"sink": {
+												"name": "ProjectId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['project']['name']"
+											},
+											"sink": {
+												"name": "ProjectName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['project']['organization']['id']"
+											},
+											"sink": {
+												"name": "OrganizationId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['project']['organization']['name']"
+											},
+											"sink": {
+												"name": "OrganizationName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['type']['type']"
+											},
+											"sink": {
+												"name": "Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['type']['label']"
+											},
+											"sink": {
+												"name": "Label",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['type']['tariff']"
+											},
+											"sink": {
+												"name": "tariff",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['approvalstatus']['id']"
+											},
+											"sink": {
+												"name": "ApprovalStatusId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['approvalstatus']['label']"
+											},
+											"sink": {
+												"name": "ApprovalStatusString",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['created_at']"
+											},
+											"sink": {
+												"name": "CreatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['updated_at']"
+											},
+											"sink": {
+												"name": "UpdatedAt",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
 												"path": "['locked']"
 											},
 											"sink": {
@@ -116,24 +242,6 @@
 											},
 											"sink": {
 												"name": "source",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['errors']"
-											},
-											"sink": {
-												"name": "errors",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['debug']"
-											},
-											"sink": {
-												"name": "debug",
 												"type": "String"
 											}
 										}
