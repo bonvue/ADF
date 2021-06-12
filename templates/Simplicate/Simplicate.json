@@ -1,0 +1,459 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"LS_REST_Simplicate": {
+			"type": "string"
+		},
+		"LS_BonvueSQL": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Hours')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Until AllRecordsRead",
+						"type": "Until",
+						"dependsOn": [
+							{
+								"activity": "Set  Count",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@greaterOrEquals(int(variables('offset')),int(variables('count')))",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Hours",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "RestSource",
+											"httpRequestTimeout": "00:01:40",
+											"requestInterval": "00.00:00:00.010",
+											"requestMethod": "GET"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"tableOption": "autoCreate"
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"path": "[['id']"
+													},
+													"sink": {
+														"name": "Id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['employee']['id']"
+													},
+													"sink": {
+														"name": "EmployeeId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['employee']['name']"
+													},
+													"sink": {
+														"name": "EmployeeName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['project']['id']"
+													},
+													"sink": {
+														"name": "ProjectId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['project']['name']"
+													},
+													"sink": {
+														"name": "ProjectName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['project']['organization']['id']"
+													},
+													"sink": {
+														"name": "OrganizationId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['project']['organization']['name']"
+													},
+													"sink": {
+														"name": "OrganizationName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['type']['type']"
+													},
+													"sink": {
+														"name": "Type",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['type']['label']"
+													},
+													"sink": {
+														"name": "Label",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['type']['tariff']"
+													},
+													"sink": {
+														"name": "tariff",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['approvalstatus']['id']"
+													},
+													"sink": {
+														"name": "ApprovalStatusId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['approvalstatus']['label']"
+													},
+													"sink": {
+														"name": "ApprovalStatusString",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['created_at']"
+													},
+													"sink": {
+														"name": "CreatedAt",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['updated_at']"
+													},
+													"sink": {
+														"name": "UpdatedAt",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['locked']"
+													},
+													"sink": {
+														"name": "locked",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['status']"
+													},
+													"sink": {
+														"name": "status",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['is_productive']"
+													},
+													"sink": {
+														"name": "is_productive",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['hours']"
+													},
+													"sink": {
+														"name": "hours",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['start_date']"
+													},
+													"sink": {
+														"name": "start_date",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['is_external']"
+													},
+													"sink": {
+														"name": "is_external",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['billable']"
+													},
+													"sink": {
+														"name": "billable",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['source']"
+													},
+													"sink": {
+														"name": "source",
+														"type": "String"
+													}
+												}
+											],
+											"collectionReference": "$['data']"
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "Simplicate_Hours",
+											"type": "DatasetReference",
+											"parameters": {
+												"limit": {
+													"value": "@variables('limit')",
+													"type": "Expression"
+												},
+												"offset": {
+													"value": "@variables('offset')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "BonvueSQL_Hours",
+											"type": "DatasetReference"
+										}
+									]
+								},
+								{
+									"name": "Set offsetTemp",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Copy Hours",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "offsettemp",
+										"value": {
+											"value": "@string(add(int(variables('offset')),int(variables('limit'))))",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set offset",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set offsetTemp",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "offset",
+										"value": {
+											"value": "@variables('offsettemp')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"timeout": "7.00:00:00"
+						}
+					},
+					{
+						"name": "GetMetaData",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://bonvue.simplicate.nl/api/v2/hours/hours?metadata=count,limit",
+							"method": "GET",
+							"headers": {
+								"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
+								"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+							},
+							"disableCertValidation": true
+						}
+					},
+					{
+						"name": "Set  Count",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "GetMetaData",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "count",
+							"value": {
+								"value": "@string(activity('GetMetaData').output.metadata.count)",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"variables": {
+					"count": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"limit": {
+						"type": "String",
+						"defaultValue": "100"
+					},
+					"offset": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"offsettemp": {
+						"type": "String",
+						"defaultValue": "0"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Simplicate_Hours')]",
+				"[concat(variables('factoryId'), '/datasets/BonvueSQL_Hours')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Simplicate_Hours')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('LS_REST_Simplicate')]",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"limit": {
+						"type": "string",
+						"defaultValue": "100"
+					},
+					"offset": {
+						"type": "string",
+						"defaultValue": "0"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "hours/hours?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BonvueSQL_Hours')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('LS_BonvueSQL')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SimplicateHours"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
