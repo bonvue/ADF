@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(add(int(variables('limit')),int(variables('offset'))),int(variables('count')))",
+						"value": "@greaterOrEquals(int(variables('offset')),int(variables('count')))",
 						"type": "Expression"
 					},
 					"activities": [
