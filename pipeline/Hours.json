@@ -36,7 +36,7 @@
 								"source": {
 									"type": "RestSource",
 									"httpRequestTimeout": "00:01:40",
-									"requestInterval": "00.00:00:00.100",
+									"requestInterval": "00.00:00:00.010",
 									"requestMethod": "GET"
 								},
 								"sink": {
