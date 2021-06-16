@@ -38,7 +38,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "count",
-					"value": "@string(activity('GetMetaData').output.metadata.count)"
+					"value": {
+						"value": "@string(activity('GetMetaData').output.metadata.count)",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -463,7 +466,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "offsettemp",
-								"value": "@string(add(int(variables('offset')),int(variables('limit'))))"
+								"value": {
+									"value": "@string(add(int(variables('offset')),int(variables('limit'))))",
+									"type": "Expression"
+								}
 							}
 						},
 						{
@@ -480,7 +486,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "offset",
-								"value": "@variables('offsettemp')"
+								"value": {
+									"value": "@variables('offsettemp')",
+									"type": "Expression"
+								}
 							}
 						}
 					],
@@ -490,7 +499,8 @@
 		],
 		"variables": {
 			"count": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "100"
 			},
 			"limit": {
 				"type": "String",
