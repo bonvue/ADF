@@ -35,7 +35,11 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "count",
+					"value": "@string(activity('GetMetaData').output.metadata.count)"
+				}
 			},
 			{
 				"name": "Until1",
