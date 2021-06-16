@@ -1,0 +1,440 @@
+{
+	"name": "ExactLoadGLAccounts",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy GLAccounts",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE GLACCOUNTS",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AssimilatedVATBox']"
+								},
+								"sink": {
+									"name": "AssimilatedVATBox",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalanceSide']"
+								},
+								"sink": {
+									"name": "BalanceSide",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BalanceType']"
+								},
+								"sink": {
+									"name": "BalanceType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BelcotaxType']"
+								},
+								"sink": {
+									"name": "BelcotaxType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Code']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Compress']"
+								},
+								"sink": {
+									"name": "Compress",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Costcenter']"
+								},
+								"sink": {
+									"name": "Costcenter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostcenterDescription']"
+								},
+								"sink": {
+									"name": "CostcenterDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Costunit']"
+								},
+								"sink": {
+									"name": "Costunit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CostunitDescription']"
+								},
+								"sink": {
+									"name": "CostunitDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Creator']"
+								},
+								"sink": {
+									"name": "Creator",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Description']"
+								},
+								"sink": {
+									"name": "Description",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ExcludeVATListing']"
+								},
+								"sink": {
+									"name": "ExcludeVATListing",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['IsBlocked']"
+								},
+								"sink": {
+									"name": "IsBlocked",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Matching']"
+								},
+								"sink": {
+									"name": "Matching",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PrivateGLAccount']"
+								},
+								"sink": {
+									"name": "PrivateGLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PrivatePercentage']"
+								},
+								"sink": {
+									"name": "PrivatePercentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ReportingCode']"
+								},
+								"sink": {
+									"name": "ReportingCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['RevalueCurrency']"
+								},
+								"sink": {
+									"name": "RevalueCurrency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SearchCode']"
+								},
+								"sink": {
+									"name": "SearchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TypeDescription']"
+								},
+								"sink": {
+									"name": "TypeDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseCostcenter']"
+								},
+								"sink": {
+									"name": "UseCostcenter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UseCostunit']"
+								},
+								"sink": {
+									"name": "UseCostunit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATCode']"
+								},
+								"sink": {
+									"name": "VATCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATDescription']"
+								},
+								"sink": {
+									"name": "VATDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATGLAccountType']"
+								},
+								"sink": {
+									"name": "VATGLAccountType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATNonDeductibleGLAccount']"
+								},
+								"sink": {
+									"name": "VATNonDeductibleGLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATNonDeductiblePercentage']"
+								},
+								"sink": {
+									"name": "VATNonDeductiblePercentage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VATSystem']"
+								},
+								"sink": {
+									"name": "VATSystem",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['YearEndCostGLAccount']"
+								},
+								"sink": {
+									"name": "YearEndCostGLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['YearEndReflectionGLAccount']"
+								},
+								"sink": {
+									"name": "YearEndReflectionGLAccount",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['d']['results']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_GLACCOUNTS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_GLAccounts",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"name": "DS_EOL_PAYABLESLIST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"folder": {
+			"name": "Exact REST API"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/read/financial/PayablesList?$select=HID,AccountCode,AccountId,AccountName,Amount,AmountInTransit,ApprovalStatus,CurrencyCode,Description,DueDate,EntryNumber,Id,InvoiceDate,InvoiceNumber,JournalCode,JournalDescription,YourRef",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

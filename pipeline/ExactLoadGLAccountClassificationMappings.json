@@ -1,0 +1,204 @@
+{
+	"name": "ExactLoadGLAccountClassificationMappings",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy GLAccountClassificationMappings",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE GLAccountClassificationMappings",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['Classification']"
+								},
+								"sink": {
+									"name": "Classification",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassificationCode']"
+								},
+								"sink": {
+									"name": "ClassificationCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassificationDescription']"
+								},
+								"sink": {
+									"name": "ClassificationDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLAccount']"
+								},
+								"sink": {
+									"name": "GLAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLAccountCode']"
+								},
+								"sink": {
+									"name": "GLAccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLAccountDescription']"
+								},
+								"sink": {
+									"name": "GLAccountDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLSchemeCode']"
+								},
+								"sink": {
+									"name": "GLSchemeCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLSchemeDescription']"
+								},
+								"sink": {
+									"name": "GLSchemeDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['GLSchemeID']"
+								},
+								"sink": {
+									"name": "GLSchemeID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['__next']"
+								},
+								"sink": {
+									"name": "__next"
+								}
+							}
+						],
+						"collectionReference": "$['d']['results']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_GLACCOUNTCLASSIFICATIONMAPPINGS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_GLAccountClassificationMappings",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}

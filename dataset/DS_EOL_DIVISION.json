@@ -1,0 +1,28 @@
+{
+	"name": "DS_EOL_DIVISION",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"folder": {
+			"name": "Exact REST API"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/hrm/Divisions?$select=Code,BlockingStatus,Country,CountryDescription,Created,Creator,CreatorFullName,Currency,CurrencyDescription,Customer,CustomerCode,CustomerName,Description,HID,Main,Modified,Modifier,ModifierFullName,OBNumber,SiretNumber,StartDate,Status,TaxOfficeNumber,TaxReferenceNumber,TemplateCode,VATNumber,Website",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

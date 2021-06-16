@@ -1,0 +1,28 @@
+{
+	"name": "DS_EOL_ACCOUNTS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"folder": {
+			"name": "Exact REST API"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/bulk/CRM/Accounts?$select=ID,Accountant,AccountManager,AccountManagerFullName,AccountManagerHID,ActivitySector,ActivitySubSector,AddressLine1,AddressLine2,AddressLine3,BankAccounts,Blocked,BRIN,BSN,BusinessType,CanDropShip,ChamberOfCommerce,City,Classification,Classification1,Classification2,Classification3,Classification4,Classification5,Classification6,Classification7,Classification8,ClassificationDescription,Code,CodeAtSupplier,CompanySize,ConsolidationScenario,ControlledDate,Costcenter,CostcenterDescription,CostPaid,Country,CountryName,Created,Creator,CreatorFullName,CreditLinePurchase,CreditLineSales,Currency,CustomerSince,DatevCreditorCode,DatevDebtorCode,DiscountPurchase,DiscountSales,Division,Document,DunsNumber,Email,EndDate,EstablishedDate,Fax,GLAccountPurchase,GLAccountSales,GLAP,GLAR,GlnNumber,HasWithholdingTaxSales,IgnoreDatevWarningMessage,IntraStatArea,IntraStatDeliveryTerm,IntraStatSystem,IntraStatTransactionA,IntraStatTransactionB,IntraStatTransportMethod,InvoiceAccount,InvoiceAccountCode,InvoiceAccountName,InvoiceAttachmentType,InvoicingMethod,IsAccountant,IsAgency,IsAnonymised,IsBank,IsCompetitor,IsExtraDuty,IsMailing,IsMember,IsPilot,IsPurchase,IsReseller,IsSales,IsSupplier,Language,LanguageDescription,Latitude,LeadPurpose,LeadSource,Logo,LogoFileName,LogoThumbnailUrl,LogoUrl,Longitude,MainContact,Modified,Modifier,ModifierFullName,Name,OINNumber,Parent,PayAsYouEarn,PaymentConditionPurchase,PaymentConditionPurchaseDescription,PaymentConditionSales,PaymentConditionSalesDescription,Phone,PhoneExtension,Postcode,PriceList,PurchaseCurrency,PurchaseCurrencyDescription,PurchaseLeadDays,PurchaseVATCode,PurchaseVATCodeDescription,RecepientOfCommissions,Remarks,Reseller,ResellerCode,ResellerName,RSIN,SalesCurrency,SalesCurrencyDescription,SalesTaxSchedule,SalesTaxScheduleCode,SalesTaxScheduleDescription,SalesVATCode,SalesVATCodeDescription,SearchCode,SecurityLevel,SeparateInvPerSubscription,ShippingLeadDays,ShippingMethod,ShowRemarkForSales,StartDate,State,StateName,Status,StatusSince,TradeName,Type,UniqueTaxpayerReference,VATLiability,VATNumber,Website&$expand=BankAccounts",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

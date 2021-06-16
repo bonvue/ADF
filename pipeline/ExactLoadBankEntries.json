@@ -1,0 +1,251 @@
+{
+	"name": "ExactLoadBankEntries",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy BankEntries",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE BANKENTRIES",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ClosingBalanceFC']"
+								},
+								"sink": {
+									"name": "ClosingBalanceFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryID']"
+								},
+								"sink": {
+									"name": "EntryID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EntryNumber']"
+								},
+								"sink": {
+									"name": "EntryNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['FinancialPeriod']"
+								},
+								"sink": {
+									"name": "FinancialPeriod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['FinancialYear']"
+								},
+								"sink": {
+									"name": "FinancialYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['JournalCode']"
+								},
+								"sink": {
+									"name": "JournalCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['JournalDescription']"
+								},
+								"sink": {
+									"name": "JournalDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OpeningBalanceFC']"
+								},
+								"sink": {
+									"name": "OpeningBalanceFC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Status']"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['StatusDescription']"
+								},
+								"sink": {
+									"name": "StatusDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocument']"
+								},
+								"sink": {
+									"name": "BankStatementDocument",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocumentNumber']"
+								},
+								"sink": {
+									"name": "BankStatementDocumentNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BankStatementDocumentSubject']"
+								},
+								"sink": {
+									"name": "BankStatementDocumentSubject",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_BANKENTRIES",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_BankEntries",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}

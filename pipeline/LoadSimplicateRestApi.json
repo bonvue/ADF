@@ -1,0 +1,9 @@
+{
+	"name": "LoadSimplicateRestApi",
+	"properties": {
+		"folder": {
+			"name": "Simplicate"
+		},
+		"annotations": []
+	}
+}

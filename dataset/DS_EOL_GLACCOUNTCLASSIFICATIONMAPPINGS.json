@@ -5,10 +5,22 @@
 			"referenceName": "LS_REST_EOL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"folder": {
+			"name": "Exact REST API"
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/2928333/financial/GLAccountClassificationMappings?$select=ID,Classification,ClassificationCode,ClassificationDescription,Division,GLAccount,GLAccountCode,GLAccountDescription,GLSchemeCode,GLSchemeDescription,GLSchemeID"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/financial/GLAccountClassificationMappings?$select=ID,Classification,ClassificationCode,ClassificationDescription,Division,GLAccount,GLAccountCode,GLAccountDescription,GLSchemeCode,GLSchemeDescription,GLSchemeID",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},

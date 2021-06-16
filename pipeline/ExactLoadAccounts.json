@@ -1,0 +1,1421 @@
+{
+	"name": "ExactLoadAccounts",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetEOLBearerToken",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "GetNewBearerToken",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "BonvueExactFunctions",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Copy Accounts",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetEOLBearerToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE Accounts",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ID']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Accountant']"
+								},
+								"sink": {
+									"name": "Accountant",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountManager']"
+								},
+								"sink": {
+									"name": "AccountManager",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountManagerFullName']"
+								},
+								"sink": {
+									"name": "AccountManagerFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AccountManagerHID']"
+								},
+								"sink": {
+									"name": "AccountManagerHID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ActivitySector']"
+								},
+								"sink": {
+									"name": "ActivitySector",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ActivitySubSector']"
+								},
+								"sink": {
+									"name": "ActivitySubSector",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AddressLine1']"
+								},
+								"sink": {
+									"name": "AddressLine1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AddressLine2']"
+								},
+								"sink": {
+									"name": "AddressLine2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['AddressLine3']"
+								},
+								"sink": {
+									"name": "AddressLine3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Blocked']"
+								},
+								"sink": {
+									"name": "Blocked",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BRIN']"
+								},
+								"sink": {
+									"name": "BRIN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BSN']"
+								},
+								"sink": {
+									"name": "BSN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['BusinessType']"
+								},
+								"sink": {
+									"name": "BusinessType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CanDropShip']"
+								},
+								"sink": {
+									"name": "CanDropShip",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ChamberOfCommerce']"
+								},
+								"sink": {
+									"name": "ChamberOfCommerce",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['City']"
+								},
+								"sink": {
+									"name": "City",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification']"
+								},
+								"sink": {
+									"name": "Classification",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification1']"
+								},
+								"sink": {
+									"name": "Classification1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification2']"
+								},
+								"sink": {
+									"name": "Classification2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification3']"
+								},
+								"sink": {
+									"name": "Classification3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification4']"
+								},
+								"sink": {
+									"name": "Classification4",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification5']"
+								},
+								"sink": {
+									"name": "Classification5",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification6']"
+								},
+								"sink": {
+									"name": "Classification6",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification7']"
+								},
+								"sink": {
+									"name": "Classification7",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Classification8']"
+								},
+								"sink": {
+									"name": "Classification8",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ClassificationDescription']"
+								},
+								"sink": {
+									"name": "ClassificationDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Code']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CodeAtSupplier']"
+								},
+								"sink": {
+									"name": "CodeAtSupplier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CompanySize']"
+								},
+								"sink": {
+									"name": "CompanySize",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ConsolidationScenario']"
+								},
+								"sink": {
+									"name": "ConsolidationScenario",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ControlledDate']"
+								},
+								"sink": {
+									"name": "ControlledDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Costcenter']"
+								},
+								"sink": {
+									"name": "Costcenter",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostcenterDescription']"
+								},
+								"sink": {
+									"name": "CostcenterDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CostPaid']"
+								},
+								"sink": {
+									"name": "CostPaid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Country']"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CountryName']"
+								},
+								"sink": {
+									"name": "CountryName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Created']"
+								},
+								"sink": {
+									"name": "Created",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Creator']"
+								},
+								"sink": {
+									"name": "Creator",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreatorFullName']"
+								},
+								"sink": {
+									"name": "CreatorFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreditLinePurchase']"
+								},
+								"sink": {
+									"name": "CreditLinePurchase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CreditLineSales']"
+								},
+								"sink": {
+									"name": "CreditLineSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['CustomerSince']"
+								},
+								"sink": {
+									"name": "CustomerSince",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DatevCreditorCode']"
+								},
+								"sink": {
+									"name": "DatevCreditorCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DatevDebtorCode']"
+								},
+								"sink": {
+									"name": "DatevDebtorCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DiscountPurchase']"
+								},
+								"sink": {
+									"name": "DiscountPurchase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DiscountSales']"
+								},
+								"sink": {
+									"name": "DiscountSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Division']"
+								},
+								"sink": {
+									"name": "Division",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Document']"
+								},
+								"sink": {
+									"name": "Document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['DunsNumber']"
+								},
+								"sink": {
+									"name": "DunsNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Email']"
+								},
+								"sink": {
+									"name": "Email",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EndDate']"
+								},
+								"sink": {
+									"name": "EndDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['EstablishedDate']"
+								},
+								"sink": {
+									"name": "EstablishedDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Fax']"
+								},
+								"sink": {
+									"name": "Fax",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountPurchase']"
+								},
+								"sink": {
+									"name": "GLAccountPurchase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAccountSales']"
+								},
+								"sink": {
+									"name": "GLAccountSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAP']"
+								},
+								"sink": {
+									"name": "GLAP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GLAR']"
+								},
+								"sink": {
+									"name": "GLAR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['GlnNumber']"
+								},
+								"sink": {
+									"name": "GlnNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['HasWithholdingTaxSales']"
+								},
+								"sink": {
+									"name": "HasWithholdingTaxSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IgnoreDatevWarningMessage']"
+								},
+								"sink": {
+									"name": "IgnoreDatevWarningMessage",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatArea']"
+								},
+								"sink": {
+									"name": "IntraStatArea",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatDeliveryTerm']"
+								},
+								"sink": {
+									"name": "IntraStatDeliveryTerm",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatSystem']"
+								},
+								"sink": {
+									"name": "IntraStatSystem",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatTransactionA']"
+								},
+								"sink": {
+									"name": "IntraStatTransactionA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatTransactionB']"
+								},
+								"sink": {
+									"name": "IntraStatTransactionB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IntraStatTransportMethod']"
+								},
+								"sink": {
+									"name": "IntraStatTransportMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceAccount']"
+								},
+								"sink": {
+									"name": "InvoiceAccount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceAccountCode']"
+								},
+								"sink": {
+									"name": "InvoiceAccountCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceAccountName']"
+								},
+								"sink": {
+									"name": "InvoiceAccountName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoiceAttachmentType']"
+								},
+								"sink": {
+									"name": "InvoiceAttachmentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['InvoicingMethod']"
+								},
+								"sink": {
+									"name": "InvoicingMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsAccountant']"
+								},
+								"sink": {
+									"name": "IsAccountant",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsAgency']"
+								},
+								"sink": {
+									"name": "IsAgency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsAnonymised']"
+								},
+								"sink": {
+									"name": "IsAnonymised",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsBank']"
+								},
+								"sink": {
+									"name": "IsBank",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsCompetitor']"
+								},
+								"sink": {
+									"name": "IsCompetitor",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsExtraDuty']"
+								},
+								"sink": {
+									"name": "IsExtraDuty",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsMailing']"
+								},
+								"sink": {
+									"name": "IsMailing",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsMember']"
+								},
+								"sink": {
+									"name": "IsMember",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsPilot']"
+								},
+								"sink": {
+									"name": "IsPilot",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsPurchase']"
+								},
+								"sink": {
+									"name": "IsPurchase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsReseller']"
+								},
+								"sink": {
+									"name": "IsReseller",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsSales']"
+								},
+								"sink": {
+									"name": "IsSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['IsSupplier']"
+								},
+								"sink": {
+									"name": "IsSupplier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Language']"
+								},
+								"sink": {
+									"name": "Language",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LanguageDescription']"
+								},
+								"sink": {
+									"name": "LanguageDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Latitude']"
+								},
+								"sink": {
+									"name": "Latitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LeadSource']"
+								},
+								"sink": {
+									"name": "LeadSource",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LeadPurpose']"
+								},
+								"sink": {
+									"name": "LeadPurpose",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LogoFileName']"
+								},
+								"sink": {
+									"name": "LogoFileName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LogoThumbnailUrl']"
+								},
+								"sink": {
+									"name": "LogoThumbnailUrl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['LogoUrl']"
+								},
+								"sink": {
+									"name": "LogoUrl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Logo']"
+								},
+								"sink": {
+									"name": "Logo",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Longitude']"
+								},
+								"sink": {
+									"name": "Longitude",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['MainContact']"
+								},
+								"sink": {
+									"name": "MainContact",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modified']"
+								},
+								"sink": {
+									"name": "Modified",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Modifier']"
+								},
+								"sink": {
+									"name": "Modifier",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ModifierFullName']"
+								},
+								"sink": {
+									"name": "ModifierFullName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Name']"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['OINNumber']"
+								},
+								"sink": {
+									"name": "OINNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Parent']"
+								},
+								"sink": {
+									"name": "Parent",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentConditionPurchase']"
+								},
+								"sink": {
+									"name": "PaymentConditionPurchase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentConditionPurchaseDescription']"
+								},
+								"sink": {
+									"name": "PaymentConditionPurchaseDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentConditionSales']"
+								},
+								"sink": {
+									"name": "PaymentConditionSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PaymentConditionSalesDescription']"
+								},
+								"sink": {
+									"name": "PaymentConditionSalesDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PayAsYouEarn']"
+								},
+								"sink": {
+									"name": "PayAsYouEarn",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Phone']"
+								},
+								"sink": {
+									"name": "Phone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PhoneExtension']"
+								},
+								"sink": {
+									"name": "PhoneExtension",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Postcode']"
+								},
+								"sink": {
+									"name": "Postcode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PriceList']"
+								},
+								"sink": {
+									"name": "PriceList",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PurchaseCurrency']"
+								},
+								"sink": {
+									"name": "PurchaseCurrency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PurchaseCurrencyDescription']"
+								},
+								"sink": {
+									"name": "PurchaseCurrencyDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PurchaseLeadDays']"
+								},
+								"sink": {
+									"name": "PurchaseLeadDays",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PurchaseVATCode']"
+								},
+								"sink": {
+									"name": "PurchaseVATCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['PurchaseVATCodeDescription']"
+								},
+								"sink": {
+									"name": "PurchaseVATCodeDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Remarks']"
+								},
+								"sink": {
+									"name": "Remarks",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['RecepientOfCommissions']"
+								},
+								"sink": {
+									"name": "RecepientOfCommissions",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Reseller']"
+								},
+								"sink": {
+									"name": "Reseller",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ResellerCode']"
+								},
+								"sink": {
+									"name": "ResellerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ResellerName']"
+								},
+								"sink": {
+									"name": "ResellerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['RSIN']"
+								},
+								"sink": {
+									"name": "RSIN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesCurrency']"
+								},
+								"sink": {
+									"name": "SalesCurrency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesCurrencyDescription']"
+								},
+								"sink": {
+									"name": "SalesCurrencyDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesVATCode']"
+								},
+								"sink": {
+									"name": "SalesVATCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesVATCodeDescription']"
+								},
+								"sink": {
+									"name": "SalesVATCodeDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SearchCode']"
+								},
+								"sink": {
+									"name": "SearchCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SecurityLevel']"
+								},
+								"sink": {
+									"name": "SecurityLevel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SeparateInvPerSubscription']"
+								},
+								"sink": {
+									"name": "SeparateInvPerSubscription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ShippingLeadDays']"
+								},
+								"sink": {
+									"name": "ShippingLeadDays",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ShippingMethod']"
+								},
+								"sink": {
+									"name": "ShippingMethod",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['ShowRemarkForSales']"
+								},
+								"sink": {
+									"name": "ShowRemarkForSales",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['StartDate']"
+								},
+								"sink": {
+									"name": "StartDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['State']"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['StateName']"
+								},
+								"sink": {
+									"name": "StateName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Status']"
+								},
+								"sink": {
+									"name": "Status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['StatusSince']"
+								},
+								"sink": {
+									"name": "StatusSince",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesTaxSchedule']"
+								},
+								"sink": {
+									"name": "SalesTaxSchedule",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesTaxScheduleCode']"
+								},
+								"sink": {
+									"name": "SalesTaxScheduleCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['SalesTaxScheduleDescription']"
+								},
+								"sink": {
+									"name": "SalesTaxScheduleDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['TradeName']"
+								},
+								"sink": {
+									"name": "TradeName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Type']"
+								},
+								"sink": {
+									"name": "Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['UniqueTaxpayerReference']"
+								},
+								"sink": {
+									"name": "UniqueTaxpayerReference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATLiability']"
+								},
+								"sink": {
+									"name": "VATLiability",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['VATNumber']"
+								},
+								"sink": {
+									"name": "VATNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['d']['results'][0]['Website']"
+								},
+								"sink": {
+									"name": "Website",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_EOL_ACCOUNTS",
+						"type": "DatasetReference",
+						"parameters": {
+							"division": "2928333"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_BonvueSQL_Accounts",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Exact/Exact Database"
+		},
+		"annotations": []
+	}
+}

@@ -5,10 +5,22 @@
 			"referenceName": "LS_REST_EOL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"folder": {
+			"name": "Exact REST API"
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/api/v1/2928333/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription"
+			"relativeUrl": {
+				"value": "/api/v1/@{dataset().division}/financialtransaction/BankEntries?$select=EntryID,BankStatementDocument,BankStatementDocumentNumber,BankStatementDocumentSubject,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,Status,StatusDescription",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	},
