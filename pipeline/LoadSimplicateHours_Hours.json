@@ -1,5 +1,5 @@
 {
-	"name": "LoadSimplicateHours",
+	"name": "LoadSimplicateHours_Hours",
 	"properties": {
 		"activities": [
 			{
@@ -78,11 +78,25 @@
 									"requestInterval": "00.00:00:00.010",
 									"requestMethod": "GET"
 								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "DS_EOL_Simplicate_Hours_Hours",
+									"type": "DatasetReference",
+									"parameters": {
+										"limit": "@variables('limit')",
+										"offset": "@variables('offset')"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Bonvue_SQL_Simplicate_Hours_Hours",
 									"type": "DatasetReference"
 								}
 							]

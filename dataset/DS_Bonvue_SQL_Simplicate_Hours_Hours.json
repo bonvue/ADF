@@ -1,5 +1,5 @@
 {
-	"name": "DS_Simplicate_Hours_Hours",
+	"name": "DS_Bonvue_SQL_Simplicate_Hours_Hours",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_BonvueSQL",
