@@ -82,7 +82,356 @@
 									"type": "AzureSqlSink",
 									"tableOption": "autoCreate"
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['data'][0]['id']"
+											},
+											"sink": {
+												"name": "data'][0]['id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['employee']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['employee_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['employee']['name']"
+											},
+											"sink": {
+												"name": "data'][0]['employee_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['project_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project']['name']"
+											},
+											"sink": {
+												"name": "data'][0]['project_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project']['organization']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['project_organization_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project']['organization']['name']"
+											},
+											"sink": {
+												"name": "data'][0]['project_organization_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['has_workflow']"
+											},
+											"sink": {
+												"name": "has_workflow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['type_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['type']"
+											},
+											"sink": {
+												"name": "type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['label']"
+											},
+											"sink": {
+												"name": "data'][0]['type_label",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['tariff']"
+											},
+											"sink": {
+												"name": "tariff",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['type']['color']"
+											},
+											"sink": {
+												"name": "color",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['approvalstatus']['id']"
+											},
+											"sink": {
+												"name": "data'][0]['approvalstatus_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['approvalstatus']['label']"
+											},
+											"sink": {
+												"name": "data'][0]['approvalstatus_label",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['created_at']"
+											},
+											"sink": {
+												"name": "created_at",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['updated_at']"
+											},
+											"sink": {
+												"name": "updated_at",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['locked']"
+											},
+											"sink": {
+												"name": "locked",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['status']"
+											},
+											"sink": {
+												"name": "status",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['corrections']['amount']"
+											},
+											"sink": {
+												"name": "amount",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['corrections']['value']"
+											},
+											"sink": {
+												"name": "value",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['corrections']['last_correction_date']"
+											},
+											"sink": {
+												"name": "last_correction_date",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_productive']"
+											},
+											"sink": {
+												"name": "is_productive",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['hours']"
+											},
+											"sink": {
+												"name": "hours",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['start_date']"
+											},
+											"sink": {
+												"name": "start_date",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_time_defined']"
+											},
+											"sink": {
+												"name": "is_time_defined",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_recurring']"
+											},
+											"sink": {
+												"name": "is_recurring",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_external']"
+											},
+											"sink": {
+												"name": "is_external",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['billable']"
+											},
+											"sink": {
+												"name": "billable",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['id']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['id"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['name']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['name"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['label']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['label"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['render_type']"
+											},
+											"sink": {
+												"name": "render_type"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['position']"
+											},
+											"sink": {
+												"name": "position"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['value_type']"
+											},
+											"sink": {
+												"name": "value_type"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['custom_fields'][0]['options']"
+											},
+											"sink": {
+												"name": "items"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['source']"
+											},
+											"sink": {
+												"name": "source"
+											}
+										},
+										{
+											"source": {
+												"path": "$['errors']"
+											},
+											"sink": {
+												"name": "errors",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['debug']"
+											},
+											"sink": {
+												"name": "debug",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": ""
+								}
 							},
 							"inputs": [
 								{
@@ -100,6 +449,40 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "Set offsetTemp",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Copy Hours",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "offsettemp",
+								"value": "@string(add(int(variables('offset')),int(variables('limit'))))"
+							}
+						},
+						{
+							"name": "Set offset",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set offsetTemp",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "offset",
+								"value": "@variables('offsettemp')"
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
