@@ -1,0 +1,9 @@
+{
+	"name": "LoadSimplicateHours",
+	"properties": {
+		"folder": {
+			"name": "Simplicate/Simplicate Database"
+		},
+		"annotations": []
+	}
+}
