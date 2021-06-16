@@ -1,0 +1,10 @@
+{
+	"name": "LS_KeyVaultBonvue",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://KeyVaultBonvue.vault.azure.net/"
+		}
+	}
+}
