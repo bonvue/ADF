@@ -1,0 +1,25 @@
+{
+	"name": "DS_EOL_AGINGPAYABLESLIST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"division": {
+				"type": "string",
+				"defaultValue": "2928333"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@/api/v1/dataset().division/read/financial/AgingPayablesList?$select=AccountId,AccountCode,AccountName,AgeGroup1,AgeGroup1Amount,AgeGroup1Description,AgeGroup2,AgeGroup2Amount,AgeGroup2Description,AgeGroup3,AgeGroup3Amount,AgeGroup3Description,AgeGroup4,AgeGroup4Amount,AgeGroup4Description,CurrencyCode,TotalAmount",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

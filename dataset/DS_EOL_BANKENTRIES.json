@@ -1,0 +1,16 @@
+{
+	"name": "DS_EOL_BANKENTRIES",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_EOL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/api/v1/2928333/financialtransaction/BankEntries?$select=EntryID,ClosingBalanceFC,Created,Currency,Division,EntryNumber,FinancialPeriod,FinancialYear,JournalCode,JournalDescription,Modified,OpeningBalanceFC,StatusDescription"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "BonvueDatawareHouseFactory",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cf76f97a-98ac-43fb-8421-ee0526903832",
+		"tenantId": "f86e6ac1-95f2-4806-93b9-331a84dfdf50"
+	}
+}
