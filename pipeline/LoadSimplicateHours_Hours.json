@@ -91,10 +91,64 @@
 									"mappings": [
 										{
 											"source": {
+												"path": "['id']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['name']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['label']"
+											},
+											"sink": {
+												"name": "data'][0]['custom_fields'][0]['label",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['render_type']"
+											},
+											"sink": {
+												"name": "render_type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['position']"
+											},
+											"sink": {
+												"name": "position",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['value_type']"
+											},
+											"sink": {
+												"name": "value_type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
 												"path": "$['data'][0]['id']"
 											},
 											"sink": {
-												"name": "data'][0]['id",
+												"name": "id",
 												"type": "String"
 											}
 										},
@@ -103,7 +157,7 @@
 												"path": "$['data'][0]['employee']['id']"
 											},
 											"sink": {
-												"name": "data'][0]['employee_id",
+												"name": "employee_id",
 												"type": "String"
 											}
 										},
@@ -112,7 +166,7 @@
 												"path": "$['data'][0]['employee']['name']"
 											},
 											"sink": {
-												"name": "data'][0]['employee_name",
+												"name": "employee_name",
 												"type": "String"
 											}
 										},
@@ -121,7 +175,7 @@
 												"path": "$['data'][0]['project']['id']"
 											},
 											"sink": {
-												"name": "data'][0]['project_id",
+												"name": "project_id",
 												"type": "String"
 											}
 										},
@@ -130,7 +184,7 @@
 												"path": "$['data'][0]['project']['name']"
 											},
 											"sink": {
-												"name": "data'][0]['project_name",
+												"name": "project_name",
 												"type": "String"
 											}
 										},
@@ -139,7 +193,7 @@
 												"path": "$['data'][0]['project']['organization']['id']"
 											},
 											"sink": {
-												"name": "data'][0]['project_organization_id",
+												"name": "project_organization_id",
 												"type": "String"
 											}
 										},
@@ -148,7 +202,7 @@
 												"path": "$['data'][0]['project']['organization']['name']"
 											},
 											"sink": {
-												"name": "data'][0]['project_organization_name",
+												"name": "project_organization_name",
 												"type": "String"
 											}
 										},
@@ -347,60 +401,6 @@
 											},
 											"sink": {
 												"name": "billable",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['id']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['id",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['name']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['name",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['label']"
-											},
-											"sink": {
-												"name": "data'][0]['custom_fields'][0]['label",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['render_type']"
-											},
-											"sink": {
-												"name": "render_type",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['position']"
-											},
-											"sink": {
-												"name": "position",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['value_type']"
-											},
-											"sink": {
-												"name": "value_type",
 												"type": "String"
 											}
 										},
