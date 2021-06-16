@@ -5,6 +5,15 @@
 			"referenceName": "LS_REST_Simplicate",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"limit": {
+				"type": "string",
+				"defaultValue": "100"
+			},
+			"offset": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Simplicate REST API"
 		},
