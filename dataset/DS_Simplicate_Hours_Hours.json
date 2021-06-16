@@ -1,0 +1,20 @@
+{
+	"name": "DS_Simplicate_Hours_Hours",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BonvueSQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Simplicate DW"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Simplicate_Hours_Hours"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

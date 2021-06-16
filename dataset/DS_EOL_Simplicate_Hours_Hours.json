@@ -1,5 +1,5 @@
 {
-	"name": "Simplicate_Hours",
+	"name": "DS_EOL_Simplicate_Hours_Hours",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_REST_Simplicate",

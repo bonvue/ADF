@@ -42,7 +42,7 @@
 				}
 			},
 			{
-				"name": "Until1",
+				"name": "Until AllRecordsRead",
 				"type": "Until",
 				"dependsOn": [
 					{
@@ -54,6 +54,40 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(int(variables('offset')),int(variables('count')))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy Hours",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_EOL_Simplicate_Hours_Hours",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					],
 					"timeout": "7.00:00:00"
 				}
 			}
