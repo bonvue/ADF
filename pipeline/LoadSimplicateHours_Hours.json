@@ -349,58 +349,56 @@
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['id']"
+												"path": "['id']"
 											},
 											"sink": {
-												"name": "data'][0]['custom_fields'][0]['id"
+												"name": "data'][0]['custom_fields'][0]['id",
+												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['name']"
+												"path": "['name']"
 											},
 											"sink": {
-												"name": "data'][0]['custom_fields'][0]['name"
+												"name": "data'][0]['custom_fields'][0]['name",
+												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['label']"
+												"path": "['label']"
 											},
 											"sink": {
-												"name": "data'][0]['custom_fields'][0]['label"
+												"name": "data'][0]['custom_fields'][0]['label",
+												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['render_type']"
+												"path": "['render_type']"
 											},
 											"sink": {
-												"name": "render_type"
+												"name": "render_type",
+												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['position']"
+												"path": "['position']"
 											},
 											"sink": {
-												"name": "position"
+												"name": "position",
+												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['value_type']"
+												"path": "['value_type']"
 											},
 											"sink": {
-												"name": "value_type"
-											}
-										},
-										{
-											"source": {
-												"path": "$['data'][0]['custom_fields'][0]['options']"
-											},
-											"sink": {
-												"name": "items"
+												"name": "value_type",
+												"type": "String"
 											}
 										},
 										{
@@ -408,7 +406,8 @@
 												"path": "$['data'][0]['source']"
 											},
 											"sink": {
-												"name": "source"
+												"name": "source",
+												"type": "String"
 											}
 										},
 										{
@@ -430,7 +429,7 @@
 											}
 										}
 									],
-									"collectionReference": ""
+									"collectionReference": "$['data'][0]['custom_fields']"
 								}
 							},
 							"inputs": [
