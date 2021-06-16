@@ -54,6 +54,21 @@
 				}
 			}
 		],
+		"variables": {
+			"count": {
+				"type": "String"
+			},
+			"limit": {
+				"type": "String",
+				"defaultValue": "100"
+			},
+			"offset": {
+				"type": "String"
+			},
+			"offsettemp": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Simplicate/Simplicate Database"
 		},
