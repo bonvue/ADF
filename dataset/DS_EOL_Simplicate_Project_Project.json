@@ -1,0 +1,30 @@
+{
+	"name": "DS_EOL_Simplicate_Project_Project",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_Simplicate",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"limit": {
+				"type": "string",
+				"defaultValue": "100"
+			},
+			"offset": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Simplicate REST API"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "GET /projects/project?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
