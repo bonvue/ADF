@@ -92,7 +92,8 @@
 									"referenceName": "DS_EOL_Simplicate_Projects_Project",
 									"type": "DatasetReference",
 									"parameters": {
-										"limit": "100"
+										"limit": "@variables('limit')",
+										"offset": "@variables('offset')"
 									}
 								}
 							],
