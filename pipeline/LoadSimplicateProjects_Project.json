@@ -150,7 +150,8 @@
 		],
 		"variables": {
 			"count": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "100"
 			},
 			"limit": {
 				"type": "String",
