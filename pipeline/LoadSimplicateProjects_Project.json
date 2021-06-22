@@ -63,7 +63,7 @@
 					},
 					"activities": [
 						{
-							"name": "Copy Hours",
+							"name": "Copy Projects",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -108,7 +108,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Copy Hours",
+									"activity": "Copy Projects",
 									"dependencyConditions": [
 										"Succeeded"
 									]
