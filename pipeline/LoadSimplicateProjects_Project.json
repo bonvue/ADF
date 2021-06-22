@@ -1,0 +1,172 @@
+{
+	"name": "LoadSimplicateProjects_Project",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetMetaData",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://bonvue.simplicate.nl/api/v2/projects/project?metadata=count,limit",
+					"method": "GET",
+					"headers": {
+						"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
+						"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+					},
+					"disableCertValidation": true
+				}
+			},
+			{
+				"name": "Set Count",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetMetaData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "count",
+					"value": {
+						"value": "@string(activity('GetMetaData').output.metadata.count)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until AllRecordsRead",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Set Count",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(int(variables('offset')),int(variables('count')))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy Hours",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_EOL_Simplicate_Projects_Project",
+									"type": "DatasetReference",
+									"parameters": {
+										"limit": "100"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Bonvue_SQL_Simplicate_Projects_Project",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Set offsetTemp",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Copy Hours",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "offsettemp",
+								"value": {
+									"value": "@string(add(int(variables('offset')),int(variables('limit'))))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set offset",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set offsetTemp",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "offset",
+								"value": {
+									"value": "@variables('offsettemp')",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"variables": {
+			"count": {
+				"type": "String",
+				"defaultValue": "100"
+			},
+			"limit": {
+				"type": "String",
+				"defaultValue": "100"
+			},
+			"offset": {
+				"type": "String"
+			},
+			"offsettemp": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Simplicate/Simplicate Database"
+		},
+		"annotations": []
+	}
+}

@@ -1,5 +1,5 @@
 {
-	"name": "DS_EOL_Simplicate_Project_Project",
+	"name": "DS_EOL_Simplicate_Projects_Project",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_REST_Simplicate",
