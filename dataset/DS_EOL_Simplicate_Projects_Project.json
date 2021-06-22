@@ -21,7 +21,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "GET /projects/project?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
+				"value": "GET /projects/project?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limitdataset().limitdataset().offset",
 				"type": "Expression"
 			}
 		},
