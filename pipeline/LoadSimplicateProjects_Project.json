@@ -85,7 +85,381 @@
 									"type": "AzureSqlSink",
 									"tableOption": "autoCreate"
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['data'][0]['id']"
+											},
+											"sink": {
+												"name": "id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_manager']['employee_id']"
+											},
+											"sink": {
+												"name": "project_manager_employee_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_manager']['id']"
+											},
+											"sink": {
+												"name": "project_manager_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_manager']['person_id']"
+											},
+											"sink": {
+												"name": "project_manager_person_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_manager']['name']"
+											},
+											"sink": {
+												"name": "project_manager_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_status']['id']"
+											},
+											"sink": {
+												"name": "project_status_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_status']['label']"
+											},
+											"sink": {
+												"name": "project_status_label",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['hours_rate_type']"
+											},
+											"sink": {
+												"name": "hours_rate_type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['organization']['id']"
+											},
+											"sink": {
+												"name": "organization_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['organization']['name']"
+											},
+											"sink": {
+												"name": "organization_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['separate_invoice_recipient']['is_separate_invoice_recipient']"
+											},
+											"sink": {
+												"name": "is_separate_invoice_recipient",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact']['id']"
+											},
+											"sink": {
+												"name": "contact_contact_id"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact']['person']['id']"
+											},
+											"sink": {
+												"name": "contact_person_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact']['person']['full_name']"
+											},
+											"sink": {
+												"name": "full_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact']['organization']['id']"
+											},
+											"sink": {
+												"name": "contact_organization_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact']['organization']['name']"
+											},
+											"sink": {
+												"name": "contact_organization_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['my_organization_profile']['id']"
+											},
+											"sink": {
+												"name": "my_organization_profile_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['my_organization_profile']['organization']['id']"
+											},
+											"sink": {
+												"name": "my_organization_profile_organization_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['my_organization_profile']['organization']['name']"
+											},
+											"sink": {
+												"name": "my_organization_profile_organization_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['hours']['amount_spent']"
+											},
+											"sink": {
+												"name": "amount_spent",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['hours']['value_spent']"
+											},
+											"sink": {
+												"name": "budget_hours_value_spent",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['costs']['value_budget']"
+											},
+											"sink": {
+												"name": "budget_costs_value_budget",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['costs']['value_spent']"
+											},
+											"sink": {
+												"name": "budget_costs_value_spent",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['total']['value_budget']"
+											},
+											"sink": {
+												"name": "budget_total_value_budget",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['total']['value_spent']"
+											},
+											"sink": {
+												"name": "budget_total_value_spent",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['budget']['total']['value_invoiced']"
+											},
+											"sink": {
+												"name": "value_invoiced",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['timeline_email_address']"
+											},
+											"sink": {
+												"name": "timeline_email_address",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['created']"
+											},
+											"sink": {
+												"name": "created",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['modified']"
+											},
+											"sink": {
+												"name": "modified",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['created_at']"
+											},
+											"sink": {
+												"name": "created_at",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['updated_at']"
+											},
+											"sink": {
+												"name": "updated_at",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['simplicate_url']"
+											},
+											"sink": {
+												"name": "simplicate_url",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_reverse_billing']"
+											},
+											"sink": {
+												"name": "is_reverse_billing",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['is_invoice_approval']"
+											},
+											"sink": {
+												"name": "is_invoice_approval",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['my_organization_profile_id']"
+											},
+											"sink": {
+												"name": "my_organization_profile_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['organization_id']"
+											},
+											"sink": {
+												"name": "organization_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['contact_id']"
+											},
+											"sink": {
+												"name": "contact_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['name']"
+											},
+											"sink": {
+												"name": "name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['billable']"
+											},
+											"sink": {
+												"name": "billable",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['can_register_mileage']"
+											},
+											"sink": {
+												"name": "can_register_mileage",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data'][0]['project_number']"
+											},
+											"sink": {
+												"name": "project_number",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": ""
+								}
 							},
 							"inputs": [
 								{
