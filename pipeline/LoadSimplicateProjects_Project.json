@@ -166,8 +166,7 @@
 												"path": "$['data'][0]['organization']['id']"
 											},
 											"sink": {
-												"name": "organization_id",
-												"type": "String"
+												"name": "organization_id_id"
 											}
 										},
 										{
