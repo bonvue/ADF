@@ -245,8 +245,7 @@
 												"path": "$['data'][0]['my_organization_profile']['organization']['id']"
 											},
 											"sink": {
-												"name": "my_organization_profile_organization_id",
-												"type": "String"
+												"name": "my_organization_profile_organization_id_id"
 											}
 										},
 										{
