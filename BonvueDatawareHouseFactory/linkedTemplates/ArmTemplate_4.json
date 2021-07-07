@@ -1,0 +1,952 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "bonvuedatawarehousefactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadBankAccounts')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy BankAccounts",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "TRUNCATE TABLE BankAccounts",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Account']"
+										},
+										"sink": {
+											"name": "Account",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AccountName']"
+										},
+										"sink": {
+											"name": "AccountName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Bank']"
+										},
+										"sink": {
+											"name": "Bank",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BankAccount']"
+										},
+										"sink": {
+											"name": "BankAccount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BankAccountHolderName']"
+										},
+										"sink": {
+											"name": "BankAccountHolderName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BankDescription']"
+										},
+										"sink": {
+											"name": "BankDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BankName']"
+										},
+										"sink": {
+											"name": "BankName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BICCode']"
+										},
+										"sink": {
+											"name": "BICCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Created']"
+										},
+										"sink": {
+											"name": "Created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Creator']"
+										},
+										"sink": {
+											"name": "Creator",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CreatorFullName']"
+										},
+										"sink": {
+											"name": "CreatorFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Description']"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Division']"
+										},
+										"sink": {
+											"name": "Division",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Format']"
+										},
+										"sink": {
+											"name": "Format",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['IBAN']"
+										},
+										"sink": {
+											"name": "IBAN",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ID']"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Main']"
+										},
+										"sink": {
+											"name": "Main",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modified']"
+										},
+										"sink": {
+											"name": "Modified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modifier']"
+										},
+										"sink": {
+											"name": "Modifier",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ModifierFullName']"
+										},
+										"sink": {
+											"name": "ModifierFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['PaymentServiceAccount']"
+										},
+										"sink": {
+											"name": "PaymentServiceAccount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Type']"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TypeDescription']"
+										},
+										"sink": {
+											"name": "TypeDescription",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_BANKACCCOUNTS",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_BankAccounts",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:38Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TriggerGeneralJournalEntryLines')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ExactLoadGeneralJournal",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2021-06-03T11:38:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"weekDays": [
+								"Sunday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TriggerExactMain')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "LoadExactRestApi",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2021-06-03T11:44:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"weekDays": [
+								"Sunday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LoadSimplicateHours_Hours')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetMetaData",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://bonvue.simplicate.nl/api/v2/hours/hours?metadata=count,limit",
+							"method": "GET",
+							"headers": {
+								"Authentication-Key": "I6t2AIRw4hTFkhdvXNKSO3hpMVskaGnx",
+								"Authentication-Secret": "pE0tFKf0nK7X70U1BvM1rYjASg4DetxD"
+							},
+							"disableCertValidation": true
+						}
+					},
+					{
+						"name": "Set Count",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "GetMetaData",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "count",
+							"value": {
+								"value": "@string(activity('GetMetaData').output.metadata.count)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Until AllRecordsRead",
+						"type": "Until",
+						"dependsOn": [
+							{
+								"activity": "Set Count",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@greaterOrEquals(int(variables('offset')),int(variables('count')))",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Hours",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "RestSource",
+											"httpRequestTimeout": "00:01:40",
+											"requestInterval": "00.00:00:00.010",
+											"requestMethod": "GET"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": "TRUNCATE TABLE Simplicate_Hours_Hours",
+											"tableOption": "autoCreate",
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"path": "[['id']"
+													},
+													"sink": {
+														"name": "data'][0]['custom_fields'][0]['id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['name']"
+													},
+													"sink": {
+														"name": "data'][0]['custom_fields'][0]['name",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['label']"
+													},
+													"sink": {
+														"name": "data'][0]['custom_fields'][0]['label",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['render_type']"
+													},
+													"sink": {
+														"name": "render_type",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['position']"
+													},
+													"sink": {
+														"name": "position",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['value_type']"
+													},
+													"sink": {
+														"name": "value_type",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['id']"
+													},
+													"sink": {
+														"name": "id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['employee']['id']"
+													},
+													"sink": {
+														"name": "employee_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['employee']['name']"
+													},
+													"sink": {
+														"name": "employee_name",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['project']['id']"
+													},
+													"sink": {
+														"name": "project_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['project']['name']"
+													},
+													"sink": {
+														"name": "project_name",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['project']['organization']['id']"
+													},
+													"sink": {
+														"name": "project_organization_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['project']['organization']['name']"
+													},
+													"sink": {
+														"name": "project_organization_name",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['has_workflow']"
+													},
+													"sink": {
+														"name": "has_workflow",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['id']"
+													},
+													"sink": {
+														"name": "data'][0]['type_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['type']"
+													},
+													"sink": {
+														"name": "type",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['label']"
+													},
+													"sink": {
+														"name": "data'][0]['type_label",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['tariff']"
+													},
+													"sink": {
+														"name": "tariff",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['type']['color']"
+													},
+													"sink": {
+														"name": "color",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['approvalstatus']['id']"
+													},
+													"sink": {
+														"name": "data'][0]['approvalstatus_id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['approvalstatus']['label']"
+													},
+													"sink": {
+														"name": "data'][0]['approvalstatus_label",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['created_at']"
+													},
+													"sink": {
+														"name": "created_at",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['updated_at']"
+													},
+													"sink": {
+														"name": "updated_at",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['locked']"
+													},
+													"sink": {
+														"name": "locked",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['status']"
+													},
+													"sink": {
+														"name": "status",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['corrections']['amount']"
+													},
+													"sink": {
+														"name": "amount",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['corrections']['value']"
+													},
+													"sink": {
+														"name": "value",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['corrections']['last_correction_date']"
+													},
+													"sink": {
+														"name": "last_correction_date",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['is_productive']"
+													},
+													"sink": {
+														"name": "is_productive",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['hours']"
+													},
+													"sink": {
+														"name": "hours",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['start_date']"
+													},
+													"sink": {
+														"name": "start_date",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['is_time_defined']"
+													},
+													"sink": {
+														"name": "is_time_defined",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['is_recurring']"
+													},
+													"sink": {
+														"name": "is_recurring",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['is_external']"
+													},
+													"sink": {
+														"name": "is_external",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['billable']"
+													},
+													"sink": {
+														"name": "billable",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data'][0]['source']"
+													},
+													"sink": {
+														"name": "source",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['errors']"
+													},
+													"sink": {
+														"name": "errors",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['debug']"
+													},
+													"sink": {
+														"name": "debug",
+														"type": "String"
+													}
+												}
+											],
+											"collectionReference": "$['data'][0]['custom_fields']"
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "DS_EOL_Simplicate_Hours_Hours",
+											"type": "DatasetReference",
+											"parameters": {
+												"limit": "@variables('limit')",
+												"offset": "@variables('offset')"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "DS_Bonvue_SQL_Simplicate_Hours_Hours",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Set offsetTemp",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Copy Hours",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "offsettemp",
+										"value": {
+											"value": "@string(add(int(variables('offset')),int(variables('limit'))))",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set offset",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set offsetTemp",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "offset",
+										"value": {
+											"value": "@variables('offsettemp')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"timeout": "7.00:00:00"
+						}
+					}
+				],
+				"variables": {
+					"count": {
+						"type": "String",
+						"defaultValue": "100"
+					},
+					"limit": {
+						"type": "String",
+						"defaultValue": "100"
+					},
+					"offset": {
+						"type": "String"
+					},
+					"offsettemp": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Simplicate/Simplicate Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:33Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LoadSimplicateRestApi')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Execute Pipeline1",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "LoadSimplicateHours_Hours",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"folder": {
+					"name": "Simplicate"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:34Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/LoadSimplicateHours_Hours')]"
+			]
+		}
+	]
+}

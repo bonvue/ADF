@@ -20,6 +20,9 @@
 		"LS_REST_Simplicate_properties_typeProperties_url": {
 			"value": "https://bonvue.simplicate.nl/api/v2"
 		},
+		"LS_KeyVaultBonvue_properties_typeProperties_baseUrl": {
+			"value": "https://KeyVaultBonvue.vault.azure.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},

@@ -13,466 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_ReceivablesList')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ReceivablesList"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_TRANSACTIONLINES')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/financialtransaction/TransactionLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATBaseFC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Currency,Date,Description,Division,Document,DocumentNumber,DocumentSubject,DueDate,EntryID,EntryNumber,ExchangeRate,ExtraDutyAmountFC,ExtraDutyPercentage,FinancialPeriod,FinancialYear,GLAccount,GLAccountCode,GLAccountDescription,InvoiceNumber,Item,ItemCode,ItemDescription,JournalCode,JournalDescription,LineNumber,LineType,Modified,Modifier,ModifierFullName,Notes,OffsetID,OrderNumber,PaymentDiscountAmount,PaymentReference,Project,ProjectCode,ProjectDescription,Quantity,SerialNumber,ShopOrder,Status,Subscription,SubscriptionDescription,TrackingNumber,TrackingNumberDescription,Type,VATCode,VATCodeDescription,VATPercentage,VATType,YourRef",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_BANKENTRYLINES')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/financialtransaction/BankEntryLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Date,Description,Division,Document,DocumentNumber,DocumentSubject,EntryID,EntryNumber,ExchangeRate,GLAccount,GLAccountCode,GLAccountDescription,LineNumber,Modified,Modifier,ModifierFullName,Notes,OffsetID,OurRef,Project,ProjectCode,ProjectDescription,Quantity,VATCode,VATCodeDescription,VATPercentage,VATType",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Budgets')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Budgets"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_Accounts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Accounts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_PAYABLESLIST')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/read/financial/PayablesList?$select=HID,AccountCode,AccountId,AccountName,Amount,AmountInTransit,ApprovalStatus,CurrencyCode,Description,DueDate,EntryNumber,Id,InvoiceDate,InvoiceNumber,JournalCode,JournalDescription,YourRef",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_CostUnits')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "CostUnits"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_AgingOverview')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "AgingOverview"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_GENERALJOURNALENTRYLINES')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/generaljournalentry/GeneralJournalEntryLines?$select=ID,Account,AccountCode,AccountName,AmountDC,AmountFC,AmountVATDC,AmountVATFC,Asset,AssetCode,AssetDescription,CostCenter,CostCenterDescription,CostUnit,CostUnitDescription,Created,Creator,CreatorFullName,Date,Description,Division,Document,DocumentNumber,DocumentSubject,EntryID,EntryNumber,GLAccount,GLAccountCode,GLAccountDescription,LineNumber,Modified,Modifier,ModifierFullName,Notes,OffsetID,OurRef,Project,ProjectCode,ProjectDescription,Quantity,VATBaseAmountDC,VATBaseAmountFC,VATCode,VATCodeDescription,VATPercentage,VATType",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_BankEntryLines')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "BankEntryLines"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_BANKACCCOUNTS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}//crm/BankAccounts?$select=ID,Account,AccountName,Bank,BankAccount,BankAccountHolderName,BankDescription,BankName,BICCode,Created,Creator,CreatorFullName,Description,Division,Format,IBAN,Main,Modified,Modifier,ModifierFullName,PaymentServiceAccount,Type,TypeDescription",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BonvueSQL_BankAccounts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Exact DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "BankAccounts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_DOCUMENTATTACHMENTS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_EOL",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"division": {
-						"type": "string",
-						"defaultValue": "2928333"
-					}
-				},
-				"folder": {
-					"name": "Exact REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "/api/v1/@{dataset().division}/bulk/Documents/DocumentAttachments?$select=ID,Attachment,Document,FileName,FileSize,Url",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_Bonvue_SQL_Simplicate_Hours_Hours')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BonvueSQL",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Simplicate DW"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Simplicate_Hours_Hours"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ExactLoadReceivables')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "GetEOLBearerToken",
-						"type": "AzureFunctionActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"functionName": "GetNewBearerToken",
-							"method": "GET",
-							"headers": {}
-						},
-						"linkedServiceName": {
-							"referenceName": "BonvueExactFunctions",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"folder": {
-					"name": "Exact/Exact Database"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-07-07T09:32:32Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_Simplicate_Hours_Hours')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_Simplicate",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"limit": {
-						"type": "string",
-						"defaultValue": "100"
-					},
-					"offset": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Simplicate REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "hours/hours?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_EOL_Simplicate_Projects_Project')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_Simplicate",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"limit": {
-						"type": "string",
-						"defaultValue": "100"
-					},
-					"offset": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Simplicate REST API"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": {
-						"value": "projects/project?limit=@{dataset().limit}&offset=@{dataset().offset}&metadata=count,limit",
-						"type": "Expression"
-					}
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ExactLoadGeneralJournal')]",
+			"name": "[concat(parameters('factoryName'), '/ExactLoadPayablesList')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -500,7 +41,7 @@
 						}
 					},
 					{
-						"name": "Copy GeneralJournalEntryLines",
+						"name": "Copy PayablesList",
 						"type": "Copy",
 						"dependsOn": [
 							{
@@ -536,20 +77,75 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE GeneralJournalEntryLines",
+								"preCopyScript": "TRUNCATE TABLE PAYABLESLIST",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "$['d']['results'][0]['Account']"
+											"path": "$['d']['results'][0]['HID']"
 										},
 										"sink": {
-											"name": "Account",
+											"name": "HID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Id']"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Description']"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DueDate']"
+										},
+										"sink": {
+											"name": "DueDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Amount']"
+										},
+										"sink": {
+											"name": "Amount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CurrencyCode']"
+										},
+										"sink": {
+											"name": "CurrencyCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AccountId']"
+										},
+										"sink": {
+											"name": "AccountId",
 											"type": "String"
 										}
 									},
@@ -573,190 +169,64 @@
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountDC']"
+											"path": "$['d']['results'][0]['JournalCode']"
 										},
 										"sink": {
-											"name": "AmountDC",
+											"name": "JournalCode",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountFC']"
+											"path": "$['d']['results'][0]['JournalDescription']"
 										},
 										"sink": {
-											"name": "AmountFC",
+											"name": "JournalDescription",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountVATDC']"
+											"path": "$['d']['results'][0]['AmountInTransit']"
 										},
 										"sink": {
-											"name": "AmountVATDC",
+											"name": "AmountInTransit",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountVATFC']"
+											"path": "$['d']['results'][0]['ApprovalStatus']"
 										},
 										"sink": {
-											"name": "AmountVATFC",
+											"name": "ApprovalStatus",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['Asset']"
+											"path": "$['d']['results'][0]['InvoiceNumber']"
 										},
 										"sink": {
-											"name": "Asset",
+											"name": "InvoiceNumber",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AssetCode']"
+											"path": "$['d']['results'][0]['InvoiceDate']"
 										},
 										"sink": {
-											"name": "AssetCode",
+											"name": "InvoiceDate",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AssetDescription']"
+											"path": "$['d']['results'][0]['YourRef']"
 										},
 										"sink": {
-											"name": "AssetDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostCenter']"
-										},
-										"sink": {
-											"name": "CostCenter",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostCenterDescription']"
-										},
-										"sink": {
-											"name": "CostCenterDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostUnit']"
-										},
-										"sink": {
-											"name": "CostUnit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostUnitDescription']"
-										},
-										"sink": {
-											"name": "CostUnitDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Created']"
-										},
-										"sink": {
-											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Creator']"
-										},
-										"sink": {
-											"name": "Creator",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CreatorFullName']"
-										},
-										"sink": {
-											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Date']"
-										},
-										"sink": {
-											"name": "Date",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Division']"
-										},
-										"sink": {
-											"name": "Division",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Document']"
-										},
-										"sink": {
-											"name": "Document",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DocumentNumber']"
-										},
-										"sink": {
-											"name": "DocumentNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DocumentSubject']"
-										},
-										"sink": {
-											"name": "DocumentSubject",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryID']"
-										},
-										"sink": {
-											"name": "EntryID",
+											"name": "YourRef",
 											"type": "String"
 										}
 									},
@@ -768,195 +238,6 @@
 											"name": "EntryNumber",
 											"type": "String"
 										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccount']"
-										},
-										"sink": {
-											"name": "GLAccount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccountCode']"
-										},
-										"sink": {
-											"name": "GLAccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccountDescription']"
-										},
-										"sink": {
-											"name": "GLAccountDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['LineNumber']"
-										},
-										"sink": {
-											"name": "LineNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modified']"
-										},
-										"sink": {
-											"name": "Modified",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modifier']"
-										},
-										"sink": {
-											"name": "Modifier",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ModifierFullName']"
-										},
-										"sink": {
-											"name": "ModifierFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Notes']"
-										},
-										"sink": {
-											"name": "Notes",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OffsetID']"
-										},
-										"sink": {
-											"name": "OffsetID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OurRef']"
-										},
-										"sink": {
-											"name": "OurRef",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Project']"
-										},
-										"sink": {
-											"name": "Project",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ProjectCode']"
-										},
-										"sink": {
-											"name": "ProjectCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ProjectDescription']"
-										},
-										"sink": {
-											"name": "ProjectDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Quantity']"
-										},
-										"sink": {
-											"name": "Quantity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATBaseAmountDC']"
-										},
-										"sink": {
-											"name": "VATBaseAmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATBaseAmountFC']"
-										},
-										"sink": {
-											"name": "VATBaseAmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATCode']"
-										},
-										"sink": {
-											"name": "VATCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATCodeDescription']"
-										},
-										"sink": {
-											"name": "VATCodeDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATPercentage']"
-										},
-										"sink": {
-											"name": "VATPercentage",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATType']"
-										},
-										"sink": {
-											"name": "VATType",
-											"type": "String"
-										}
 									}
 								],
 								"collectionReference": ""
@@ -964,7 +245,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_GENERALJOURNALENTRYLINES",
+								"referenceName": "DS_EOL_PAYABLESLIST",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -973,7 +254,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_GeneralJournalEntryLines",
+								"referenceName": "DS_BonvueSQL_PayablesList",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -981,17 +262,15 @@
 					}
 				],
 				"folder": {
-					"name": "Exact"
+					"name": "Exact/Exact Database"
 				},
 				"annotations": [],
-				"lastPublishTime": "2021-06-03T11:45:43Z"
+				"lastPublishTime": "2021-07-07T09:32:31Z"
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_GENERALJOURNALENTRYLINES')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LoadExactRestApi')]",
+			"name": "[concat(parameters('factoryName'), '/ExactLoadAssetGroups')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1019,11 +298,12 @@
 						}
 					},
 					{
-						"name": "Copy  CostCenters",
+						"name": "Copy AssetGroups",
+						"description": "",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy CostUnits",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1036,16 +316,7 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "/api/v1//hrm/Costcenters"
-							},
-							{
-								"name": "Destination",
-								"value": "CostCenters."
-							}
-						],
+						"userProperties": [],
 						"typeProperties": {
 							"source": {
 								"type": "RestSource",
@@ -1064,20 +335,151 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE CostCenters",
+								"preCopyScript": "TRUNCATE TABLE AssetGroups",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "[['Active']"
+											"path": "$['d']['results'][0]"
 										},
 										"sink": {
-											"name": "Active",
+											"name": "items"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_ASSETSGROUPS",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_AssetGroups",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadGLClassifications')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy GLClassifications",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "TRUNCATE TABLE GLCLASSIFICATIONS",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['ID']"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Abstract']"
+										},
+										"sink": {
+											"name": "Abstract",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Balance']"
+										},
+										"sink": {
+											"name": "Balance",
 											"type": "String"
 										}
 									},
@@ -1096,15 +498,6 @@
 										},
 										"sink": {
 											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Creator']"
-										},
-										"sink": {
-											"name": "Creator",
 											"type": "String"
 										}
 									},
@@ -1137,19 +530,10 @@
 									},
 									{
 										"source": {
-											"path": "[['EndDate']"
+											"path": "[['IsTupleSubElement']"
 										},
 										"sink": {
-											"name": "EndDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ID']"
-										},
-										"sink": {
-											"name": "ID",
+											"name": "IsTupleSubElement",
 											"type": "String"
 										}
 									},
@@ -1179,15 +563,50 @@
 											"name": "ModifierFullName",
 											"type": "String"
 										}
+									},
+									{
+										"source": {
+											"path": "[['Name']"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['PeriodType']"
+										},
+										"sink": {
+											"name": "PeriodType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['SubstitutionGroup']"
+										},
+										"sink": {
+											"name": "SubstitutionGroup",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['TaxonomyNamespaceDescription']"
+										},
+										"sink": {
+											"name": "TaxonomyNamespaceDescription",
+											"type": "String"
+										}
 									}
 								],
-								"collectionReference": "$['d']['results']",
-								"mapComplexValuesToString": false
+								"collectionReference": "$['d']['results']"
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_COSTCENTERS",
+								"referenceName": "DS_EOL_GLCLASSIFICATIONS",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -1196,18 +615,55 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_CostCenters",
+								"referenceName": "DS_BonvueSQL_GLClassifications",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadGLAccounts')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy GLAccounts",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy Division",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1244,6 +700,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -1610,18 +1067,26 @@
 								"parameters": {}
 							}
 						]
-					},
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadBankEntries')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
 					{
-						"name": "Copy GLAccountClassificationMappings",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy  CostCenters",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -1631,384 +1096,21 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE GLAccountClassificationMappings",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['Classification']"
-										},
-										"sink": {
-											"name": "Classification",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassificationCode']"
-										},
-										"sink": {
-											"name": "ClassificationCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassificationDescription']"
-										},
-										"sink": {
-											"name": "ClassificationDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Division']"
-										},
-										"sink": {
-											"name": "Division",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccount']"
-										},
-										"sink": {
-											"name": "GLAccount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountCode']"
-										},
-										"sink": {
-											"name": "GLAccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountDescription']"
-										},
-										"sink": {
-											"name": "GLAccountDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeCode']"
-										},
-										"sink": {
-											"name": "GLSchemeCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeDescription']"
-										},
-										"sink": {
-											"name": "GLSchemeDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeID']"
-										},
-										"sink": {
-											"name": "GLSchemeID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['__next']"
-										},
-										"sink": {
-											"name": "__next"
-										}
-									}
-								],
-								"collectionReference": "$['d']['results']"
-							}
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
 						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_GLACCOUNTCLASSIFICATIONMAPPINGS",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_GLAccountClassificationMappings",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy AgingPayableList",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy GLAccounts",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE agingpayablelist",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['AccountId']"
-										},
-										"sink": {
-											"name": "AccountId",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountCode']"
-										},
-										"sink": {
-											"name": "AccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountName']"
-										},
-										"sink": {
-											"name": "AccountName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TotalAmount']"
-										},
-										"sink": {
-											"name": "TotalAmount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup1']"
-										},
-										"sink": {
-											"name": "AgeGroup1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup1Description']"
-										},
-										"sink": {
-											"name": "AgeGroup1Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup1Amount']"
-										},
-										"sink": {
-											"name": "AgeGroup1Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup2']"
-										},
-										"sink": {
-											"name": "AgeGroup2",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup2Description']"
-										},
-										"sink": {
-											"name": "AgeGroup2Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup2Amount']"
-										},
-										"sink": {
-											"name": "AgeGroup2Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup3']"
-										},
-										"sink": {
-											"name": "AgeGroup3",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup3Description']"
-										},
-										"sink": {
-											"name": "AgeGroup3Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup3Amount']"
-										},
-										"sink": {
-											"name": "AgeGroup3Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup4']"
-										},
-										"sink": {
-											"name": "AgeGroup4",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup4Description']"
-										},
-										"sink": {
-											"name": "AgeGroup4Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AgeGroup4Amount']"
-										},
-										"sink": {
-											"name": "AgeGroup4Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['CurrencyCode']"
-										},
-										"sink": {
-											"name": "CurrencyCode",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['d']['results']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_AGINGPAYABLESLIST",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_AgingPayableList",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy BankEntries",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy BankAccounts",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -2045,6 +1147,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -2222,13 +1325,50 @@
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadTransactionLines')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
-						"name": "Copy GLClassifications",
+						"name": "Copy TransactionLines",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy GLAccountClassificationMappings",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -2260,17 +1400,18 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE GLCLASSIFICATIONS",
+								"preCopyScript": "TRUNCATE TABLE TRANSACTIONLINES",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "[['ID']"
+											"path": "$['d']['results'][0]['ID']"
 										},
 										"sink": {
 											"name": "ID",
@@ -2279,34 +1420,142 @@
 									},
 									{
 										"source": {
-											"path": "[['Abstract']"
+											"path": "$['d']['results'][0]['ShopOrder']"
 										},
 										"sink": {
-											"name": "Abstract",
+											"name": "ShopOrder",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['Balance']"
+											"path": "$['d']['results'][0]['Account']"
 										},
 										"sink": {
-											"name": "Balance",
+											"name": "Account",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['Code']"
+											"path": "$['d']['results'][0]['AccountCode']"
 										},
 										"sink": {
-											"name": "Code",
+											"name": "AccountCode",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['Created']"
+											"path": "$['d']['results'][0]['AccountName']"
+										},
+										"sink": {
+											"name": "AccountName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountDC']"
+										},
+										"sink": {
+											"name": "AmountDC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountFC']"
+										},
+										"sink": {
+											"name": "AmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountVATFC']"
+										},
+										"sink": {
+											"name": "AmountVATFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountVATBaseFC']"
+										},
+										"sink": {
+											"name": "AmountVATBaseFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Asset']"
+										},
+										"sink": {
+											"name": "Asset",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AssetCode']"
+										},
+										"sink": {
+											"name": "AssetCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AssetDescription']"
+										},
+										"sink": {
+											"name": "AssetDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostCenter']"
+										},
+										"sink": {
+											"name": "CostCenter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostCenterDescription']"
+										},
+										"sink": {
+											"name": "CostCenterDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostUnit']"
+										},
+										"sink": {
+											"name": "CostUnit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostUnitDescription']"
+										},
+										"sink": {
+											"name": "CostUnitDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Created']"
 										},
 										"sink": {
 											"name": "Created",
@@ -2315,7 +1564,16 @@
 									},
 									{
 										"source": {
-											"path": "[['CreatorFullName']"
+											"path": "$['d']['results'][0]['Creator']"
+										},
+										"sink": {
+											"name": "Creator",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CreatorFullName']"
 										},
 										"sink": {
 											"name": "CreatorFullName",
@@ -2324,7 +1582,25 @@
 									},
 									{
 										"source": {
-											"path": "[['Description']"
+											"path": "$['d']['results'][0]['Currency']"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Date']"
+										},
+										"sink": {
+											"name": "Date",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Description']"
 										},
 										"sink": {
 											"name": "Description",
@@ -2333,7 +1609,7 @@
 									},
 									{
 										"source": {
-											"path": "[['Division']"
+											"path": "$['d']['results'][0]['Division']"
 										},
 										"sink": {
 											"name": "Division",
@@ -2342,16 +1618,205 @@
 									},
 									{
 										"source": {
-											"path": "[['IsTupleSubElement']"
+											"path": "$['d']['results'][0]['Document']"
 										},
 										"sink": {
-											"name": "IsTupleSubElement",
+											"name": "Document",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['Modified']"
+											"path": "$['d']['results'][0]['DocumentNumber']"
+										},
+										"sink": {
+											"name": "DocumentNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DocumentSubject']"
+										},
+										"sink": {
+											"name": "DocumentSubject",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DueDate']"
+										},
+										"sink": {
+											"name": "DueDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryID']"
+										},
+										"sink": {
+											"name": "EntryID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryNumber']"
+										},
+										"sink": {
+											"name": "EntryNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ExchangeRate']"
+										},
+										"sink": {
+											"name": "ExchangeRate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ExtraDutyAmountFC']"
+										},
+										"sink": {
+											"name": "ExtraDutyAmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ExtraDutyPercentage']"
+										},
+										"sink": {
+											"name": "ExtraDutyPercentage",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['FinancialPeriod']"
+										},
+										"sink": {
+											"name": "FinancialPeriod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['FinancialYear']"
+										},
+										"sink": {
+											"name": "FinancialYear",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccount']"
+										},
+										"sink": {
+											"name": "GLAccount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccountCode']"
+										},
+										"sink": {
+											"name": "GLAccountCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccountDescription']"
+										},
+										"sink": {
+											"name": "GLAccountDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['InvoiceNumber']"
+										},
+										"sink": {
+											"name": "InvoiceNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Item']"
+										},
+										"sink": {
+											"name": "Item",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ItemCode']"
+										},
+										"sink": {
+											"name": "ItemCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ItemDescription']"
+										},
+										"sink": {
+											"name": "ItemDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['JournalCode']"
+										},
+										"sink": {
+											"name": "JournalCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['JournalDescription']"
+										},
+										"sink": {
+											"name": "JournalDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['LineNumber']"
+										},
+										"sink": {
+											"name": "LineNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['LineType']"
+										},
+										"sink": {
+											"name": "LineType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modified']"
 										},
 										"sink": {
 											"name": "Modified",
@@ -2360,7 +1825,7 @@
 									},
 									{
 										"source": {
-											"path": "[['Modifier']"
+											"path": "$['d']['results'][0]['Modifier']"
 										},
 										"sink": {
 											"name": "Modifier",
@@ -2369,7 +1834,7 @@
 									},
 									{
 										"source": {
-											"path": "[['ModifierFullName']"
+											"path": "$['d']['results'][0]['ModifierFullName']"
 										},
 										"sink": {
 											"name": "ModifierFullName",
@@ -2378,47 +1843,200 @@
 									},
 									{
 										"source": {
-											"path": "[['Name']"
+											"path": "$['d']['results'][0]['Notes']"
 										},
 										"sink": {
-											"name": "Name",
+											"name": "Notes",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['PeriodType']"
+											"path": "$['d']['results'][0]['OffsetID']"
 										},
 										"sink": {
-											"name": "PeriodType",
+											"name": "OffsetID",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['SubstitutionGroup']"
+											"path": "$['d']['results'][0]['OrderNumber']"
 										},
 										"sink": {
-											"name": "SubstitutionGroup",
+											"name": "OrderNumber",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['TaxonomyNamespaceDescription']"
+											"path": "$['d']['results'][0]['PaymentDiscountAmount']"
 										},
 										"sink": {
-											"name": "TaxonomyNamespaceDescription",
+											"name": "PaymentDiscountAmount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['PaymentReference']"
+										},
+										"sink": {
+											"name": "PaymentReference",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Project']"
+										},
+										"sink": {
+											"name": "Project",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ProjectCode']"
+										},
+										"sink": {
+											"name": "ProjectCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ProjectDescription']"
+										},
+										"sink": {
+											"name": "ProjectDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Quantity']"
+										},
+										"sink": {
+											"name": "Quantity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['SerialNumber']"
+										},
+										"sink": {
+											"name": "SerialNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Status']"
+										},
+										"sink": {
+											"name": "Status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Subscription']"
+										},
+										"sink": {
+											"name": "Subscription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['SubscriptionDescription']"
+										},
+										"sink": {
+											"name": "SubscriptionDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TrackingNumber']"
+										},
+										"sink": {
+											"name": "TrackingNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TrackingNumberDescription']"
+										},
+										"sink": {
+											"name": "TrackingNumberDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Type']"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATCode']"
+										},
+										"sink": {
+											"name": "VATCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATCodeDescription']"
+										},
+										"sink": {
+											"name": "VATCodeDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATPercentage']"
+										},
+										"sink": {
+											"name": "VATPercentage",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATType']"
+										},
+										"sink": {
+											"name": "VATType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['YourRef']"
+										},
+										"sink": {
+											"name": "YourRef",
 											"type": "String"
 										}
 									}
 								],
-								"collectionReference": "$['d']['results']"
+								"collectionReference": ""
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_GLCLASSIFICATIONS",
+								"referenceName": "DS_EOL_TRANSACTIONLINES",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -2427,18 +2045,55 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_GLClassifications",
+								"referenceName": "DS_BonvueSQL_TransactionLines",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadPayments')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy Payments",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy GLClassifications",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -2475,6 +2130,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -3091,13 +2747,50 @@
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadCostUnits')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
-						"name": "Copy PurchasEntreis",
+						"name": "Copy CostUnits",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy Payments",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -3129,38 +2822,21 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE PURCHASEENTRIES",
+								"preCopyScript": "TRUNCATE TABLE CostUnits",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountDC']"
+											"path": "$['d']['results'][0]['Code']"
 										},
 										"sink": {
-											"name": "AmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountFC']"
-										},
-										"sink": {
-											"name": "AmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['BatchNumber']"
-										},
-										"sink": {
-											"name": "BatchNumber",
+											"name": "Code",
 											"type": "String"
 										}
 									},
@@ -3175,37 +2851,19 @@
 									},
 									{
 										"source": {
+											"path": "$['d']['results'][0]['Creator']"
+										},
+										"sink": {
+											"name": "Creator",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
 											"path": "$['d']['results'][0]['CreatorFullName']"
 										},
 										"sink": {
 											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Currency']"
-										},
-										"sink": {
-											"name": "Currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Supplier']"
-										},
-										"sink": {
-											"name": "Supplier",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['SupplierName']"
-										},
-										"sink": {
-											"name": "SupplierName",
 											"type": "String"
 										}
 									},
@@ -3229,118 +2887,19 @@
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['Document']"
+											"path": "$['d']['results'][0]['EndDate']"
 										},
 										"sink": {
-											"name": "Document",
+											"name": "EndDate",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['DocumentNumber']"
+											"path": "$['d']['results'][0]['ID']"
 										},
 										"sink": {
-											"name": "DocumentNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DocumentSubject']"
-										},
-										"sink": {
-											"name": "DocumentSubject",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DueDate']"
-										},
-										"sink": {
-											"name": "DueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryDate']"
-										},
-										"sink": {
-											"name": "EntryDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryID']"
-										},
-										"sink": {
-											"name": "EntryID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryNumber']"
-										},
-										"sink": {
-											"name": "EntryNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ExternalLinkDescription']"
-										},
-										"sink": {
-											"name": "ExternalLinkDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ExternalLinkReference']"
-										},
-										"sink": {
-											"name": "ExternalLinkReference",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GAccountAmountFC']"
-										},
-										"sink": {
-											"name": "GAccountAmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceNumber']"
-										},
-										"sink": {
-											"name": "InvoiceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Journal']"
-										},
-										"sink": {
-											"name": "Journal",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalDescription']"
-										},
-										"sink": {
-											"name": "JournalDescription",
+											"name": "ID",
 											"type": "String"
 										}
 									},
@@ -3355,163 +2914,29 @@
 									},
 									{
 										"source": {
+											"path": "$['d']['results'][0]['Modifier']"
+										},
+										"sink": {
+											"name": "Modifier",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
 											"path": "$['d']['results'][0]['ModifierFullName']"
 										},
 										"sink": {
 											"name": "ModifierFullName",
 											"type": "String"
 										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OrderNumber']"
-										},
-										"sink": {
-											"name": "OrderNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['PaymentCondition']"
-										},
-										"sink": {
-											"name": "PaymentCondition",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['PaymentConditionDescription']"
-										},
-										"sink": {
-											"name": "PaymentConditionDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['PaymentReference']"
-										},
-										"sink": {
-											"name": "PaymentReference",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ProcessNumber']"
-										},
-										"sink": {
-											"name": "ProcessNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Rate']"
-										},
-										"sink": {
-											"name": "Rate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ReportingYear']"
-										},
-										"sink": {
-											"name": "ReportingYear",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ReportingPeriod']"
-										},
-										"sink": {
-											"name": "ReportingPeriod",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Reversal']"
-										},
-										"sink": {
-											"name": "Reversal",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Status']"
-										},
-										"sink": {
-											"name": "Status",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['StatusDescription']"
-										},
-										"sink": {
-											"name": "StatusDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Type']"
-										},
-										"sink": {
-											"name": "Type",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TypeDescription']"
-										},
-										"sink": {
-											"name": "TypeDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATAmountDC']"
-										},
-										"sink": {
-											"name": "VATAmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATAmountFC']"
-										},
-										"sink": {
-											"name": "VATAmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['YourRef']"
-										},
-										"sink": {
-											"name": "YourRef",
-											"type": "String"
-										}
 									}
-								]
+								],
+								"collectionReference": ""
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_PURCHASEENTRIES",
+								"referenceName": "DS_EOL_COSTUNITS",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -3520,23 +2945,31 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_PurchaseEntries",
+								"referenceName": "DS_BonvueSQL_CostUnits",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
-					},
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadAccounts')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
 					{
-						"name": "Copy Receivables",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy PurchasEntreis",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -3546,733 +2979,21 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE RECEIVABLES",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Account']"
-										},
-										"sink": {
-											"name": "Account",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountBankAccountID']"
-										},
-										"sink": {
-											"name": "AccountBankAccountID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountBankAccountNumber']"
-										},
-										"sink": {
-											"name": "AccountBankAccountNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountCode']"
-										},
-										"sink": {
-											"name": "AccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountContact']"
-										},
-										"sink": {
-											"name": "AccountContact",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountContactName']"
-										},
-										"sink": {
-											"name": "AccountContactName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountName']"
-										},
-										"sink": {
-											"name": "AccountName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AccountCountry']"
-										},
-										"sink": {
-											"name": "AccountCountry",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AmountDC']"
-										},
-										"sink": {
-											"name": "AmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AmountDiscountDC']"
-										},
-										"sink": {
-											"name": "AmountDiscountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AmountFC']"
-										},
-										"sink": {
-											"name": "AmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['AmountDiscountFC']"
-										},
-										"sink": {
-											"name": "AmountDiscountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['BankAccountID']"
-										},
-										"sink": {
-											"name": "BankAccountID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['BankAccountNumber']"
-										},
-										"sink": {
-											"name": "BankAccountNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['CashflowTransactionBatchCode']"
-										},
-										"sink": {
-											"name": "CashflowTransactionBatchCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Created']"
-										},
-										"sink": {
-											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['CreatorFullName']"
-										},
-										"sink": {
-											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Currency']"
-										},
-										"sink": {
-											"name": "Currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DirectDebitMandate']"
-										},
-										"sink": {
-											"name": "DirectDebitMandate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DirectDebitMandateDescription']"
-										},
-										"sink": {
-											"name": "DirectDebitMandateDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DirectDebitMandatePaymentType']"
-										},
-										"sink": {
-											"name": "DirectDebitMandatePaymentType",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DirectDebitMandateReference']"
-										},
-										"sink": {
-											"name": "DirectDebitMandateReference",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DirectDebitMandateType']"
-										},
-										"sink": {
-											"name": "DirectDebitMandateType",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DiscountDueDate']"
-										},
-										"sink": {
-											"name": "DiscountDueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Division']"
-										},
-										"sink": {
-											"name": "Division",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Document']"
-										},
-										"sink": {
-											"name": "Document",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DocumentNumber']"
-										},
-										"sink": {
-											"name": "DocumentNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DocumentSubject']"
-										},
-										"sink": {
-											"name": "DocumentSubject",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['DueDate']"
-										},
-										"sink": {
-											"name": "DueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EndDate']"
-										},
-										"sink": {
-											"name": "EndDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EndPeriod']"
-										},
-										"sink": {
-											"name": "EndPeriod",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EndToEndID']"
-										},
-										"sink": {
-											"name": "EndToEndID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EndYear']"
-										},
-										"sink": {
-											"name": "EndYear",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EntryDate']"
-										},
-										"sink": {
-											"name": "EntryDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EntryID']"
-										},
-										"sink": {
-											"name": "EntryID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['EntryNumber']"
-										},
-										"sink": {
-											"name": "EntryNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountCode']"
-										},
-										"sink": {
-											"name": "GLAccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountDescription']"
-										},
-										"sink": {
-											"name": "GLAccountDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['InvoiceDate']"
-										},
-										"sink": {
-											"name": "InvoiceDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['InvoiceNumber']"
-										},
-										"sink": {
-											"name": "InvoiceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['IsBatchBooking']"
-										},
-										"sink": {
-											"name": "IsBatchBooking",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['IsFullyPaid']"
-										},
-										"sink": {
-											"name": "IsFullyPaid",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Journal']"
-										},
-										"sink": {
-											"name": "Journal",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['JournalDescription']"
-										},
-										"sink": {
-											"name": "JournalDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['LastPaymentDate']"
-										},
-										"sink": {
-											"name": "LastPaymentDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Modified']"
-										},
-										"sink": {
-											"name": "Modified",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ModifierFullName']"
-										},
-										"sink": {
-											"name": "ModifierFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentCondition']"
-										},
-										"sink": {
-											"name": "PaymentCondition",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentConditionDescription']"
-										},
-										"sink": {
-											"name": "PaymentConditionDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentDays']"
-										},
-										"sink": {
-											"name": "PaymentDays",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentDaysDiscount']"
-										},
-										"sink": {
-											"name": "PaymentDaysDiscount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentDiscountPercentage']"
-										},
-										"sink": {
-											"name": "PaymentDiscountPercentage",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentInformationID']"
-										},
-										"sink": {
-											"name": "PaymentInformationID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentMethod']"
-										},
-										"sink": {
-											"name": "PaymentMethod",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['PaymentReference']"
-										},
-										"sink": {
-											"name": "PaymentReference",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['RateFC']"
-										},
-										"sink": {
-											"name": "RateFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ReceivableSelected']"
-										},
-										"sink": {
-											"name": "ReceivableSelected",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ReceivableSelector']"
-										},
-										"sink": {
-											"name": "ReceivableSelector",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ReceivableSelectorFullName']"
-										},
-										"sink": {
-											"name": "ReceivableSelectorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ReceivableBatchNumber']"
-										},
-										"sink": {
-											"name": "ReceivableBatchNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Source']"
-										},
-										"sink": {
-											"name": "Source",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Status']"
-										},
-										"sink": {
-											"name": "Status",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionAmountDC']"
-										},
-										"sink": {
-											"name": "TransactionAmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionAmountFC']"
-										},
-										"sink": {
-											"name": "TransactionAmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionDueDate']"
-										},
-										"sink": {
-											"name": "TransactionDueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionEntryID']"
-										},
-										"sink": {
-											"name": "TransactionEntryID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionID']"
-										},
-										"sink": {
-											"name": "TransactionID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionIsReversal']"
-										},
-										"sink": {
-											"name": "TransactionIsReversal",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionReportingPeriod']"
-										},
-										"sink": {
-											"name": "TransactionReportingPeriod",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionReportingYear']"
-										},
-										"sink": {
-											"name": "TransactionReportingYear",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionStatus']"
-										},
-										"sink": {
-											"name": "TransactionStatus",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['TransactionType']"
-										},
-										"sink": {
-											"name": "TransactionType",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['YourRef']"
-										},
-										"sink": {
-											"name": "YourRef",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['d']['results']"
-							}
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
 						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_RECEIVABLES",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_Receivables",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy Accounts",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy Receivables",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4309,6 +3030,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -5656,13 +4378,50 @@
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadCostCenters')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
-						"name": "Copy AgingOverview",
+						"name": "Copy  CostCenters",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy Accounts",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5675,7 +4434,16 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "/api/v1//hrm/Costcenters"
+							},
+							{
+								"name": "Destination",
+								"value": "CostCenters."
+							}
+						],
 						"typeProperties": {
 							"source": {
 								"type": "RestSource",
@@ -5694,66 +4462,131 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE agingOverview",
+								"preCopyScript": "TRUNCATE TABLE CostCenters",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AgeGroup']"
+											"path": "[['Active']"
 										},
 										"sink": {
-											"name": "AgeGroup",
+											"name": "Active",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AgeGroupDescription']"
+											"path": "[['Code']"
 										},
 										"sink": {
-											"name": "AgeGroupDescription",
+											"name": "Code",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountReceivable']"
+											"path": "[['Created']"
 										},
 										"sink": {
-											"name": "AmountReceivable",
+											"name": "Created",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['AmountPayable']"
+											"path": "[['Creator']"
 										},
 										"sink": {
-											"name": "AmountPayable",
+											"name": "Creator",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['CurrencyCode']"
+											"path": "[['CreatorFullName']"
 										},
 										"sink": {
-											"name": "CurrencyCode",
+											"name": "CreatorFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Description']"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Division']"
+										},
+										"sink": {
+											"name": "Division",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['EndDate']"
+										},
+										"sink": {
+											"name": "EndDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['ID']"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Modified']"
+										},
+										"sink": {
+											"name": "Modified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Modifier']"
+										},
+										"sink": {
+											"name": "Modifier",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['ModifierFullName']"
+										},
+										"sink": {
+											"name": "ModifierFullName",
 											"type": "String"
 										}
 									}
 								],
-								"collectionReference": ""
+								"collectionReference": "$['d']['results']",
+								"mapComplexValuesToString": false
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_AGINGOVERVIEW",
+								"referenceName": "DS_EOL_COSTCENTERS",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -5762,19 +4595,55 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_AgingOverview",
+								"referenceName": "DS_BonvueSQL_CostCenters",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadBudgets')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
-						"name": "Copy AssetGroups",
-						"description": "",
+						"name": "Copy Budgets",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy Budgets",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5806,29 +4675,32 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE AssetGroups",
+								"preCopyScript": "TRUNCATE TABLE BUDGETS",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
 									{
 										"source": {
-											"path": "$['d']['results'][0]"
+											"path": "$['d']['results']"
 										},
 										"sink": {
-											"name": "items"
+											"name": "items",
+											"type": "String"
 										}
 									}
 								],
-								"collectionReference": ""
+								"collectionReference": "",
+								"mapComplexValuesToString": true
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_ASSETSGROUPS",
+								"referenceName": "DS_EOL_BUDGETS",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -5837,18 +4709,55 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_AssetGroups",
+								"referenceName": "DS_BonvueSQL_Budgets",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadGeneralJournalEntryLines')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
-						"name": "Copy BankAccounts",
+						"name": "Copy GeneralJournalEntryLines",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy AgingOverview",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5880,11 +4789,11 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE BankAccounts",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -5899,6 +4808,15 @@
 									},
 									{
 										"source": {
+											"path": "$['d']['results'][0]['AccountCode']"
+										},
+										"sink": {
+											"name": "AccountCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
 											"path": "$['d']['results'][0]['AccountName']"
 										},
 										"sink": {
@@ -5908,55 +4826,100 @@
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['Bank']"
+											"path": "$['d']['results'][0]['AmountDC']"
 										},
 										"sink": {
-											"name": "Bank",
+											"name": "AmountDC",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['BankAccount']"
+											"path": "$['d']['results'][0]['AmountFC']"
 										},
 										"sink": {
-											"name": "BankAccount",
+											"name": "AmountFC",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['BankAccountHolderName']"
+											"path": "$['d']['results'][0]['AmountVATDC']"
 										},
 										"sink": {
-											"name": "BankAccountHolderName",
+											"name": "AmountVATDC",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['BankDescription']"
+											"path": "$['d']['results'][0]['AmountVATFC']"
 										},
 										"sink": {
-											"name": "BankDescription",
+											"name": "AmountVATFC",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['BankName']"
+											"path": "$['d']['results'][0]['Asset']"
 										},
 										"sink": {
-											"name": "BankName",
+											"name": "Asset",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['BICCode']"
+											"path": "$['d']['results'][0]['AssetCode']"
 										},
 										"sink": {
-											"name": "BICCode",
+											"name": "AssetCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AssetDescription']"
+										},
+										"sink": {
+											"name": "AssetDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostCenter']"
+										},
+										"sink": {
+											"name": "CostCenter",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostCenterDescription']"
+										},
+										"sink": {
+											"name": "CostCenterDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostUnit']"
+										},
+										"sink": {
+											"name": "CostUnit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CostUnitDescription']"
+										},
+										"sink": {
+											"name": "CostUnitDescription",
 											"type": "String"
 										}
 									},
@@ -5989,6 +4952,15 @@
 									},
 									{
 										"source": {
+											"path": "$['d']['results'][0]['Date']"
+										},
+										"sink": {
+											"name": "Date",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
 											"path": "$['d']['results'][0]['Description']"
 										},
 										"sink": {
@@ -6007,19 +4979,73 @@
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['Format']"
+											"path": "$['d']['results'][0]['Document']"
 										},
 										"sink": {
-											"name": "Format",
+											"name": "Document",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['IBAN']"
+											"path": "$['d']['results'][0]['DocumentNumber']"
 										},
 										"sink": {
-											"name": "IBAN",
+											"name": "DocumentNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DocumentSubject']"
+										},
+										"sink": {
+											"name": "DocumentSubject",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryID']"
+										},
+										"sink": {
+											"name": "EntryID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryNumber']"
+										},
+										"sink": {
+											"name": "EntryNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccount']"
+										},
+										"sink": {
+											"name": "GLAccount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccountCode']"
+										},
+										"sink": {
+											"name": "GLAccountCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GLAccountDescription']"
+										},
+										"sink": {
+											"name": "GLAccountDescription",
 											"type": "String"
 										}
 									},
@@ -6029,6 +5055,500 @@
 										},
 										"sink": {
 											"name": "ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['LineNumber']"
+										},
+										"sink": {
+											"name": "LineNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modified']"
+										},
+										"sink": {
+											"name": "Modified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modifier']"
+										},
+										"sink": {
+											"name": "Modifier",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ModifierFullName']"
+										},
+										"sink": {
+											"name": "ModifierFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Notes']"
+										},
+										"sink": {
+											"name": "Notes",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['OffsetID']"
+										},
+										"sink": {
+											"name": "OffsetID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['OurRef']"
+										},
+										"sink": {
+											"name": "OurRef",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Project']"
+										},
+										"sink": {
+											"name": "Project",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ProjectCode']"
+										},
+										"sink": {
+											"name": "ProjectCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ProjectDescription']"
+										},
+										"sink": {
+											"name": "ProjectDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Quantity']"
+										},
+										"sink": {
+											"name": "Quantity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATBaseAmountDC']"
+										},
+										"sink": {
+											"name": "VATBaseAmountDC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATBaseAmountFC']"
+										},
+										"sink": {
+											"name": "VATBaseAmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATCode']"
+										},
+										"sink": {
+											"name": "VATCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATCodeDescription']"
+										},
+										"sink": {
+											"name": "VATCodeDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATPercentage']"
+										},
+										"sink": {
+											"name": "VATPercentage",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATType']"
+										},
+										"sink": {
+											"name": "VATType",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_GENERALJOURNALENTRYLINES",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_GeneralJournalEntryLines",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadJobTitles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy JobTitles",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['d']['results'][0]"
+										},
+										"sink": {
+											"name": "items"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_JOBTITLES",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_JobTitles",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadDivison')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy Division",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "TRUNCATE TABLE DIVISION",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BlockingStatus']"
+										},
+										"sink": {
+											"name": "BlockingStatus",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Code']"
+										},
+										"sink": {
+											"name": "Code",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Country']"
+										},
+										"sink": {
+											"name": "Country",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CountryDescription']"
+										},
+										"sink": {
+											"name": "CountryDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Created']"
+										},
+										"sink": {
+											"name": "Created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Creator']"
+										},
+										"sink": {
+											"name": "Creator",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CreatorFullName']"
+										},
+										"sink": {
+											"name": "CreatorFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Currency']"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CurrencyDescription']"
+										},
+										"sink": {
+											"name": "CurrencyDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Customer']"
+										},
+										"sink": {
+											"name": "Customer",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CustomerCode']"
+										},
+										"sink": {
+											"name": "CustomerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CustomerName']"
+										},
+										"sink": {
+											"name": "CustomerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Description']"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['HID']"
+										},
+										"sink": {
+											"name": "HID",
 											"type": "String"
 										}
 									},
@@ -6070,10 +5590,510 @@
 									},
 									{
 										"source": {
-											"path": "$['d']['results'][0]['PaymentServiceAccount']"
+											"path": "$['d']['results'][0]['OBNumber']"
 										},
 										"sink": {
-											"name": "PaymentServiceAccount",
+											"name": "OBNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['SiretNumber']"
+										},
+										"sink": {
+											"name": "SiretNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['StartDate']"
+										},
+										"sink": {
+											"name": "StartDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Status']"
+										},
+										"sink": {
+											"name": "Status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TaxOfficeNumber']"
+										},
+										"sink": {
+											"name": "TaxOfficeNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TaxReferenceNumber']"
+										},
+										"sink": {
+											"name": "TaxReferenceNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['TemplateCode']"
+										},
+										"sink": {
+											"name": "TemplateCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATNumber']"
+										},
+										"sink": {
+											"name": "VATNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Website']"
+										},
+										"sink": {
+											"name": "Website",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_DIVISION",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_Division",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadPurchaseEntries')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy PurchasEntreis",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "TRUNCATE TABLE PURCHASEENTRIES",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountDC']"
+										},
+										"sink": {
+											"name": "AmountDC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['AmountFC']"
+										},
+										"sink": {
+											"name": "AmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['BatchNumber']"
+										},
+										"sink": {
+											"name": "BatchNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Created']"
+										},
+										"sink": {
+											"name": "Created",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['CreatorFullName']"
+										},
+										"sink": {
+											"name": "CreatorFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Currency']"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Supplier']"
+										},
+										"sink": {
+											"name": "Supplier",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['SupplierName']"
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Description']"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Division']"
+										},
+										"sink": {
+											"name": "Division",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Document']"
+										},
+										"sink": {
+											"name": "Document",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DocumentNumber']"
+										},
+										"sink": {
+											"name": "DocumentNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DocumentSubject']"
+										},
+										"sink": {
+											"name": "DocumentSubject",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['DueDate']"
+										},
+										"sink": {
+											"name": "DueDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryDate']"
+										},
+										"sink": {
+											"name": "EntryDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryID']"
+										},
+										"sink": {
+											"name": "EntryID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['EntryNumber']"
+										},
+										"sink": {
+											"name": "EntryNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ExternalLinkDescription']"
+										},
+										"sink": {
+											"name": "ExternalLinkDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ExternalLinkReference']"
+										},
+										"sink": {
+											"name": "ExternalLinkReference",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['GAccountAmountFC']"
+										},
+										"sink": {
+											"name": "GAccountAmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['InvoiceNumber']"
+										},
+										"sink": {
+											"name": "InvoiceNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Journal']"
+										},
+										"sink": {
+											"name": "Journal",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['JournalDescription']"
+										},
+										"sink": {
+											"name": "JournalDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Modified']"
+										},
+										"sink": {
+											"name": "Modified",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ModifierFullName']"
+										},
+										"sink": {
+											"name": "ModifierFullName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['OrderNumber']"
+										},
+										"sink": {
+											"name": "OrderNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['PaymentCondition']"
+										},
+										"sink": {
+											"name": "PaymentCondition",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['PaymentConditionDescription']"
+										},
+										"sink": {
+											"name": "PaymentConditionDescription",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['PaymentReference']"
+										},
+										"sink": {
+											"name": "PaymentReference",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ProcessNumber']"
+										},
+										"sink": {
+											"name": "ProcessNumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Rate']"
+										},
+										"sink": {
+											"name": "Rate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ReportingYear']"
+										},
+										"sink": {
+											"name": "ReportingYear",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['ReportingPeriod']"
+										},
+										"sink": {
+											"name": "ReportingPeriod",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Reversal']"
+										},
+										"sink": {
+											"name": "Reversal",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['Status']"
+										},
+										"sink": {
+											"name": "Status",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['StatusDescription']"
+										},
+										"sink": {
+											"name": "StatusDescription",
 											"type": "String"
 										}
 									},
@@ -6094,14 +6114,40 @@
 											"name": "TypeDescription",
 											"type": "String"
 										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATAmountDC']"
+										},
+										"sink": {
+											"name": "VATAmountDC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['VATAmountFC']"
+										},
+										"sink": {
+											"name": "VATAmountFC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['d']['results'][0]['YourRef']"
+										},
+										"sink": {
+											"name": "YourRef",
+											"type": "String"
+										}
 									}
-								],
-								"collectionReference": ""
+								]
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_BANKACCCOUNTS",
+								"referenceName": "DS_EOL_PURCHASEENTRIES",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -6110,18 +6156,55 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_BankAccounts",
+								"referenceName": "DS_BonvueSQL_PurchaseEntries",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadBankEntryLines')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy BankEntryLines",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy BankEntries",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -6158,6 +6241,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -6578,18 +6662,26 @@
 								"parameters": {}
 							}
 						]
-					},
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:32Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadCurrentYearAfterEntry')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
 					{
-						"name": "Copy Budgets",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy PayablesList",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -6599,68 +6691,21 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE BUDGETS",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results']"
-										},
-										"sink": {
-											"name": "items",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "",
-								"mapComplexValuesToString": true
-							}
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
 						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_BUDGETS",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_Budgets",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy CurrentYear_AfterEntry",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy BankEntryLines",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -6697,6 +6742,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -6783,18 +6829,26 @@
 								"parameters": {}
 							}
 						]
-					},
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:34Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadDocumentAttachments')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
 					{
-						"name": "Copy Division",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "GetEOLBearerToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -6804,294 +6858,14 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE DIVISION",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results'][0]['BlockingStatus']"
-										},
-										"sink": {
-											"name": "BlockingStatus",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Code']"
-										},
-										"sink": {
-											"name": "Code",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Country']"
-										},
-										"sink": {
-											"name": "Country",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CountryDescription']"
-										},
-										"sink": {
-											"name": "CountryDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Created']"
-										},
-										"sink": {
-											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Creator']"
-										},
-										"sink": {
-											"name": "Creator",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CreatorFullName']"
-										},
-										"sink": {
-											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Currency']"
-										},
-										"sink": {
-											"name": "Currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CurrencyDescription']"
-										},
-										"sink": {
-											"name": "CurrencyDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Customer']"
-										},
-										"sink": {
-											"name": "Customer",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CustomerCode']"
-										},
-										"sink": {
-											"name": "CustomerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CustomerName']"
-										},
-										"sink": {
-											"name": "CustomerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['HID']"
-										},
-										"sink": {
-											"name": "HID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Main']"
-										},
-										"sink": {
-											"name": "Main",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modified']"
-										},
-										"sink": {
-											"name": "Modified",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modifier']"
-										},
-										"sink": {
-											"name": "Modifier",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ModifierFullName']"
-										},
-										"sink": {
-											"name": "ModifierFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OBNumber']"
-										},
-										"sink": {
-											"name": "OBNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['SiretNumber']"
-										},
-										"sink": {
-											"name": "SiretNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['StartDate']"
-										},
-										"sink": {
-											"name": "StartDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Status']"
-										},
-										"sink": {
-											"name": "Status",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TaxOfficeNumber']"
-										},
-										"sink": {
-											"name": "TaxOfficeNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TaxReferenceNumber']"
-										},
-										"sink": {
-											"name": "TaxReferenceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TemplateCode']"
-										},
-										"sink": {
-											"name": "TemplateCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATNumber']"
-										},
-										"sink": {
-											"name": "VATNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Website']"
-										},
-										"sink": {
-											"name": "Website",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": ""
-							}
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
 						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_DIVISION",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_Division",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
 					},
 					{
 						"name": "Copy DocumentAttachments",
@@ -7099,7 +6873,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Copy CurrentYear_AfterEntry",
+								"activity": "GetEOLBearerToken",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -7136,6 +6910,7 @@
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -7213,1312 +6988,18 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Copy ReceivablesList",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy DocumentAttachments",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE RECEIVABLESLIST",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results'][0]['HID']"
-										},
-										"sink": {
-											"name": "HID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Id']"
-										},
-										"sink": {
-											"name": "Id",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DueDate']"
-										},
-										"sink": {
-											"name": "DueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Amount']"
-										},
-										"sink": {
-											"name": "Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CurrencyCode']"
-										},
-										"sink": {
-											"name": "CurrencyCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountId']"
-										},
-										"sink": {
-											"name": "AccountId",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountCode']"
-										},
-										"sink": {
-											"name": "AccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountName']"
-										},
-										"sink": {
-											"name": "AccountName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalCode']"
-										},
-										"sink": {
-											"name": "JournalCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalDescription']"
-										},
-										"sink": {
-											"name": "JournalDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountInTransit']"
-										},
-										"sink": {
-											"name": "AmountInTransit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceNumber']"
-										},
-										"sink": {
-											"name": "InvoiceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceDate']"
-										},
-										"sink": {
-											"name": "InvoiceDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['YourRef']"
-										},
-										"sink": {
-											"name": "YourRef",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryNumber']"
-										},
-										"sink": {
-											"name": "EntryNumber",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": ""
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_RECEIVABLESLIST",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_ReceivablesList",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy TransactionLines",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy ReceivablesList",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE TRANSACTIONLINES",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ShopOrder']"
-										},
-										"sink": {
-											"name": "ShopOrder",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Account']"
-										},
-										"sink": {
-											"name": "Account",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountCode']"
-										},
-										"sink": {
-											"name": "AccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountName']"
-										},
-										"sink": {
-											"name": "AccountName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountDC']"
-										},
-										"sink": {
-											"name": "AmountDC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountFC']"
-										},
-										"sink": {
-											"name": "AmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountVATFC']"
-										},
-										"sink": {
-											"name": "AmountVATFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountVATBaseFC']"
-										},
-										"sink": {
-											"name": "AmountVATBaseFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Asset']"
-										},
-										"sink": {
-											"name": "Asset",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AssetCode']"
-										},
-										"sink": {
-											"name": "AssetCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AssetDescription']"
-										},
-										"sink": {
-											"name": "AssetDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostCenter']"
-										},
-										"sink": {
-											"name": "CostCenter",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostCenterDescription']"
-										},
-										"sink": {
-											"name": "CostCenterDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostUnit']"
-										},
-										"sink": {
-											"name": "CostUnit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CostUnitDescription']"
-										},
-										"sink": {
-											"name": "CostUnitDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Created']"
-										},
-										"sink": {
-											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Creator']"
-										},
-										"sink": {
-											"name": "Creator",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CreatorFullName']"
-										},
-										"sink": {
-											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Currency']"
-										},
-										"sink": {
-											"name": "Currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Date']"
-										},
-										"sink": {
-											"name": "Date",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Division']"
-										},
-										"sink": {
-											"name": "Division",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Document']"
-										},
-										"sink": {
-											"name": "Document",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DocumentNumber']"
-										},
-										"sink": {
-											"name": "DocumentNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DocumentSubject']"
-										},
-										"sink": {
-											"name": "DocumentSubject",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DueDate']"
-										},
-										"sink": {
-											"name": "DueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryID']"
-										},
-										"sink": {
-											"name": "EntryID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryNumber']"
-										},
-										"sink": {
-											"name": "EntryNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ExchangeRate']"
-										},
-										"sink": {
-											"name": "ExchangeRate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ExtraDutyAmountFC']"
-										},
-										"sink": {
-											"name": "ExtraDutyAmountFC",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ExtraDutyPercentage']"
-										},
-										"sink": {
-											"name": "ExtraDutyPercentage",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['FinancialPeriod']"
-										},
-										"sink": {
-											"name": "FinancialPeriod",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['FinancialYear']"
-										},
-										"sink": {
-											"name": "FinancialYear",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccount']"
-										},
-										"sink": {
-											"name": "GLAccount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccountCode']"
-										},
-										"sink": {
-											"name": "GLAccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['GLAccountDescription']"
-										},
-										"sink": {
-											"name": "GLAccountDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceNumber']"
-										},
-										"sink": {
-											"name": "InvoiceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Item']"
-										},
-										"sink": {
-											"name": "Item",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ItemCode']"
-										},
-										"sink": {
-											"name": "ItemCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ItemDescription']"
-										},
-										"sink": {
-											"name": "ItemDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalCode']"
-										},
-										"sink": {
-											"name": "JournalCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalDescription']"
-										},
-										"sink": {
-											"name": "JournalDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['LineNumber']"
-										},
-										"sink": {
-											"name": "LineNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['LineType']"
-										},
-										"sink": {
-											"name": "LineType",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modified']"
-										},
-										"sink": {
-											"name": "Modified",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modifier']"
-										},
-										"sink": {
-											"name": "Modifier",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ModifierFullName']"
-										},
-										"sink": {
-											"name": "ModifierFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Notes']"
-										},
-										"sink": {
-											"name": "Notes",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OffsetID']"
-										},
-										"sink": {
-											"name": "OffsetID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['OrderNumber']"
-										},
-										"sink": {
-											"name": "OrderNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['PaymentDiscountAmount']"
-										},
-										"sink": {
-											"name": "PaymentDiscountAmount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['PaymentReference']"
-										},
-										"sink": {
-											"name": "PaymentReference",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Project']"
-										},
-										"sink": {
-											"name": "Project",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ProjectCode']"
-										},
-										"sink": {
-											"name": "ProjectCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ProjectDescription']"
-										},
-										"sink": {
-											"name": "ProjectDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Quantity']"
-										},
-										"sink": {
-											"name": "Quantity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['SerialNumber']"
-										},
-										"sink": {
-											"name": "SerialNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Status']"
-										},
-										"sink": {
-											"name": "Status",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Subscription']"
-										},
-										"sink": {
-											"name": "Subscription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['SubscriptionDescription']"
-										},
-										"sink": {
-											"name": "SubscriptionDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TrackingNumber']"
-										},
-										"sink": {
-											"name": "TrackingNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['TrackingNumberDescription']"
-										},
-										"sink": {
-											"name": "TrackingNumberDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Type']"
-										},
-										"sink": {
-											"name": "Type",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATCode']"
-										},
-										"sink": {
-											"name": "VATCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATCodeDescription']"
-										},
-										"sink": {
-											"name": "VATCodeDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATPercentage']"
-										},
-										"sink": {
-											"name": "VATPercentage",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['VATType']"
-										},
-										"sink": {
-											"name": "VATType",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['YourRef']"
-										},
-										"sink": {
-											"name": "YourRef",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": ""
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_TRANSACTIONLINES",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_TransactionLines",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy PayablesList",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy TransactionLines",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE PAYABLESLIST",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results'][0]['HID']"
-										},
-										"sink": {
-											"name": "HID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Id']"
-										},
-										"sink": {
-											"name": "Id",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['DueDate']"
-										},
-										"sink": {
-											"name": "DueDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Amount']"
-										},
-										"sink": {
-											"name": "Amount",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CurrencyCode']"
-										},
-										"sink": {
-											"name": "CurrencyCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountId']"
-										},
-										"sink": {
-											"name": "AccountId",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountCode']"
-										},
-										"sink": {
-											"name": "AccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AccountName']"
-										},
-										"sink": {
-											"name": "AccountName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalCode']"
-										},
-										"sink": {
-											"name": "JournalCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['JournalDescription']"
-										},
-										"sink": {
-											"name": "JournalDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['AmountInTransit']"
-										},
-										"sink": {
-											"name": "AmountInTransit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ApprovalStatus']"
-										},
-										"sink": {
-											"name": "ApprovalStatus",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceNumber']"
-										},
-										"sink": {
-											"name": "InvoiceNumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['InvoiceDate']"
-										},
-										"sink": {
-											"name": "InvoiceDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['YourRef']"
-										},
-										"sink": {
-											"name": "YourRef",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EntryNumber']"
-										},
-										"sink": {
-											"name": "EntryNumber",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": ""
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_PAYABLESLIST",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_PayablesList",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy CostUnits",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy AgingPayableList",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Authorization": {
-										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
-										"type": "Expression"
-									}
-								},
-								"paginationRules": {
-									"AbsoluteUrl": "$.d.__next"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE CostUnits",
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Code']"
-										},
-										"sink": {
-											"name": "Code",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Created']"
-										},
-										"sink": {
-											"name": "Created",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Creator']"
-										},
-										"sink": {
-											"name": "Creator",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['CreatorFullName']"
-										},
-										"sink": {
-											"name": "CreatorFullName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Description']"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Division']"
-										},
-										"sink": {
-											"name": "Division",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['EndDate']"
-										},
-										"sink": {
-											"name": "EndDate",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modified']"
-										},
-										"sink": {
-											"name": "Modified",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['Modifier']"
-										},
-										"sink": {
-											"name": "Modifier",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['results'][0]['ModifierFullName']"
-										},
-										"sink": {
-											"name": "ModifierFullName",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": ""
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_EOL_COSTUNITS",
-								"type": "DatasetReference",
-								"parameters": {
-									"division": "2928333"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_BonvueSQL_CostUnits",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
 					}
 				],
 				"folder": {
-					"name": "Exact"
+					"name": "Exact/Exact Database"
 				},
 				"annotations": [],
-				"lastPublishTime": "2021-06-03T11:45:44Z"
+				"lastPublishTime": "2021-07-07T09:32:34Z"
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_Accounts')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_AgingOverview')]",
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_BANKACCCOUNTS')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_BankAccounts')]",
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_BANKENTRYLINES')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_BankEntryLines')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_Budgets')]",
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_DOCUMENTATTACHMENTS')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_ReceivablesList')]",
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_TRANSACTIONLINES')]",
-				"[concat(variables('factoryId'), '/datasets/DS_EOL_PAYABLESLIST')]",
-				"[concat(variables('factoryId'), '/datasets/DS_BonvueSQL_CostUnits')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ExactLoadGLAccountClassificationMappings')]",
+			"name": "[concat(parameters('factoryName'), '/ExactLoadAgingOverview')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -8546,7 +7027,7 @@
 						}
 					},
 					{
-						"name": "Copy GLAccountClassificationMappings",
+						"name": "Copy AgingOverview",
 						"type": "Copy",
 						"dependsOn": [
 							{
@@ -8582,7 +7063,7 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "TRUNCATE TABLE GLAccountClassificationMappings",
+								"preCopyScript": "TRUNCATE TABLE agingOverview",
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
@@ -8593,118 +7074,56 @@
 								"mappings": [
 									{
 										"source": {
-											"path": "[['Classification']"
+											"path": "$['d']['results'][0]['AgeGroup']"
 										},
 										"sink": {
-											"name": "Classification",
+											"name": "AgeGroup",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['ClassificationCode']"
+											"path": "$['d']['results'][0]['AgeGroupDescription']"
 										},
 										"sink": {
-											"name": "ClassificationCode",
+											"name": "AgeGroupDescription",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['ClassificationDescription']"
+											"path": "$['d']['results'][0]['AmountReceivable']"
 										},
 										"sink": {
-											"name": "ClassificationDescription",
+											"name": "AmountReceivable",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['Division']"
+											"path": "$['d']['results'][0]['AmountPayable']"
 										},
 										"sink": {
-											"name": "Division",
+											"name": "AmountPayable",
 											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"path": "[['GLAccount']"
+											"path": "$['d']['results'][0]['CurrencyCode']"
 										},
 										"sink": {
-											"name": "GLAccount",
+											"name": "CurrencyCode",
 											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountCode']"
-										},
-										"sink": {
-											"name": "GLAccountCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLAccountDescription']"
-										},
-										"sink": {
-											"name": "GLAccountDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeCode']"
-										},
-										"sink": {
-											"name": "GLSchemeCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeDescription']"
-										},
-										"sink": {
-											"name": "GLSchemeDescription",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['GLSchemeID']"
-										},
-										"sink": {
-											"name": "GLSchemeID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ID']"
-										},
-										"sink": {
-											"name": "ID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['d']['__next']"
-										},
-										"sink": {
-											"name": "__next"
 										}
 									}
 								],
-								"collectionReference": "$['d']['results']"
+								"collectionReference": ""
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "DS_EOL_GLACCOUNTCLASSIFICATIONMAPPINGS",
+								"referenceName": "DS_EOL_AGINGOVERVIEW",
 								"type": "DatasetReference",
 								"parameters": {
 									"division": "2928333"
@@ -8713,7 +7132,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DS_BonvueSQL_GLAccountClassificationMappings",
+								"referenceName": "DS_BonvueSQL_AgingOverview",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -8724,7 +7143,264 @@
 					"name": "Exact/Exact Database"
 				},
 				"annotations": [],
-				"lastPublishTime": "2021-07-07T09:32:31Z"
+				"lastPublishTime": "2021-07-07T09:32:34Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExactLoadAgingPayableList')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetEOLBearerToken",
+						"type": "AzureFunctionActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"functionName": "GetNewBearerToken",
+							"method": "GET",
+							"headers": {}
+						},
+						"linkedServiceName": {
+							"referenceName": "BonvueExactFunctions",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy AgingPayableList",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetEOLBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Authorization": {
+										"value": "Bearer @{activity('GetEOLBearerToken').output.Response}",
+										"type": "Expression"
+									}
+								},
+								"paginationRules": {
+									"AbsoluteUrl": "$.d.__next"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "TRUNCATE TABLE agingpayablelist",
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['AccountId']"
+										},
+										"sink": {
+											"name": "AccountId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AccountCode']"
+										},
+										"sink": {
+											"name": "AccountCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AccountName']"
+										},
+										"sink": {
+											"name": "AccountName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['TotalAmount']"
+										},
+										"sink": {
+											"name": "TotalAmount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup1']"
+										},
+										"sink": {
+											"name": "AgeGroup1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup1Description']"
+										},
+										"sink": {
+											"name": "AgeGroup1Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup1Amount']"
+										},
+										"sink": {
+											"name": "AgeGroup1Amount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup2']"
+										},
+										"sink": {
+											"name": "AgeGroup2",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup2Description']"
+										},
+										"sink": {
+											"name": "AgeGroup2Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup2Amount']"
+										},
+										"sink": {
+											"name": "AgeGroup2Amount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup3']"
+										},
+										"sink": {
+											"name": "AgeGroup3",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup3Description']"
+										},
+										"sink": {
+											"name": "AgeGroup3Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup3Amount']"
+										},
+										"sink": {
+											"name": "AgeGroup3Amount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup4']"
+										},
+										"sink": {
+											"name": "AgeGroup4",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup4Description']"
+										},
+										"sink": {
+											"name": "AgeGroup4Description",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['AgeGroup4Amount']"
+										},
+										"sink": {
+											"name": "AgeGroup4Amount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['CurrencyCode']"
+										},
+										"sink": {
+											"name": "CurrencyCode",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['d']['results']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_EOL_AGINGPAYABLESLIST",
+								"type": "DatasetReference",
+								"parameters": {
+									"division": "2928333"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_BonvueSQL_AgingPayableList",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"folder": {
+					"name": "Exact/Exact Database"
+				},
+				"annotations": [],
+				"lastPublishTime": "2021-07-07T09:32:38Z"
 			},
 			"dependsOn": []
 		}
